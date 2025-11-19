@@ -1,5 +1,8 @@
 # AcadBridge - IntelliJ IDEA Project Structure
 
+
+## Project Structure
+
 ```
 SDA/
 ├── .idea/
@@ -19,25 +22,23 @@ SDA/
 │   │   │               │   │   └── LoginController.java
 │   │   │               │   │
 │   │   │               │   ├── shared/
-│   │   │               │   │   ├── DashboardController.java
-│   │   │               │   │   ├── ProfileController.java
 │   │   │               │   │   ├── ProjectRepositoryController.java
-│   │   │               │   │   ├── ProjectDetailsController.java
-│   │   │               │   │   ├── SearchController.java
+│   │   │               │   │   ├── ProjectSearchController.java
+│   │   │               │   │   ├── UploadProjectController.java
+│   │   │               │   │   ├── MentorshipRequestController.java
+│   │   │               │   │   ├── MentorshipApprovalController.java
 │   │   │               │   │   ├── ChatController.java
-│   │   │               │   │   ├── ResourcesLibraryController.java
-│   │   │               │   │   ├── NotificationsController.java
-│   │   │               │   │   ├── FeedbackRatingsController.java
+│   │   │               │   │   ├── ResourceSharingController.java
+│   │   │               │   │   ├── FeedbackRatingController.java
+│   │   │               │   │   └── ViewFeedbackController.java
+│   │   │               │   │
+│   │   │               │   ├── admin/
 │   │   │               │   │   ├── UserManagementController.java
-│   │   │               │   │   ├── UploadSubmissionController.java
-│   │   │               │   │   ├── RequestManagementController.java
-│   │   │               │   │   ├── SettingsController.java
-│   │   │               │   │   └── ReportsAnalyticsController.java
+│   │   │               │   │   ├── RepositoryManagementController.java
+│   │   │               │   │   └── ReportsGenerationController.java
 │   │   │               │   │
 │   │   │               │   └── components/
-│   │   │               │       ├── NavbarController.java
-│   │   │               │       ├── SidebarController.java
-│   │   │               │       └── HeaderController.java
+│   │   │               │       └── SidebarController.java
 │   │   │               │
 │   │   │               ├── models/
 │   │   │               │   ├── User.java
@@ -49,8 +50,7 @@ SDA/
 │   │   │               │   ├── ChatMessage.java
 │   │   │               │   ├── Resource.java
 │   │   │               │   ├── Feedback.java
-│   │   │               │   ├── Rating.java
-│   │   │               │   └── Notification.java
+│   │   │               │   └── Rating.java
 │   │   │               │
 │   │   │               ├── services/
 │   │   │               │   ├── ApiClient.java
@@ -61,7 +61,6 @@ SDA/
 │   │   │               │   ├── ChatService.java
 │   │   │               │   ├── ResourceService.java
 │   │   │               │   ├── FeedbackService.java
-│   │   │               │   ├── NotificationService.java
 │   │   │               │   └── ReportService.java
 │   │   │               │
 │   │   │               ├── utils/
@@ -78,7 +77,6 @@ SDA/
 │   │   │                   ├── UserRole.java
 │   │   │                   ├── RequestStatus.java
 │   │   │                   ├── ProjectStatus.java
-│   │   │                   ├── NotificationType.java
 │   │   │                   └── ResourceType.java
 │   │   │
 │   │   └── resources/
@@ -91,47 +89,42 @@ SDA/
 │   │                   │   │   └── login-view.fxml
 │   │                   │   │
 │   │                   │   ├── shared/
-│   │                   │   │   ├── dashboard-view.fxml
-│   │                   │   │   ├── profile-view.fxml
 │   │                   │   │   ├── project-repository-view.fxml
-│   │                   │   │   ├── project-details-view.fxml
-│   │                   │   │   ├── search-view.fxml
+│   │                   │   │   ├── project-search-view.fxml
+│   │                   │   │   ├── upload-project-view.fxml
+│   │                   │   │   ├── mentorship-request-view.fxml
+│   │                   │   │   ├── mentorship-approval-view.fxml
 │   │                   │   │   ├── chat-view.fxml
-│   │                   │   │   ├── resources-library-view.fxml
-│   │                   │   │   ├── notifications-view.fxml
-│   │                   │   │   ├── feedback-ratings-view.fxml
+│   │                   │   │   ├── resource-sharing-view.fxml
+│   │                   │   │   ├── feedback-rating-view.fxml
+│   │                   │   │   └── view-feedback-view.fxml
+│   │                   │   │
+│   │                   │   ├── admin/
 │   │                   │   │   ├── user-management-view.fxml
-│   │                   │   │   ├── upload-submission-view.fxml
-│   │                   │   │   ├── request-management-view.fxml
-│   │                   │   │   ├── settings-view.fxml
-│   │                   │   │   └── reports-analytics-view.fxml
+│   │                   │   │   ├── repository-management-view.fxml
+│   │                   │   │   └── reports-generation-view.fxml
 │   │                   │   │
 │   │                   │   └── components/
-│   │                   │       ├── navbar.fxml
-│   │                   │       ├── sidebar.fxml
-│   │                   │       └── header.fxml
+│   │                   │       └── sidebar.fxml
 │   │                   │
 │   │                   ├── css/
 │   │                   │   ├── styles/
 │   │                   │   │   ├── main-style.css
 │   │                   │   │   ├── auth-style.css
-│   │                   │   │   ├── dashboard-style.css
-│   │                   │   │   ├── profile-style.css
-│   │                   │   │   ├── repository-style.css
-│   │                   │   │   ├── project-details-style.css
-│   │                   │   │   ├── search-style.css
+│   │                   │   │   ├── project-repository-style.css
+│   │                   │   │   ├── project-search-style.css
+│   │                   │   │   ├── upload-project-style.css
+│   │                   │   │   ├── mentorship-request-style.css
+│   │                   │   │   ├── mentorship-approval-style.css
 │   │                   │   │   ├── chat-style.css
-│   │                   │   │   ├── resources-style.css
-│   │                   │   │   ├── notifications-style.css
-│   │                   │   │   ├── feedback-style.css
+│   │                   │   │   ├── resource-sharing-style.css
+│   │                   │   │   ├── feedback-rating-style.css
+│   │                   │   │   ├── view-feedback-style.css
 │   │                   │   │   ├── user-management-style.css
-│   │                   │   │   ├── upload-style.css
-│   │                   │   │   ├── request-management-style.css
-│   │                   │   │   ├── settings-style.css
-│   │                   │   │   └── reports-style.css
+│   │                   │   │   ├── repository-management-style.css
+│   │                   │   │   └── reports-generation-style.css
 │   │                   │   │
 │   │                   │   └── components/
-│   │                   │       ├── navbar-style.css
 │   │                   │       ├── sidebar-style.css
 │   │                   │       ├── button-style.css
 │   │                   │       ├── card-style.css
@@ -142,17 +135,20 @@ SDA/
 │   │                   │   ├── icons/
 │   │                   │   │   ├── logo.png
 │   │                   │   │   ├── user-icon.png
-│   │                   │   │   ├── dashboard-icon.png
 │   │                   │   │   ├── project-icon.png
+│   │                   │   │   ├── search-icon.png
+│   │                   │   │   ├── upload-icon.png
+│   │                   │   │   ├── mentorship-icon.png
 │   │                   │   │   ├── chat-icon.png
 │   │                   │   │   ├── resource-icon.png
-│   │                   │   │   ├── notification-icon.png
+│   │                   │   │   ├── feedback-icon.png
+│   │                   │   │   ├── admin-icon.png
+│   │                   │   │   ├── reports-icon.png
 │   │                   │   │   ├── settings-icon.png
 │   │                   │   │   └── logout-icon.png
 │   │                   │   │
 │   │                   │   ├── backgrounds/
-│   │                   │   │   ├── login-bg.jpg
-│   │                   │   │   └── dashboard-bg.jpg
+│   │                   │   │   └── login-bg.jpg
 │   │                   │   │
 │   │                   │   └── placeholders/
 │   │                   │       ├── avatar-placeholder.png
@@ -186,4 +182,7 @@ SDA/
 ├── mvnw
 ├── mvnw.cmd
 └── README.md
+```
+
+
 ```
