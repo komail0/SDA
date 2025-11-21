@@ -11,9 +11,12 @@ SDA/
 │   ├── main/
 │   │   ├── java/
 │   │   │   └── com/
-│   │   │       └── acadbridge/
+│   │   │       └── example/
 │   │   │           └── sda/
-│   │   │               ├── Main.java
+│   │   │               ├── DB.java
+│   │   │               ├── HelloApplication.java
+│   │   │               ├── HelloController.java
+│   │   │               ├── Launcher.java
 │   │   │               ├── module-info.java
 │   │   │               │
 │   │   │               ├── controllers/
@@ -40,6 +43,18 @@ SDA/
 │   │   │               │   └── components/
 │   │   │               │       └── SidebarController.java
 │   │   │               │
+│   │   │               ├── dao/
+│   │   │               │   ├── UserDAO.java
+│   │   │               │   ├── StudentDAO.java
+│   │   │               │   ├── AlumniDAO.java
+│   │   │               │   ├── AdminDAO.java
+│   │   │               │   ├── ProjectDAO.java
+│   │   │               │   ├── MentorshipRequestDAO.java
+│   │   │               │   ├── ChatMessageDAO.java
+│   │   │               │   ├── ResourceDAO.java
+│   │   │               │   ├── FeedbackDAO.java
+│   │   │               │   └── RatingDAO.java
+│   │   │               │
 │   │   │               ├── models/
 │   │   │               │   ├── User.java
 │   │   │               │   ├── Student.java
@@ -53,7 +68,6 @@ SDA/
 │   │   │               │   └── Rating.java
 │   │   │               │
 │   │   │               ├── services/
-│   │   │               │   ├── ApiClient.java
 │   │   │               │   ├── AuthService.java
 │   │   │               │   ├── UserService.java
 │   │   │               │   ├── ProjectService.java
@@ -81,8 +95,10 @@ SDA/
 │   │   │
 │   │   └── resources/
 │   │       └── com/
-│   │           └── acadbridge/
+│   │           └── example/
 │   │               └── sda/
+│   │                   ├── hello-view.fxml
+│   │                   │
 │   │                   ├── fxml/
 │   │                   │   ├── auth/
 │   │                   │   │   ├── registration-view.fxml
@@ -160,21 +176,9 @@ SDA/
 │   │                   │   └── Roboto-Light.ttf
 │   │                   │
 │   │                   └── config/
-│   │                       └── api.properties
-│   │
-│   └── test/
-│       └── java/
-│           └── com/
-│               └── acadbridge/
-│                   └── sda/
-│                       ├── services/
-│                       │   ├── AuthServiceTest.java
-│                       │   ├── UserServiceTest.java
-│                       │   └── ProjectServiceTest.java
-│                       │
-│                       └── utils/
-│                           ├── ValidatorTest.java
-│                           └── JsonParserTest.java
+│   │                       └── database.properties
+│
+├── test/
 │
 ├── target/
 ├── .gitignore
@@ -182,7 +186,4 @@ SDA/
 ├── mvnw
 ├── mvnw.cmd
 └── README.md
-```
-
-
 ```
