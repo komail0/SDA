@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<StackPane styleClass="body" stylesheets="@css/Registration.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.LoginController">
+
+    <!-- Main Container - HBox -->
+    <HBox alignment="CENTER" styleClass="main-container">
+
+        <!-- Left Panel - VBox -->
+        <VBox alignment="TOP_LEFT" styleClass="left-panel">
+            <padding>
+                <Insets bottom="60.0" left="40.0" right="40.0" top="100.0" />
+            </padding>
+
+            <!-- Features List - VBox -->
+            <VBox spacing="15" styleClass="features-list">
+                <VBox.margin>
+                    <Insets top="40" />
+                </VBox.margin>
+
+                <HBox alignment="CENTER_LEFT" spacing="15" styleClass="feature-item">
+                    <Region styleClass="feature-icon" />
+                    <Text styleClass="feature-text" text="Access to project repository" />
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT" spacing="15" styleClass="feature-item">
+                    <Region styleClass="feature-icon" />
+                    <Text styleClass="feature-text" text="Connect with experienced mentors" />
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT" spacing="15" styleClass="feature-item">
+                    <Region styleClass="feature-icon" />
+                    <Text styleClass="feature-text" text="Share and discover resources" />
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT" spacing="15" styleClass="feature-item">
+                    <Region styleClass="feature-icon" />
+                    <Text styleClass="feature-text" text="Build lasting academic connections" />
+                </HBox>
+            </VBox>
+
+            <!-- Tagline -->
+            <Text styleClass="tagline" text="Connect. Learn. Excel.&#10;Join the ultimate mentorship platform for students and alumni.">
+                <VBox.margin>
+                    <Insets top="150.0" />
+                </VBox.margin></Text>
+
+            <!-- Logo -->
+            <HBox styleClass="logo-container">
+                <Text styleClass="logo" text="Acad">
+                    <HBox.margin>
+                        <Insets top="100.0" />
+                    </HBox.margin>
+                </Text>
+                <Text styleClass="logo, logo-accent" text="Bridge">
+                    <HBox.margin>
+                        <Insets top="100.0" />
+                    </HBox.margin>
+                </Text>
+            </HBox>
+        </VBox>
+
+        <!-- Right Panel - VBox -->
+        <VBox alignment="TOP_LEFT" styleClass="right-panel">
+            <padding>
+                <Insets bottom="50" left="45" right="45" top="50" />
+            </padding>
+
+            <!-- Title -->
+            <Text styleClass="title" text="Create Account" />
+
+            <!-- Subtitle -->
+            <Text styleClass="subtitle" text="Join thousands of students and alumni" />
+
+            <!-- Form Container - VBox -->
+            <VBox spacing="25" styleClass="form-container">
+                <VBox.margin>
+                    <Insets top="35" />
+                </VBox.margin>
+
+                <!-- Full Name -->
+                <VBox spacing="8" styleClass="form-group">
+                    <Label styleClass="form-label" text="Full Name" />
+                    <TextField fx:id="fullNameField" promptText="Enter your full name" styleClass="form-input" />
+                </VBox>
+
+                <!-- Email -->
+                <VBox spacing="8" styleClass="form-group">
+                    <Label styleClass="form-label" text="Email Address" />
+                    <TextField fx:id="emailField" promptText="your.email@example.com" styleClass="form-input" />
+                </VBox>
+
+                <!-- Password -->
+                <VBox spacing="8" styleClass="form-group">
+                    <Label styleClass="form-label" text="Password" />
+                    <PasswordField fx:id="passwordField" promptText="Create a strong password" styleClass="form-input" />
+                </VBox>
+
+                <!-- Confirm Password -->
+                <VBox spacing="8" styleClass="form-group">
+                    <Label styleClass="form-label" text="Confirm Password" />
+                    <PasswordField fx:id="confirmPasswordField" promptText="Confirm your password" styleClass="form-input" />
+                </VBox>
+
+                <!-- Role Selection -->
+                <VBox spacing="10" styleClass="role-selection">
+                    <Label styleClass="form-label" text="I am a:" />
+
+                    <!-- Role Selector - HBox -->
+                    <HBox spacing="15" styleClass="role-selector">
+                        <ToggleButton fx:id="studentRole" selected="true" styleClass="role-box, selected">
+                            <graphic>
+                                <VBox alignment="CENTER" spacing="8">
+                                    <Text styleClass="role-icon" text="🎓" />
+                                    <Text styleClass="role-text" text="Student" />
+                                </VBox>
+                            </graphic>
+                        </ToggleButton>
+
+                        <ToggleButton fx:id="alumniRole" styleClass="role-box">
+                            <graphic>
+                                <VBox alignment="CENTER" spacing="8">
+                                    <Text styleClass="role-icon" text="👨‍🏫" />
+                                    <Text styleClass="role-text" text="Alumni" />
+                                </VBox>
+                            </graphic>
+                        </ToggleButton>
+                    </HBox>
+                </VBox>
+
+                <!-- Submit Button -->
+                <Button fx:id="submitBtn" styleClass="submit-btn" text="Create Account">
+                    <VBox.margin>
+                        <Insets top="10" />
+                    </VBox.margin>
+                </Button>
+
+                <!-- Login Link Container - HBox -->
+                <HBox alignment="CENTER" spacing="5" styleClass="login-link-container">
+                    <VBox.margin>
+                        <Insets top="25" />
+                    </VBox.margin>
+                    <Text styleClass="login-text" text="Already have an account?" />
+                    <Hyperlink styleClass="login-link" text="Login here" />
+                </HBox>
+            </VBox>
+        </VBox>
+    </HBox>
+</StackPane>
