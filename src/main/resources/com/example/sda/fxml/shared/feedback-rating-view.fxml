@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.example.sda.controllers.shared.FeedbackRatingController"
+           styleClass="body-container"
+           stylesheets="@../../css/styles/feedback-rating-style.css"
+           alignment="CENTER">
+
+    <!-- ScrollPane to make content scrollable -->
+    <ScrollPane fitToWidth="true" styleClass="scroll-pane" hbarPolicy="NEVER">
+        <!-- Centering Container -->
+        <StackPane alignment="CENTER">
+            <padding>
+                <Insets top="40" right="20" bottom="40" left="20"/>
+            </padding>
+
+            <!-- Rating Container -->
+            <VBox styleClass="rating-container" alignment="CENTER" spacing="20">
+
+                <!-- Header Section -->
+                <VBox styleClass="header-section" alignment="CENTER" spacing="10">
+                    <Label styleClass="mentor-avatar-large" text="MW"/>
+                    <Label styleClass="page-title" text="Rate Your Experience"/>
+                    <Label fx:id="mentorNameLabel" styleClass="mentor-name-subtitle" text="with Muhammad Waqas"/>
+                </VBox>
+
+                <!-- Rating Section -->
+                <VBox styleClass="rating-section" alignment="CENTER" spacing="20">
+
+                    <!-- Overall Rating -->
+                    <VBox styleClass="overall-rating" alignment="CENTER" spacing="10">
+                        <Label styleClass="rating-question" text="How was your mentorship experience?"/>
+                        <HBox fx:id="starsContainer" styleClass="stars-container" spacing="10" alignment="CENTER">
+                            <Button styleClass="star-btn, filled" text="⭐" userData="1"/>
+                            <Button styleClass="star-btn, filled" text="⭐" userData="2"/>
+                            <Button styleClass="star-btn, filled" text="⭐" userData="3"/>
+                            <Button styleClass="star-btn, filled" text="⭐" userData="4"/>
+                            <Button styleClass="star-btn, filled" text="⭐" userData="5"/>
+                        </HBox>
+                        <Label fx:id="ratingLabel" styleClass="rating-label" text="Excellent!"/>
+                    </VBox>
+
+                    <!-- Separator -->
+                    <Region styleClass="separator" prefHeight="2" maxWidth="500"/>
+
+                    <!-- Categories Section -->
+                    <VBox styleClass="categories-section" spacing="15" maxWidth="500" prefWidth="500">
+
+                        <!-- Communication -->
+                        <HBox styleClass="category-item" spacing="10" alignment="CENTER_LEFT">
+                            <Label styleClass="category-label" text="Communication" HBox.hgrow="ALWAYS"/>
+                            <HBox fx:id="communicationStars" styleClass="category-stars" spacing="5">
+                                <Button styleClass="small-star, filled" text="⭐" userData="communication-1"/>
+                                <Button styleClass="small-star, filled" text="⭐" userData="communication-2"/>
+                                <Button styleClass="small-star, filled" text="⭐" userData="communication-3"/>
+                                <Button styleClass="small-star, filled" text="⭐" userData="communication-4"/>
+                                <Button styleClass="small-star, empty" text="⭐" userData="communication-5"/>
+                            </HBox>
+                        </HBox>
+
+                        <!-- Knowledge & Expertise -->
+                        <HBox styleClass="category-item" spacing="10" alignment="CENTER_LEFT">
+                            <Label styleClass="category-label" text="Knowledge &amp; Expertise" HBox.hgrow="ALWAYS"/>
+                            <HBox fx:id="knowledgeStars" styleClass="category-stars" spacing="5">
+                                <Button styleClass="small-star, filled" text="⭐" userData="knowledge-1"/>
+                                <Button styleClass="small-star, filled" text="⭐" userData="knowledge-2"/>
+                                <Button styleClass="small-star, filled" text="⭐" userData="knowledge-3"/>
+                                <Button styleClass="small-star, filled" text="⭐" userData="knowledge-4"/>
+                                <Button styleClass="small-star, filled" text="⭐" userData="knowledge-5"/>
+                            </HBox>
+                        </HBox>
+
+                        <!-- Responsiveness -->
+                        <HBox styleClass="category-item" spacing="10" alignment="CENTER_LEFT">
+                            <Label styleClass="category-label" text="Responsiveness" HBox.hgrow="ALWAYS"/>
+                            <HBox fx:id="responsivenessStars" styleClass="category-stars" spacing="5">
+                                <Button styleClass="small-star, filled" text="⭐" userData="responsiveness-1"/>
+                                <Button styleClass="small-star, filled" text="⭐" userData="responsiveness-2"/>
+                                <Button styleClass="small-star, filled" text="⭐" userData="responsiveness-3"/>
+                                <Button styleClass="small-star, filled" text="⭐" userData="responsiveness-4"/>
+                                <Button styleClass="small-star, filled" text="⭐" userData="responsiveness-5"/>
+                            </HBox>
+                        </HBox>
+
+                        <!-- Helpfulness -->
+                        <HBox styleClass="category-item" spacing="10" alignment="CENTER_LEFT">
+                            <Label styleClass="category-label" text="Helpfulness" HBox.hgrow="ALWAYS"/>
+                            <HBox fx:id="helpfulnessStars" styleClass="category-stars" spacing="5">
+                                <Button styleClass="small-star, filled" text="⭐" userData="helpfulness-1"/>
+                                <Button styleClass="small-star, filled" text="⭐" userData="helpfulness-2"/>
+                                <Button styleClass="small-star, filled" text="⭐" userData="helpfulness-3"/>
+                                <Button styleClass="small-star, filled" text="⭐" userData="helpfulness-4"/>
+                                <Button styleClass="small-star, filled" text="⭐" userData="helpfulness-5"/>
+                            </HBox>
+                        </HBox>
+
+                    </VBox>
+
+                    <!-- Separator -->
+                    <Region styleClass="separator" prefHeight="2" maxWidth="500"/>
+
+                    <!-- Feedback Section -->
+                    <VBox styleClass="feedback-section" spacing="10" maxWidth="500" prefWidth="500">
+                        <Label styleClass="feedback-label" text="Share Your Feedback (Optional)"/>
+                        <TextArea fx:id="feedbackTextArea" styleClass="feedback-textarea"
+                                  promptText="Tell us about your experience..."
+                                  wrapText="true"
+                                  prefHeight="100"
+                                  maxHeight="150"/>
+                    </VBox>
+
+                    <!-- Action Buttons -->
+                    <HBox styleClass="action-buttons" spacing="15" alignment="CENTER">
+                        <Button fx:id="skipBtn" styleClass="skip-btn" text="Skip"
+                                prefWidth="150" prefHeight="45"/>
+                        <Button fx:id="submitRatingBtn" styleClass="submit-rating-btn" text="Submit Rating"
+                                prefWidth="150" prefHeight="45"/>
+                    </HBox>
+
+                </VBox>
+
+            </VBox>
+        </StackPane>
+    </ScrollPane>
+
+</StackPane>
