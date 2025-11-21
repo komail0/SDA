@@ -1,0 +1,101 @@
+/* Body - Black Background */
+.body {
+    -fx-background-color: #000000;
+    -fx-padding: 0;
+}
+
+/* Main Card Container */
+.main-container {
+    -fx-background-color: #1a1a1a;
+    -fx-background-radius: 20; /* Rounded Corners */
+    -fx-border-radius: 20;
+    -fx-border-color: #333;
+    -fx-border-width: 1;
+    /* Card Drop Shadow */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 50, 0, 0, 10);
+}
+
+/* Left Panel - Rounded Left Corners */
+.left-panel {
+    -fx-background-color: linear-gradient(to bottom right, #1a1a1a 0%, #0a0a0a 100%);
+    -fx-border-color: transparent #333 transparent transparent;
+    -fx-border-width: 0 1 0 0;
+    -fx-background-radius: 20 0 0 20; /* Top-Left, Top-Right, Bottom-Right, Bottom-Left */
+}
+
+/* Right Panel - Rounded Right Corners */
+.right-panel {
+    -fx-background-color: #0f0f0f;
+    -fx-background-radius: 0 20 20 0;
+}
+
+/* --- REST IS SAME AS BEFORE --- */
+
+/* Logo & Branding */
+.logo { -fx-font-size: 42; -fx-font-weight: 800; -fx-fill: #ffffff; }
+.logo-accent { -fx-fill: #00ff88; }
+.tagline { -fx-font-size: 16; -fx-fill: #b0b0b0; -fx-line-spacing: 4; }
+.feature-text { -fx-font-size: 15; -fx-fill: #d0d0d0; -fx-padding: 5 0; }
+
+/* Typography */
+.title { -fx-font-size: 28; -fx-fill: #ffffff; -fx-font-weight: 700; }
+.subtitle { -fx-fill: #808080; -fx-font-size: 14; }
+
+/* Form Elements */
+.form-label { -fx-text-fill: #c0c0c0; -fx-font-weight: 600; -fx-font-size: 13; }
+
+.form-input {
+    -fx-padding: 12 35 12 12;
+    -fx-border-color: #333;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-font-size: 14;
+    -fx-background-color: #1a1a1a;
+    -fx-text-fill: #ffffff;
+}
+
+.form-input:focused {
+    -fx-border-color: #00ff88;
+    -fx-background-color: #0a0a0a;
+}
+
+/* Feedback Labels */
+.error-label-global {
+    -fx-text-fill: #ff4444;
+    -fx-font-size: 13px;
+    -fx-alignment: center;
+}
+
+/* Eye Icon Button */
+.icon-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #808080;
+    -fx-cursor: hand;
+    -fx-font-size: 14px;
+    -fx-padding: 5;
+}
+.icon-button:hover { -fx-text-fill: #00ff88; }
+
+/* Submit/Login Button */
+.submit-btn {
+    -fx-padding: 14;
+    -fx-background-color: linear-gradient(to right, #00ff88, #00cc6a);
+    -fx-text-fill: #000;
+    -fx-background-radius: 8;
+    -fx-font-weight: 700;
+    -fx-cursor: hand;
+}
+.submit-btn:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0,255,136,0.4), 10, 0, 0, 2);
+    -fx-translate-y: -1;
+}
+
+/* Links */
+.login-link { -fx-text-fill: #00ff88; -fx-border-width: 0; -fx-padding: 0; }
+.login-text { -fx-fill: #808080; -fx-font-size: 14; }
+
+/* Checkbox */
+.check-box { -fx-text-fill: #b0b0b0; }
+.check-box .box { -fx-background-color: #1a1a1a; -fx-border-color: #333; }
+.check-box:selected .mark { -fx-background-color: #00ff88; }
