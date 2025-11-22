@@ -1,0 +1,279 @@
+/* ScrollPane */
+.scroll-pane {
+    -fx-background-color: #0a0a0a;
+    -fx-border-width: 0;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: #0a0a0a;
+}
+
+/* Main Content Container */
+.content-wrapper {
+    -fx-background-color: #0a0a0a;
+    -fx-padding: 40;
+    -fx-min-height: 100vh;
+    -fx-alignment: top-center;
+}
+
+/* Content VBox */
+.content-container {
+    -fx-spacing: 40;
+    -fx-max-width: 1000;
+    -fx-alignment: top-center;
+}
+
+/* Profile Summary - VBox */
+.profile-summary {
+    -fx-background-color: #1a1a1a;
+    -fx-padding: 40;
+    -fx-background-radius: 25;
+    -fx-border-color: #333;
+    -fx-border-width: 1;
+    -fx-border-radius: 25;
+    -fx-spacing: 25;
+    -fx-alignment: center;
+}
+
+.profile-avatar {
+    -fx-min-width: 120;
+    -fx-min-height: 120;
+    -fx-max-width: 120;
+    -fx-max-height: 120;
+    -fx-background-color: linear-gradient(to bottom right, #00ff88, #00cc6a);
+    -fx-background-radius: 50%;
+    -fx-alignment: center;
+    -fx-font-size: 52;
+    -fx-effect: dropshadow(gaussian, rgba(0, 255, 136, 0.3), 30, 0, 0, 10);
+}
+
+/* Profile Info - VBox */
+.profile-info {
+    -fx-spacing: 10;
+    -fx-alignment: center;
+}
+
+.profile-name {
+    -fx-font-size: 32;
+    -fx-font-weight: 800;
+    -fx-text-fill: #ffffff;
+}
+
+.profile-role {
+    -fx-font-size: 18;
+    -fx-text-fill: #00ff88;
+    -fx-font-weight: 600;
+}
+
+/* Stats Row - HBox */
+.stats-row {
+    -fx-spacing: 60;
+    -fx-padding: 25 0;
+    -fx-border-color: transparent transparent #333 transparent;
+    -fx-border-width: 1 0 1 0;
+    -fx-alignment: center;
+}
+
+/* Stat Item - VBox */
+.stat-item {
+    -fx-spacing: 5;
+    -fx-alignment: center;
+}
+
+.stat-value {
+    -fx-font-size: 32;
+    -fx-font-weight: 800;
+    -fx-text-fill: #ffffff;
+}
+
+.stat-label {
+    -fx-font-size: 14;
+    -fx-text-fill: #808080;
+}
+
+.stat-separator {
+    -fx-min-width: 1;
+    -fx-pref-width: 1;
+    -fx-max-width: 1;
+    -fx-min-height: 50;
+    -fx-background-color: #333;
+}
+
+/* Rating Breakdown - VBox */
+.rating-breakdown {
+    -fx-background-color: #1a1a1a;
+    -fx-padding: 30;
+    -fx-background-radius: 20;
+    -fx-border-color: #333;
+    -fx-border-width: 1;
+    -fx-border-radius: 20;
+    -fx-spacing: 20;
+}
+
+.section-title {
+    -fx-font-size: 22;
+    -fx-font-weight: 700;
+    -fx-text-fill: #ffffff;
+}
+
+/* Rating Row - HBox */
+.rating-row {
+    -fx-spacing: 15;
+    -fx-alignment: center-left;
+}
+
+.rating-text {
+    -fx-font-size: 15;
+    -fx-font-weight: 600;
+    -fx-text-fill: #c0c0c0;
+    -fx-min-width: 60;
+}
+
+/* Rating Bar - COPIED FROM THE WORKING CODE */
+.rating-bar {
+    -fx-background-color: #1a1a1a;
+    -fx-background-radius: 8;
+    -fx-border-color: #2a2a2a;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-pref-height: 20;
+    -fx-min-height: 20;
+    -fx-pref-width: 600;
+}
+
+.rating-bar-fill {
+    -fx-background-color: transparent;
+}
+
+.rating-bar-fill > .bar {
+    -fx-background-color: linear-gradient(to right, #00ff88, #00cc6a);
+    -fx-background-insets: 0;
+    -fx-background-radius: 8;
+    -fx-padding: 0;
+    -fx-min-height: 20;
+    -fx-pref-height: 20;
+}
+
+.rating-bar-fill > .track {
+    -fx-background-color: transparent;
+}
+
+.rating-percent {
+    -fx-font-size: 14;
+    -fx-font-weight: 600;
+    -fx-text-fill: #808080;
+    -fx-min-width: 50;
+    -fx-alignment: center-right;
+}
+
+/* Reviews Section - VBox */
+.reviews-section {
+    -fx-spacing: 25;
+}
+
+/* Reviews Header - HBox */
+.reviews-header {
+    -fx-alignment: center-left;
+    -fx-spacing: 20;
+}
+
+.sort-combo {
+    -fx-padding: 10 16;
+    -fx-background-color: #1a1a1a;
+    -fx-border-color: #333;
+    -fx-border-width: 2;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14;
+    -fx-cursor: hand;
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.sort-combo .list-cell {
+    -fx-background-color: #1a1a1a;
+    -fx-text-fill: #ffffff;
+}
+
+/* Review Card - VBox */
+.review-card {
+    -fx-background-color: #1a1a1a;
+    -fx-padding: 25;
+    -fx-background-radius: 16;
+    -fx-border-color: #333;
+    -fx-border-width: 1;
+    -fx-border-radius: 16;
+    -fx-spacing: 15;
+}
+
+.review-card:hover {
+    -fx-border-color: #00ff88;
+    -fx-effect: dropshadow(gaussian, rgba(0, 255, 136, 0.15), 20, 0, 0, 5);
+}
+
+/* Review Header - HBox */
+.review-header {
+    -fx-spacing: 15;
+    -fx-alignment: center-left;
+}
+
+.reviewer-avatar {
+    -fx-min-width: 50;
+    -fx-min-height: 50;
+    -fx-max-width: 50;
+    -fx-max-height: 50;
+    -fx-background-color: linear-gradient(to bottom right, #00ff88, #00cc6a);
+    -fx-background-radius: 50%;
+    -fx-alignment: center;
+    -fx-font-size: 20;
+}
+
+/* Reviewer Info - VBox */
+.reviewer-info {
+    -fx-spacing: 5;
+}
+
+.reviewer-name {
+    -fx-font-size: 18;
+    -fx-font-weight: 700;
+    -fx-text-fill: #ffffff;
+}
+
+/* Review Meta - HBox */
+.review-meta {
+    -fx-spacing: 8;
+    -fx-alignment: center-left;
+}
+
+.review-stars {
+    -fx-font-size: 14;
+    -fx-text-fill: #ffd700;
+}
+
+.review-date {
+    -fx-font-size: 13;
+    -fx-text-fill: #666;
+}
+
+.review-text {
+    -fx-font-size: 15;
+    -fx-line-spacing: 1.7;
+    -fx-text-fill: #c0c0c0;
+}
+
+/* Review Categories - FlowPane */
+.review-categories {
+    -fx-hgap: 15;
+    -fx-vgap: 15;
+}
+
+.review-category {
+    -fx-font-size: 13;
+    -fx-text-fill: #808080;
+    -fx-background-color: rgba(0, 255, 136, 0.05);
+    -fx-padding: 6 12;
+    -fx-background-radius: 8;
+    -fx-border-color: rgba(0, 255, 136, 0.1);
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+}

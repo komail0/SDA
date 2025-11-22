@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+
+<ScrollPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.sda.controllers.shared.ViewFeedbackController"
+            styleClass="scroll-pane"
+            stylesheets="@../../css/styles/view-feedback-style.css"
+            fitToWidth="true"
+            hbarPolicy="NEVER">
+
+    <!-- Main Content Wrapper -->
+    <VBox styleClass="content-wrapper">
+
+        <!-- Content Container (VBox) -->
+        <VBox styleClass="content-container">
+
+            <!-- Profile Summary -->
+            <VBox styleClass="profile-summary">
+                <Label text="MW" styleClass="profile-avatar"/>
+
+                <VBox styleClass="profile-info">
+                    <Label fx:id="mentorNameLabel" text="Muhammad Waqas" styleClass="profile-name"/>
+                    <Label fx:id="mentorRoleLabel" text="AI/ML Specialist • Senior Mentor" styleClass="profile-role"/>
+                </VBox>
+
+                <HBox styleClass="stats-row">
+                    <VBox styleClass="stat-item">
+                        <Label fx:id="overallRatingLabel" text="⭐ 4.9" styleClass="stat-value"/>
+                        <Label text="Overall Rating" styleClass="stat-label"/>
+                    </VBox>
+                    <Region styleClass="stat-separator"/>
+                    <VBox styleClass="stat-item">
+                        <Label fx:id="totalReviewsLabel" text="127" styleClass="stat-value"/>
+                        <Label text="Total Reviews" styleClass="stat-label"/>
+                    </VBox>
+                    <Region styleClass="stat-separator"/>
+                    <VBox styleClass="stat-item">
+                        <Label fx:id="studentsMentoredLabel" text="45" styleClass="stat-value"/>
+                        <Label text="Students Mentored" styleClass="stat-label"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+
+            <!-- Rating Breakdown -->
+            <VBox styleClass="rating-breakdown">
+                <Label text="Rating Breakdown" styleClass="section-title"/>
+
+                <HBox styleClass="rating-row">
+                    <Label text="5 ⭐" styleClass="rating-text"/>
+                    <StackPane styleClass="rating-bar" HBox.hgrow="ALWAYS">
+                        <ProgressBar fx:id="rating5Bar" progress="0.85" styleClass="rating-bar-fill" maxWidth="Infinity"/>
+                    </StackPane>
+                    <Label fx:id="rating5Percent" text="85%" styleClass="rating-percent"/>
+                </HBox>
+
+                <HBox styleClass="rating-row">
+                    <Label text="4 ⭐" styleClass="rating-text"/>
+                    <StackPane styleClass="rating-bar" HBox.hgrow="ALWAYS">
+                        <ProgressBar fx:id="rating4Bar" progress="0.10" styleClass="rating-bar-fill" maxWidth="Infinity"/>
+                    </StackPane>
+                    <Label fx:id="rating4Percent" text="10%" styleClass="rating-percent"/>
+                </HBox>
+
+                <HBox styleClass="rating-row">
+                    <Label text="3 ⭐" styleClass="rating-text"/>
+                    <StackPane styleClass="rating-bar" HBox.hgrow="ALWAYS">
+                        <ProgressBar fx:id="rating3Bar" progress="0.03" styleClass="rating-bar-fill" maxWidth="Infinity"/>
+                    </StackPane>
+                    <Label fx:id="rating3Percent" text="3%" styleClass="rating-percent"/>
+                </HBox>
+
+                <HBox styleClass="rating-row">
+                    <Label text="2 ⭐" styleClass="rating-text"/>
+                    <StackPane styleClass="rating-bar" HBox.hgrow="ALWAYS">
+                        <ProgressBar fx:id="rating2Bar" progress="0.01" styleClass="rating-bar-fill" maxWidth="Infinity"/>
+                    </StackPane>
+                    <Label fx:id="rating2Percent" text="1%" styleClass="rating-percent"/>
+                </HBox>
+
+                <HBox styleClass="rating-row">
+                    <Label text="1 ⭐" styleClass="rating-text"/>
+                    <StackPane styleClass="rating-bar" HBox.hgrow="ALWAYS">
+                        <ProgressBar fx:id="rating1Bar" progress="0.01" styleClass="rating-bar-fill" maxWidth="Infinity"/>
+                    </StackPane>
+                    <Label fx:id="rating1Percent" text="1%" styleClass="rating-percent"/>
+                </HBox>
+            </VBox>
+
+            <!-- Reviews Section -->
+            <VBox fx:id="reviewsContainer" styleClass="reviews-section">
+                <HBox styleClass="reviews-header">
+                    <Label text="Student Reviews" styleClass="section-title" HBox.hgrow="ALWAYS"/>
+                    <ComboBox styleClass="sort-combo">
+                        <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="Sort by: Recent"/>
+                                <String fx:value="Sort by: Highest Rating"/>
+                                <String fx:value="Sort by: Lowest Rating"/>
+                            </FXCollections>
+                        </items>
+                        <value>
+                            <String fx:value="Sort by: Recent"/>
+                        </value>
+                    </ComboBox>
+                </HBox>
+
+                <!-- Reviews will be loaded dynamically by the controller -->
+
+            </VBox>
+
+        </VBox>
+    </VBox>
+</ScrollPane>
