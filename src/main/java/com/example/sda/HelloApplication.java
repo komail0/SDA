@@ -1,57 +1,37 @@
 package com.example.sda;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.io.IOException;
 
 public class HelloApplication extends Application {
 
+    private static final String APP_TITLE = "AcadBridge - User Registration";
+    private static final String FXML_PATH = "fxml/auth/Registration.fxml"; // Updated path
+
     @Override
-    public void start(Stage stage) {
-        Button insertBtn = new Button("Insert User");
-        Button selectBtn = new Button("Show Users");
+    public void start(Stage stage) throws IOException {
+        try {
+            // 1. Load the FXML file
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource(FXML_PATH));
 
-        insertBtn.setOnAction(e -> insertUser("Komail", "komail@gmail.com"));
-        selectBtn.setOnAction(e -> showUsers());
+            // For maximized windows, it's best to start with a standard size
+            Scene scene = new Scene(fxmlLoader.load(), 1200, 800);
 
-        VBox root = new VBox(10, insertBtn, selectBtn);
-        Scene scene = new Scene(root, 300, 200);
-        stage.setTitle("Railway MySQL JavaFX");
-        stage.setScene(scene);
-        stage.show();
-    }
+            stage.setTitle(APP_TITLE);
+            stage.setScene(scene);
 
-    private void insertUser(String username, String email) {
-        try (Connection conn = DB.getConnection()) {
-            String sql = "INSERT INTO users (username, email) VALUES (?, ?)";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, username);
-            ps.setString(2, email);
-            ps.executeUpdate();
-            System.out.println("User inserted!");
+            // 2. Set the stage to be maximized
+            stage.setMaximized(true);
+
+            stage.show();
         } catch (Exception e) {
+            System.err.println("Failed to start the application. Could not load FXML: " + FXML_PATH);
             e.printStackTrace();
-        }
-    }
-
-    private void showUsers() {
-        try (Connection conn = DB.getConnection()) {
-            String sql = "SELECT * FROM users";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                System.out.println(rs.getInt("id") + " | " +
-                        rs.getString("username") + " | " +
-                        rs.getString("email"));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+            // You may want to add an Alert box here to inform the user
         }
     }
 
