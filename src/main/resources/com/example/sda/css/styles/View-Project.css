@@ -1,0 +1,285 @@
+/* ScrollPane */
+.scroll-pane {
+    -fx-background-color: #0a0a0a;
+    -fx-border-width: 0;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: #0a0a0a;
+}
+
+/* Main Content Wrapper */
+.detail-content-wrapper {
+    -fx-background-color: #0a0a0a;
+    -fx-padding: 0;
+    -fx-min-height: 100;
+}
+
+/* Close Button Container */
+.close-button-container {
+    -fx-padding: 20 20 0 0;
+    -fx-alignment: top-right;
+}
+
+.close-btn {
+    -fx-padding: 10 10;
+    -fx-background-color: transparent;
+    -fx-border-color: #666;
+    -fx-border-width: 2;
+    -fx-border-radius: 50%;
+    -fx-background-radius: 50%;
+    -fx-text-fill: #c0c0c0;
+    -fx-font-weight: 700;
+    -fx-cursor: hand;
+    -fx-font-size: 20;
+    -fx-min-width: 45;
+    -fx-min-height: 45;
+    -fx-max-width: 45;
+    -fx-max-height: 45;
+}
+
+.close-btn:hover {
+    -fx-border-color: #ff4444;
+    -fx-text-fill: #ff4444;
+    -fx-background-color: rgba(255, 68, 68, 0.1);
+}
+
+/* Content Container */
+.detail-container {
+    -fx-spacing: 30;
+    -fx-padding: 20 40 40 40;
+}
+
+/* Project Header */
+.project-header {
+    -fx-spacing: 15;
+    -fx-padding: 30;
+    -fx-background-color: #1a1a1a;
+    -fx-background-radius: 20;
+    -fx-border-color: #333;
+    -fx-border-width: 1;
+    -fx-border-radius: 20;
+}
+
+.project-title {
+    -fx-font-size: 36;
+    -fx-font-weight: 800;
+    -fx-fill: #ffffff;
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.15), 15, 0, 0, 0);
+}
+
+.project-meta {
+    -fx-spacing: 15;
+}
+
+.meta-item {
+    -fx-spacing: 8;
+    -fx-alignment: center-left;
+}
+
+.meta-icon {
+    -fx-font-size: 18;
+    -fx-text-fill: #00ff88;
+}
+
+.meta-text {
+    -fx-font-size: 15;
+    -fx-text-fill: #c0c0c0;
+    -fx-font-weight: 500;
+}
+
+.meta-value {
+    -fx-text-fill: #ffffff;
+}
+
+/* Action Buttons Section */
+.action-buttons {
+    -fx-spacing: 15;
+    -fx-alignment: center-left;
+    -fx-padding: 20 0 0 0;
+}
+
+.mentorship-btn {
+    -fx-padding: 16 35;
+    -fx-background-color: linear-gradient(to bottom right, #00ff88, #00cc6a);
+    -fx-border-width: 0;
+    -fx-background-radius: 12;
+    -fx-text-fill: #000000;
+    -fx-font-weight: 700;
+    -fx-cursor: hand;
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-font-size: 16;
+}
+
+.mentorship-btn:hover {
+    -fx-translate-y: -2;
+    -fx-effect: dropshadow(gaussian, rgba(0, 255, 136, 0.4), 30, 0, 0, 10);
+}
+
+.github-btn {
+    -fx-padding: 16 35;
+    -fx-background-color: transparent;
+    -fx-border-color: #00ff88;
+    -fx-border-width: 2;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+    -fx-text-fill: #00ff88;
+    -fx-font-weight: 600;
+    -fx-cursor: hand;
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-font-size: 16;
+}
+
+.github-btn:hover {
+    -fx-background-color: rgba(0, 255, 136, 0.1);
+    -fx-translate-y: -2;
+}
+
+.github-btn:disabled {
+    -fx-opacity: 0.4;
+    -fx-cursor: default;
+}
+
+/* Content Sections */
+.content-section {
+    -fx-spacing: 15;
+    -fx-padding: 25;
+    -fx-background-color: #1a1a1a;
+    -fx-background-radius: 18;
+    -fx-border-color: #333;
+    -fx-border-width: 1;
+    -fx-border-radius: 18;
+}
+
+.section-header {
+    -fx-spacing: 10;
+    -fx-alignment: center-left;
+    -fx-padding: 0 0 10 0;
+}
+
+.section-icon {
+    -fx-font-size: 24;
+}
+
+.section-title {
+    -fx-font-size: 20;
+    -fx-font-weight: 700;
+    -fx-text-fill: #ffffff;
+}
+
+.section-content {
+    -fx-font-size: 15;
+    -fx-text-fill: #c0c0c0;
+    -fx-line-spacing: 5;
+    -fx-wrap-text: true;
+}
+
+/* Technologies Tags */
+.technologies-container {
+    -fx-spacing: 10;
+}
+
+.tech-tag {
+    -fx-padding: 8 16;
+    -fx-background-color: rgba(0, 255, 136, 0.1);
+    -fx-background-radius: 8;
+    -fx-text-fill: #00ff88;
+    -fx-font-size: 13;
+    -fx-font-weight: 600;
+}
+
+/* PDF Viewer Section */
+.pdf-section {
+    -fx-spacing: 15;
+    -fx-padding: 25;
+    -fx-background-color: #1a1a1a;
+    -fx-background-radius: 18;
+    -fx-border-color: #333;
+    -fx-border-width: 1;
+    -fx-border-radius: 18;
+}
+
+.pdf-viewer-container {
+    -fx-padding: 20;
+    -fx-background-color: #0f0f0f;
+    -fx-background-radius: 12;
+    -fx-border-color: #333;
+    -fx-border-width: 1;
+    -fx-border-radius: 12;
+    -fx-alignment: center;
+    -fx-min-height: 400;
+}
+
+.pdf-placeholder {
+    -fx-spacing: 15;
+    -fx-alignment: center;
+}
+
+.pdf-icon {
+    -fx-font-size: 64;
+    -fx-text-fill: #666;
+}
+
+.pdf-text {
+    -fx-font-size: 16;
+    -fx-text-fill: #808080;
+}
+
+.view-pdf-btn {
+    -fx-padding: 12 28;
+    -fx-background-color: transparent;
+    -fx-border-color: #00ff88;
+    -fx-border-width: 2;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-text-fill: #00ff88;
+    -fx-font-weight: 600;
+    -fx-cursor: hand;
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-font-size: 14;
+}
+
+.view-pdf-btn:hover {
+    -fx-background-color: rgba(0, 255, 136, 0.1);
+}
+
+/* Supervisor/University Info */
+.info-grid {
+    -fx-hgap: 20;
+    -fx-vgap: 15;
+}
+
+.info-item {
+    -fx-spacing: 5;
+}
+
+.info-label {
+    -fx-font-size: 13;
+    -fx-text-fill: #808080;
+    -fx-font-weight: 600;
+}
+
+.info-value {
+    -fx-font-size: 15;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: 500;
+}
+
+/* Status Messages */
+.status-message {
+    -fx-padding: 15 20;
+    -fx-background-color: rgba(0, 255, 136, 0.1);
+    -fx-background-radius: 10;
+    -fx-border-color: #00ff88;
+    -fx-border-width: 1;
+    -fx-border-radius: 10;
+    -fx-text-fill: #00ff88;
+    -fx-font-size: 14;
+    -fx-font-weight: 600;
+}
+
+.error-message {
+    -fx-background-color: rgba(255, 68, 68, 0.1);
+    -fx-border-color: #ff4444;
+    -fx-text-fill: #ff4444;
+}
