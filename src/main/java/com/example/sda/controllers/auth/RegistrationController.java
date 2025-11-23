@@ -24,10 +24,6 @@ import javafx.util.Duration;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-/**
- * Controller for the Registration View. Includes advanced client-side validation,
- * password feedback, and asynchronous registration logic.
- */
 public class RegistrationController implements Initializable {
 
     // --- FXML Injections (omitted for brevity) ---
