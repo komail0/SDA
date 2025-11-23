@@ -10,25 +10,38 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class ChatController implements Initializable {
 
     @FXML private VBox chatListContainer;
-    @FXML private VBox chatContentArea; // This must match the fx:id in chat.fxml
+    @FXML private VBox chatContentArea;
+    @FXML private TextField searchField; // Injected from FXML
 
     private final ChatService chatService = new ChatService();
+
+    // Master list to store all fetched chats for filtering
+    private List<Chat> allChats = new ArrayList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadChats();
+
+        // Add Search Listener
+        if (searchField != null) {
+            searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+                filterChats(newValue);
+            });
+        }
     }
 
     private void loadChats() {
@@ -36,20 +49,52 @@ public class ChatController implements Initializable {
         if (user == null) return;
 
         new Thread(() -> {
+            // Fetch from DB
             List<Chat> chats = chatService.getUserChats(user.getId());
+
+            // Store in master list
+            allChats = chats;
+
             Platform.runLater(() -> {
-                chatListContainer.getChildren().clear();
-                if(chats.isEmpty()) {
-                    Label empty = new Label("No active chats");
-                    empty.setStyle("-fx-text-fill: #666; -fx-padding: 10;");
-                    chatListContainer.getChildren().add(empty);
-                } else {
-                    for (Chat chat : chats) {
-                        chatListContainer.getChildren().add(createChatItem(chat));
-                    }
-                }
+                // Initial display of all chats
+                displayChats(allChats);
             });
         }).start();
+    }
+
+    // New helper method to display a specific list of chats
+    private void displayChats(List<Chat> chatsToDisplay) {
+        chatListContainer.getChildren().clear();
+
+        if(chatsToDisplay.isEmpty()) {
+            Label empty = new Label("No active chats found");
+            empty.setStyle("-fx-text-fill: #666; -fx-padding: 10;");
+            chatListContainer.getChildren().add(empty);
+        } else {
+            for (Chat chat : chatsToDisplay) {
+                chatListContainer.getChildren().add(createChatItem(chat));
+            }
+        }
+    }
+
+    // New logic to filter the list based on input
+    private void filterChats(String keyword) {
+        if (keyword == null || keyword.trim().isEmpty()) {
+            displayChats(allChats); // Show all if search is empty
+            return;
+        }
+
+        String lowerCaseFilter = keyword.toLowerCase();
+        List<Chat> filteredList = new ArrayList<>();
+
+        for (Chat chat : allChats) {
+            String participantName = chat.getOtherParticipantName();
+            if (participantName != null && participantName.toLowerCase().contains(lowerCaseFilter)) {
+                filteredList.add(chat);
+            }
+        }
+
+        displayChats(filteredList);
     }
 
     private HBox createChatItem(Chat chat) {

@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -13,27 +12,27 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<StackPane styleClass="body" stylesheets="@../../css/styles/login.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sda.controllers.auth.LoginController">
+<StackPane styleClass="body" stylesheets="@../../css/styles/login.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sda.controllers.auth.LoginController">
 
     <!-- Main Card Container - Fixed Size HBox -->
     <!-- Changed: Fixed size (1000x600) to create the "Card" effect -->
-    <HBox alignment="CENTER" styleClass="main-container" prefWidth="1000" prefHeight="600" maxWidth="1000" maxHeight="600">
+    <HBox alignment="CENTER" maxHeight="600" maxWidth="1000" prefHeight="600" prefWidth="1000" styleClass="main-container">
 
         <!-- Left Panel - Branding -->
-        <VBox alignment="CENTER_LEFT" styleClass="left-panel" HBox.hgrow="ALWAYS" prefWidth="400">
+        <VBox alignment="CENTER_LEFT" prefWidth="400" styleClass="left-panel" HBox.hgrow="ALWAYS">
             <padding>
                 <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
             </padding>
 
-            <VBox spacing="5" alignment="CENTER_LEFT">
-                <HBox styleClass="logo-container" alignment="CENTER_LEFT">
+            <VBox alignment="CENTER_LEFT" spacing="5">
+                <HBox alignment="CENTER_LEFT" styleClass="logo-container">
                     <Text styleClass="logo" text="Acad" />
                     <Text styleClass="logo, logo-accent" text="Bridge" />
                 </HBox>
                 <Text styleClass="tagline" text="Welcome back.&#10;Continue your journey." />
             </VBox>
 
-            <VBox spacing="20" VBox.vgrow="ALWAYS" alignment="CENTER_LEFT">
+            <VBox alignment="CENTER_LEFT" spacing="20" VBox.vgrow="ALWAYS">
                 <Region VBox.vgrow="ALWAYS" />
                 <Text styleClass="feature-text" text="🎓 Access your dashboard" />
                 <Text styleClass="feature-text" text="📅 Check upcoming mentorship sessions" />
@@ -43,7 +42,7 @@
         </VBox>
 
         <!-- Right Panel - Form -->
-        <VBox alignment="CENTER_LEFT" styleClass="right-panel" HBox.hgrow="ALWAYS" prefWidth="600">
+        <VBox alignment="CENTER_LEFT" prefWidth="600" styleClass="right-panel" HBox.hgrow="ALWAYS">
             <padding>
                 <Insets bottom="30" left="40" right="40" top="30" />
             </padding>
@@ -53,12 +52,12 @@
                 <Text styleClass="subtitle" text="Enter your credentials to access your account" />
             </VBox>
 
-            <VBox spacing="15" styleClass="form-container" VBox.vgrow="ALWAYS" alignment="CENTER_LEFT">
+            <VBox alignment="CENTER_LEFT" spacing="15" styleClass="form-container" VBox.vgrow="ALWAYS">
                 <VBox.margin>
                     <Insets top="30" />
                 </VBox.margin>
 
-                <Label fx:id="feedbackLabel" styleClass="error-label-global" wrapText="true" minHeight="20" />
+                <Label fx:id="feedbackLabel" minHeight="20" styleClass="error-label-global" wrapText="true" />
 
                 <VBox spacing="5" styleClass="form-group">
                     <Label styleClass="form-label" text="Email or Username" />
@@ -70,21 +69,19 @@
                     <StackPane alignment="CENTER_RIGHT">
                         <TextField fx:id="visiblePasswordField" promptText="Enter your password" styleClass="form-input" visible="false" />
                         <PasswordField fx:id="passwordField" promptText="Enter your password" styleClass="form-input" />
-                        <Button fx:id="passwordVisibilityBtn" styleClass="icon-button" text="👁" focusTraversable="false">
+                        <Button fx:id="passwordVisibilityBtn" focusTraversable="false" styleClass="icon-button" text="👁">
                             <StackPane.margin>
-                                <Insets right="10"/>
+                                <Insets right="10" />
                             </StackPane.margin>
                         </Button>
                     </StackPane>
                 </VBox>
 
                 <HBox alignment="CENTER_LEFT" spacing="10">
-                    <CheckBox fx:id="rememberCheckbox" text="Remember me" style="-fx-text-fill: #b0b0b0;" />
                     <Region HBox.hgrow="ALWAYS" />
-                    <Hyperlink styleClass="login-link" text="Forgot Password?" style="-fx-font-size: 13;" />
                 </HBox>
 
-                <Button fx:id="loginBtn" onAction="#handleLogin" styleClass="submit-btn" text="Login to Account" maxWidth="Infinity">
+                <Button fx:id="loginBtn" maxWidth="Infinity" onAction="#handleLogin" styleClass="submit-btn" text="Login to Account">
                     <VBox.margin>
                         <Insets top="10" />
                     </VBox.margin>
@@ -95,7 +92,7 @@
                         <Insets top="20" />
                     </VBox.margin>
                     <Text styleClass="login-text" text="New to AcadBridge?" />
-                    <Hyperlink styleClass="login-link" text="Create New Account" onAction="#goToRegistration" />
+                    <Hyperlink onAction="#goToRegistration" styleClass="login-link" text="Create New Account" />
                 </HBox>
             </VBox>
         </VBox>

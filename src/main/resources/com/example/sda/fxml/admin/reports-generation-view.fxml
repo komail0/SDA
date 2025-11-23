@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane fitToWidth="true" style="-fx-background-color: #0a0a0a;" stylesheets="@../../css/styles/reports-generation-style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sda.controllers.admin.ReportsGenerationController">
+
+    <VBox spacing="20" styleClass="content-wrapper">
+
+        <padding>
+            <Insets bottom="40" left="40" right="40" top="40" />
+        </padding>
+
+        <!-- Header -->
+        <HBox alignment="CENTER_LEFT" styleClass="page-header">
+            <VBox HBox.hgrow="ALWAYS">
+                <Label styleClass="page-title" text="Reports and Analytics" />
+                <Label styleClass="page-subtitle" text="Generate comprehensive system reports" />
+            </VBox>
+            <Label fx:id="reportDateLabel" styleClass="date-label" text="Generated: -" />
+        </HBox>
+
+        <!-- Report Type Selection -->
+        <HBox alignment="CENTER_LEFT" spacing="20" styleClass="report-bar">
+            <Label styleClass="label-text" text="Report Type:" />
+            <ComboBox fx:id="reportTypeCombo" prefWidth="250" styleClass="filter-dropdown" />
+            <Button onAction="#handleGenerateReport" styleClass="btn-primary" text="Generate Report" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Button onAction="#handleRefresh" styleClass="btn-refresh" text="Refresh" />
+        </HBox>
+
+        <!-- Statistics Cards -->
+        <GridPane hgap="20" styleClass="stats-grid" vgap="20">
+            <VBox styleClass="stat-card" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                <Label styleClass="stat-icon" text="👥" />
+                <Label fx:id="totalUsersLabel" styleClass="stat-value" text="0" />
+                <Label styleClass="stat-label" text="Total Users" />
+            </VBox>
+
+            <VBox styleClass="stat-card" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                <Label styleClass="stat-icon" text="📁" />
+                <Label fx:id="totalProjectsLabel" styleClass="stat-value" text="0" />
+                <Label styleClass="stat-label" text="Total Projects" />
+            </VBox>
+
+            <VBox styleClass="stat-card" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                <Label styleClass="stat-icon" text="🤝" />
+                <Label fx:id="totalMentorsLabel" styleClass="stat-value" text="0" />
+                <Label styleClass="stat-label" text="Active Mentors" />
+            </VBox>
+
+            <VBox styleClass="stat-card" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                <Label styleClass="stat-icon" text="⭐" />
+                <Label fx:id="avgRatingLabel" styleClass="stat-value" text="0.0" />
+                <Label styleClass="stat-label" text="Avg. Rating" />
+            </VBox>
+         <columnConstraints>
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+         </rowConstraints>
+        </GridPane>
+
+        <!-- Charts Section -->
+        <GridPane hgap="20" styleClass="charts-grid" vgap="20">
+
+            <!-- Pie Chart -->
+            <VBox prefHeight="400" styleClass="chart-container" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                <Label styleClass="chart-title" text="User Distribution by Role" />
+                <PieChart fx:id="userDistributionChart" legendVisible="true" styleClass="pie-chart" VBox.vgrow="ALWAYS" />
+            </VBox>
+
+            <!-- Bar Chart -->
+            <VBox prefHeight="400" styleClass="chart-container" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                <Label styleClass="chart-title" text="Projects by Status" />
+                <BarChart fx:id="projectStatusChart" styleClass="bar-chart" VBox.vgrow="ALWAYS">
+                    <xAxis>
+                        <CategoryAxis label="Status" side="BOTTOM" fx:id="xAxis" />
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis fx:id="yAxis" label="Count" side="LEFT" />
+                    </yAxis>
+                </BarChart>
+            </VBox>
+
+            <!-- Report Summary -->
+            <VBox prefHeight="300" styleClass="summary-container" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="1">
+                <Label styleClass="chart-title" text="Report Summary" />
+                <TextArea fx:id="reportSummary" editable="false" styleClass="report-text" wrapText="true" VBox.vgrow="ALWAYS" />
+            </VBox>
+         <columnConstraints>
+            <ColumnConstraints />
+            <ColumnConstraints />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+            <RowConstraints />
+         </rowConstraints>
+
+        </GridPane>
+
+        <!-- Action Buttons -->
+        <HBox spacing="15" styleClass="action-bar">
+            <Region HBox.hgrow="ALWAYS" />
+        </HBox>
+
+    </VBox>
+
+</ScrollPane>

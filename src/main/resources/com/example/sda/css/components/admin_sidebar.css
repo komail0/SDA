@@ -1,0 +1,226 @@
+/* Main Layout - BorderPane */
+.main-layout {
+    -fx-background-color: #0a0a0a;
+}
+
+/* Sidebar - Left Section */
+.sidebar {
+    -fx-background-color: #1a1a1a;
+    -fx-border-color: transparent #2a2a2a transparent transparent;
+    -fx-border-width: 0 1 0 0;
+}
+
+/* Sidebar Header - VBox */
+.sidebar-header {
+    -fx-border-color: transparent transparent #2a2a2a transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+.sidebar-logo-container {
+    -fx-spacing: 0;
+}
+
+.sidebar-logo {
+    -fx-font-size: 28;
+    -fx-font-weight: 800;
+    -fx-fill: #ffffff;
+}
+
+.logo-accent {
+    -fx-fill: #00ff88;
+}
+
+.sidebar-subtitle {
+    -fx-font-size: 13;
+    -fx-fill: #808080;
+    -fx-font-weight: 500;
+}
+
+/* Navigation Menu ScrollPane */
+.nav-menu-scroll {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+
+.nav-menu-scroll > .viewport {
+    -fx-background-color: transparent;
+}
+
+.nav-menu-scroll .scroll-bar {
+    -fx-background-color: transparent;
+}
+
+.nav-menu-scroll .scroll-bar .thumb {
+    -fx-background-color: #333;
+    -fx-background-radius: 5;
+}
+
+/* Navigation Menu - VBox */
+.nav-menu {
+    -fx-background-color: transparent;
+}
+
+/* Menu Item - Button */
+.menu-item {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+    -fx-padding: 16 18 16 18;
+    -fx-alignment: center-left;
+    -fx-min-height: 50;
+}
+
+.menu-item:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.03);
+}
+
+.menu-item.active {
+    -fx-background-color: rgba(0, 255, 136, 0.12);
+}
+
+.menu-item .menu-icon {
+    -fx-font-size: 20;
+    -fx-fill: #999999;
+}
+
+.menu-item:hover .menu-icon {
+    -fx-fill: #e0e0e0;
+}
+
+.menu-item.active .menu-icon {
+    -fx-fill: #00ff88;
+}
+
+.menu-item .menu-text {
+    -fx-fill: #b0b0b0;
+    -fx-font-size: 15;
+    -fx-font-weight: 500;
+}
+
+.menu-item:hover .menu-text {
+    -fx-fill: #ffffff;
+}
+
+.menu-item.active .menu-text {
+    -fx-fill: #00ff88;
+    -fx-font-weight: 600;
+}
+
+.menu-badge {
+    -fx-background-color: #00ff88;
+    -fx-text-fill: #000000;
+    -fx-font-size: 11;
+    -fx-font-weight: 700;
+    -fx-padding: 4 9 4 9;
+    -fx-background-radius: 12;
+    -fx-min-width: 24;
+    -fx-alignment: center;
+}
+
+/* Sidebar Footer - VBox */
+.sidebar-footer {
+    -fx-border-color: #2a2a2a transparent transparent transparent;
+    -fx-border-width: 1 0 0 0;
+}
+
+/* User Profile - HBox */
+.user-profile {
+    -fx-background-color: rgba(255, 255, 255, 0.03);
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+    -fx-border-color: transparent;
+    -fx-border-radius: 10;
+    -fx-border-width: 0;
+}
+
+.user-profile:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.05);
+}
+
+.user-avatar {
+    -fx-min-width: 45;
+    -fx-min-height: 45;
+    -fx-max-width: 45;
+    -fx-max-height: 45;
+    -fx-background-color: linear-gradient(to bottom right, #00ff88, #00cc6a);
+    -fx-background-radius: 50%;
+}
+
+.avatar-icon {
+    -fx-font-size: 20;
+}
+
+/* User Info - VBox */
+.user-info {
+    -fx-spacing: 3;
+}
+
+.user-name {
+    -fx-fill: #ffffff;
+    -fx-font-weight: 600;
+    -fx-font-size: 14;
+}
+
+.user-role {
+    -fx-fill: #00ff88;
+    -fx-font-size: 12;
+    -fx-font-weight: 500;
+}
+
+/* Logout Button */
+.logout-btn {
+    -fx-background-color: transparent;
+    -fx-border-color: #2a2a2a;
+    -fx-border-width: 1;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+    -fx-padding: 12 15 12 15;
+    -fx-alignment: center-left;
+}
+
+.logout-btn:hover {
+    -fx-background-color: rgba(255, 0, 0, 0.08);
+    -fx-border-color: #ff4444;
+}
+
+.logout-btn .logout-icon {
+    -fx-fill: #999999;
+    -fx-font-size: 16;
+}
+
+.logout-btn:hover .logout-icon {
+    -fx-fill: #ff4444;
+}
+
+.logout-btn .logout-text {
+    -fx-fill: #b0b0b0;
+    -fx-font-size: 14;
+    -fx-font-weight: 500;
+}
+
+.logout-btn:hover .logout-text {
+    -fx-fill: #ff4444;
+}
+
+/* Main Content Area - Center Section */
+.main-content {
+    -fx-background-color: #0a0a0a;
+}
+
+/* Content Area */
+.content-area {
+    -fx-spacing: 10;
+}
+
+.content-title {
+    -fx-font-size: 32;
+    -fx-font-weight: 800;
+    -fx-fill: #ffffff;
+}
+
+.content-subtitle {
+    -fx-font-size: 16;
+    -fx-fill: #808080;
+}

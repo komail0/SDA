@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.sda.controllers.admin.UserManagementController"
+            fitToWidth="true"
+            fitToHeight="true"
+            style="-fx-background-color: #0a0a0a;"
+            stylesheets="@../../css/styles/user-management-style.css">
+
+    <VBox styleClass="content-wrapper" spacing="20">
+        <padding>
+            <Insets top="30" right="30" bottom="30" left="30"/>
+        </padding>
+
+        <HBox styleClass="page-header" alignment="CENTER_LEFT">
+            <VBox HBox.hgrow="ALWAYS">
+                <Label styleClass="page-title" text="User Management"/>
+                <Label styleClass="page-subtitle" text="Manage system users"/>
+            </VBox>
+            <Button styleClass="btn-refresh" text="🔄 Refresh" onAction="#handleRefresh"/>
+        </HBox>
+
+        <HBox styleClass="search-bar" spacing="15" alignment="CENTER_LEFT">
+            <TextField fx:id="searchField" styleClass="search-field"
+                       promptText="🔍 Search by name or email..."
+                       HBox.hgrow="ALWAYS" onKeyReleased="#handleSearch"/>
+            <Label fx:id="totalUsersLabel" styleClass="stats-label" text="Total Users: 0"/>
+        </HBox>
+
+        <TableView fx:id="usersTable" styleClass="data-table" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
+                <TableColumn fx:id="colUsername" text="Username" prefWidth="150"/>
+                <TableColumn fx:id="colEmail" text="Email" prefWidth="250"/>
+                <TableColumn fx:id="colRole" text="Role" prefWidth="100"/>
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+            </columnResizePolicy>
+        </TableView>
+
+        <HBox styleClass="action-bar" spacing="15" alignment="CENTER_RIGHT">
+            <Button styleClass="btn-danger" text="🗑️ Delete Selected User" onAction="#handleDelete"/>
+        </HBox>
+    </VBox>
+</ScrollPane>

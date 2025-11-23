@@ -148,13 +148,7 @@ public class ToastHelper {
         show(title, message, STYLE_WARNING, Pos.TOP_RIGHT, null);
     }
 
-    /**
-     * Displays a custom positioned toast notification.
-     *
-     * @param title The notification title
-     * @param message The notification message
-     * @param position The screen position
-     */
+
     public static void showCustom(String title, String message, Pos position) {
         show(title, message, STYLE_SUCCESS, position, null);
     }

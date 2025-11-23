@@ -100,11 +100,8 @@ public class LoginController implements Initializable {
         String password = passwordField.getText();
 
         if (email.isEmpty() || password.isEmpty()) {
-            if (feedbackLabel != null) {
-                // Keep feedback label for immediate input validation
-                feedbackLabel.setText("Please enter both email and password.");
-                feedbackLabel.setStyle("-fx-text-fill: #ff6666;");
-            }
+            ToastHelper.showError("Error", "Please enter both email and password.");
+            resetButton();
             return;
         }
 

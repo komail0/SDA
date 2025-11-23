@@ -1,0 +1,286 @@
+/* Main Content Container */
+.content-wrapper {
+    -fx-padding: 40;
+    -fx-background-color: #0a0a0a;
+    -fx-min-height: 100;
+}
+
+/* Content VBox */
+.content-container {
+    -fx-spacing: 30;
+    -fx-max-width: 1400;
+    -fx-alignment: center;
+}
+
+/* Page Header - HBox */
+.page-header {
+    -fx-alignment: center-left;
+}
+
+.header-info {
+    -fx-spacing: 5;
+}
+
+.page-title {
+    -fx-font-size: 32px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #ffffff;
+}
+
+.page-subtitle {
+    -fx-font-size: 16px;
+    -fx-text-fill: #808080;
+}
+
+.update-time {
+    -fx-font-size: 14px;
+    -fx-text-fill: #666;
+}
+
+/* Key Metrics Grid - GridPane */
+.metrics-grid {
+    -fx-hgap: 20;
+    -fx-vgap: 20;
+}
+
+/* Metric Card - VBox */
+.metric-card {
+    -fx-background-color: #1a1a1a;
+    -fx-padding: 25;
+    -fx-background-radius: 16;
+    -fx-border-color: #333;
+    -fx-border-width: 1;
+    -fx-border-radius: 16;
+    -fx-spacing: 15;
+}
+
+.metric-card:hover {
+    -fx-translate-y: -5;
+    -fx-border-color: #00ff88;
+}
+
+/* Card Header - HBox */
+.metric-header {
+    -fx-alignment: center-left;
+}
+
+.metric-icon {
+    -fx-font-size: 28px;
+}
+
+.metric-change {
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #00ff88;
+    -fx-background-color: rgba(0, 255, 136, 0.15);
+    -fx-padding: 4 10 4 10;
+    -fx-background-radius: 12;
+}
+
+.metric-value {
+    -fx-font-size: 36px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #ffffff;
+}
+
+.metric-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #808080;
+}
+
+/* Charts Row - GridPane */
+.charts-row {
+    -fx-hgap: 20;
+    -fx-vgap: 20;
+}
+
+/* Chart Card - VBox */
+.chart-card {
+    -fx-background-color: #1a1a1a;
+    -fx-padding: 25;
+    -fx-background-radius: 20;
+    -fx-border-color: #333;
+    -fx-border-width: 1;
+    -fx-border-radius: 20;
+    -fx-spacing: 20;
+}
+
+.chart-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #ffffff;
+}
+
+.chart-placeholder {
+    -fx-min-height: 300;
+    -fx-max-height: 300;
+    -fx-background-color: rgba(0, 255, 136, 0.05);
+    -fx-background-radius: 12;
+    -fx-alignment: center;
+    -fx-border-color: #333;
+    -fx-border-width: 1;
+    -fx-border-radius: 12;
+    -fx-border-style: dashed;
+}
+
+.chart-placeholder Label {
+    -fx-text-fill: #666;
+    -fx-font-size: 14px;
+}
+
+/* Activity Card - VBox */
+.activity-card {
+    -fx-background-color: #1a1a1a;
+    -fx-padding: 25;
+    -fx-background-radius: 20;
+    -fx-border-color: #333;
+    -fx-border-width: 1;
+    -fx-border-radius: 20;
+    -fx-spacing: 20;
+}
+
+/* Activity Item - HBox */
+.activity-item {
+    -fx-spacing: 15;
+    -fx-padding: 15;
+    -fx-background-color: rgba(0, 255, 136, 0.02);
+    -fx-background-radius: 12;
+    -fx-border-color: rgba(0, 255, 136, 0.1);
+    -fx-border-width: 1;
+    -fx-border-radius: 12;
+    -fx-alignment: center-left;
+}
+
+.activity-icon {
+    -fx-min-width: 40;
+    -fx-min-height: 40;
+    -fx-max-width: 40;
+    -fx-max-height: 40;
+    -fx-background-radius: 50%;
+    -fx-alignment: center;
+    -fx-font-size: 18px;
+}
+
+.activity-icon.success {
+    -fx-background-color: rgba(0, 255, 136, 0.15);
+    -fx-text-fill: #00ff88;
+}
+
+.activity-icon.info {
+    -fx-background-color: rgba(52, 152, 219, 0.15);
+    -fx-text-fill: #3498db;
+}
+
+.activity-icon.warning {
+    -fx-background-color: rgba(255, 193, 7, 0.15);
+    -fx-text-fill: #ffc107;
+}
+
+/* Activity Info - VBox */
+.activity-info {
+    -fx-spacing: 3;
+}
+
+.activity-text {
+    -fx-font-size: 14px;
+    -fx-text-fill: #c0c0c0;
+}
+
+.activity-time {
+    -fx-font-size: 12px;
+    -fx-text-fill: #666;
+}
+
+/* Quick Actions - GridPane */
+.quick-actions {
+    -fx-hgap: 20;
+    -fx-vgap: 20;
+}
+
+/* Action Card - VBox */
+.action-card {
+    -fx-background-color: #1a1a1a;
+    -fx-padding: 25;
+    -fx-background-radius: 16;
+    -fx-border-color: #333;
+    -fx-border-width: 1;
+    -fx-border-radius: 16;
+    -fx-spacing: 15;
+    -fx-alignment: center;
+    -fx-cursor: hand;
+}
+
+.action-card:hover {
+    -fx-translate-y: -5;
+    -fx-border-color: #00ff88;
+    -fx-background-color: rgba(0, 255, 136, 0.05);
+}
+
+.action-icon {
+    -fx-min-width: 60;
+    -fx-min-height: 60;
+    -fx-max-width: 60;
+    -fx-max-height: 60;
+    -fx-background-color: rgba(0, 255, 136, 0.15);
+    -fx-background-radius: 50%;
+    -fx-alignment: center;
+    -fx-font-size: 28px;
+}
+
+.action-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #ffffff;
+    -fx-text-alignment: center;
+}
+
+/* Dashboard Charts */
+.dashboard-pie-chart {
+    -fx-background-color: transparent;
+}
+
+.dashboard-pie-chart .chart-legend {
+    -fx-background-color: rgba(26, 26, 26, 0.8);
+    -fx-background-radius: 8;
+    -fx-padding: 10;
+    -fx-border-color: #333;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+}
+
+.dashboard-pie-chart .chart-legend-item {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 12px;
+}
+
+.dashboard-pie-chart .chart-legend-item-symbol {
+    -fx-background-radius: 4;
+}
+
+.dashboard-pie-chart .chart-pie-label {
+    -fx-fill: #ffffff;
+    -fx-font-size: 11px;
+    -fx-font-weight: 700;
+}
+
+.dashboard-pie-chart .chart-pie-label-line {
+    -fx-stroke: #666;
+    -fx-stroke-width: 1;
+}
+
+/* Chart data colors */
+.dashboard-pie-chart .data0.chart-pie {
+    -fx-pie-color: #00ff88;
+}
+
+.dashboard-pie-chart .data1.chart-pie {
+    -fx-pie-color: #3498db;
+}
+
+.dashboard-pie-chart .data2.chart-pie {
+    -fx-pie-color: #ffc107;
+}
+
+.dashboard-pie-chart .data3.chart-pie {
+    -fx-pie-color: #ff4444;
+}

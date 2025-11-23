@@ -284,7 +284,7 @@ public class RegistrationController implements Initializable {
                             fxmlFile = "components/alumni_sidebar.fxml";
                             title = "Alumni Portal - Dashboard";
                         } else {
-                            fxmlFile = "components/admin_sidebar.fxml";
+                            fxmlFile = "admin/admin-dashboard-view.fxml";
                             title = "Admin Portal - Dashboard";
                         }
 

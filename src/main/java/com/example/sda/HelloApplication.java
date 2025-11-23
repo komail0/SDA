@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class HelloApplication extends Application {
 
-    private static final String APP_TITLE = "AcadBridge - User Registration";
+    private static final String APP_TITLE = "AcadBridge - User Login";
     private static final String FXML_PATH = "fxml/auth/Login.fxml"; // Updated path
 
     @Override

@@ -215,7 +215,7 @@ public class UploadProjectController implements Initializable {
                 Platform.runLater(() -> {
                     if (success) {
                         // NEW: Use Toast for SUCCESS
-                        ToastHelper.showSuccess("Upload Complete", "Project '" + project.getTitle() + "' submitted successfully!");
+                        ToastHelper.showSuccess("Upload Complete", "Project '" + project.getTitle() + "' submitted successfully Waiting Admin Approval!");
                         // Clear the status label and form
                         statusLabel.setText("");
                         resetForm();

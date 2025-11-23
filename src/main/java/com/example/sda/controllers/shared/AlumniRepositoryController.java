@@ -41,11 +41,11 @@ public class AlumniRepositoryController implements Initializable {
 
         new Thread(() -> {
             List<Project> projects = projectService.getAlumniProjects(user.getId());
-            
+
             Platform.runLater(() -> {
                 totalProjectsText.setText(String.valueOf(projects.size()));
                 projectsGrid.getChildren().clear();
-                
+
                 if (projects.isEmpty()) {
                     statusLabel.setText("You haven't uploaded any projects yet.");
                 } else {
@@ -63,6 +63,8 @@ public class AlumniRepositoryController implements Initializable {
 
         for (Project project : projects) {
             VBox card = createRepositoryCard(project);
+            // Important: Allow card to grow to fill the grid cell
+            GridPane.setHgrow(card, Priority.ALWAYS);
             projectsGrid.add(card, col, row);
 
             col++;
@@ -74,58 +76,83 @@ public class AlumniRepositoryController implements Initializable {
     }
 
     private VBox createRepositoryCard(Project project) {
-        // Title
-        Text titleText = new Text(project.getTitle());
-        titleText.getStyleClass().add("project-title");
+        // --- Title (Using Label for auto-wrapping) ---
+        Label titleLabel = new Label(project.getTitle());
+        titleLabel.getStyleClass().add("project-title");
+        titleLabel.setWrapText(true);
+        titleLabel.setMaxWidth(Double.MAX_VALUE);
+        // Force white color to match dark theme (Label uses -fx-text-fill)
+        titleLabel.setStyle("-fx-text-fill: #ffffff; -fx-font-size: 20px; -fx-font-weight: 700;");
 
-        // Author & Year
-        Text authorText = new Text("Completed: " + project.getYear());
-        authorText.getStyleClass().add("author-text");
-        HBox authorBox = new HBox(authorText);
-        authorBox.getStyleClass().add("project-author");
+        // --- Author & Year ---
+        Label authorLabel = new Label("Completed: " + project.getYear());
+        authorLabel.getStyleClass().add("author-text");
+        authorLabel.setStyle("-fx-text-fill: #808080; -fx-font-size: 14px;");
 
-        // Header Box
-        VBox headerBox = new VBox(10, titleText, authorBox);
+        // --- Status Tag ---
+        Label statusTag = new Label(project.getStatus().toUpperCase());
+        statusTag.getStyleClass().add("status-tag");
+
+        String status = project.getStatus().toLowerCase();
+        if (status.equals("approved")) statusTag.getStyleClass().add("status-approved");
+        else if (status.equals("rejected")) statusTag.getStyleClass().add("status-rejected");
+        else statusTag.getStyleClass().add("status-pending");
+
+        // --- Header Row (Title + Spacer + Status) ---
+        HBox topRow = new HBox(10);
+        topRow.setAlignment(Pos.CENTER_LEFT);
+        Region spacer = new Region();
+        HBox.setHgrow(spacer, Priority.ALWAYS);
+
+        topRow.getChildren().addAll(titleLabel, spacer, statusTag);
+
+        VBox headerBox = new VBox(8, topRow, authorLabel);
         headerBox.getStyleClass().add("project-header");
         headerBox.setPadding(new javafx.geometry.Insets(15));
 
-        // Description
-        Text descriptionText = new Text(project.getDescription());
-        descriptionText.getStyleClass().add("project-description");
-        descriptionText.setWrappingWidth(400);
+        // --- Description (Using Label for auto-wrapping) ---
+        Label descriptionLabel = new Label(project.getDescription());
+        descriptionLabel.getStyleClass().add("project-description");
+        descriptionLabel.setWrapText(true);
+        descriptionLabel.setMaxWidth(Double.MAX_VALUE);
+        // Force grey color
+        descriptionLabel.setStyle("-fx-text-fill: #c0c0c0; -fx-font-size: 14px; -fx-line-spacing: 0.6;");
 
-        // Category Tag
+        // --- Category Tag ---
         Label categoryTag = new Label(project.getCategory());
         categoryTag.getStyleClass().add("tag");
+        // Ensure tag text is visible
+        categoryTag.setStyle("-fx-text-fill: #00ff88;");
         HBox tagsBox = new HBox(8, categoryTag);
         tagsBox.getStyleClass().add("project-tags");
 
-        // Delete Button
+        // --- Delete Button ---
         Button deleteBtn = new Button("🗑 Delete Project");
-        deleteBtn.getStyleClass().add("delete-btn"); // Reusing styling or new styling
+        deleteBtn.getStyleClass().add("delete-btn");
         deleteBtn.setOnAction(e -> handleDelete(project.getProjectId()));
 
         HBox actionBox = new HBox(deleteBtn);
         actionBox.setAlignment(Pos.CENTER_RIGHT);
 
-        // Body Content
-        VBox bodyContent = new VBox(15, descriptionText, tagsBox, actionBox);
+        // --- Body Content ---
+        VBox bodyContent = new VBox(15, descriptionLabel, tagsBox, actionBox);
         bodyContent.getStyleClass().add("project-body");
         bodyContent.setPadding(new javafx.geometry.Insets(15));
         VBox.setVgrow(bodyContent, Priority.ALWAYS);
 
-        // Main Card
+        // --- Main Card ---
         VBox card = new VBox(headerBox, bodyContent);
         card.getStyleClass().add("project-card");
+        // Ensure the card background is dark
+        card.setStyle("-fx-background-color: #1a1a1a; -fx-background-radius: 20; -fx-border-color: #333; -fx-border-radius: 20; -fx-border-width: 1;");
 
         return card;
     }
 
     private void handleDelete(int projectId) {
-        // In a real app, you might want a confirmation dialog here
         if (projectService.deleteProject(projectId)) {
             ToastHelper.showSuccess("Deleted", "Project removed successfully.");
-            loadRepositories(); // Refresh the list
+            loadRepositories();
         } else {
             ToastHelper.showError("Error", "Failed to delete project.");
         }

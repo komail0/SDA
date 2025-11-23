@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane fitToWidth="true" style="-fx-background-color: #0a0a0a;" stylesheets="@../../css/styles/admin-dashboard-style.css"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.sda.controllers.admin.AdminDashboardController">
+
+    <VBox styleClass="content-wrapper">
+        <VBox styleClass="content-container">
+
+            <!-- Page Header -->
+            <HBox styleClass="page-header">
+                <VBox styleClass="header-info" HBox.hgrow="ALWAYS">
+                    <Label styleClass="page-title" text="Dashboard Overview" />
+                    <Label styleClass="page-subtitle" text="Welcome back, Admin!" />
+                </VBox>
+                <Label fx:id="updateTime" styleClass="update-time" text="📅 Last updated: Today, 3:45 PM" />
+            </HBox>
+
+            <!-- Key Metrics -->
+            <GridPane styleClass="metrics-grid">
+
+                <!-- Metric Card 1 - Users -->
+                <VBox fx:id="usersCard" onMouseClicked="#handleViewUsers" style="-fx-cursor: hand;" styleClass="metric-card" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <HBox styleClass="metric-header">
+                        <Label styleClass="metric-icon" text="👥" HBox.hgrow="ALWAYS" />
+                        <Label fx:id="usersChange" styleClass="metric-change" text="↑ 12%" />
+                    </HBox>
+                    <Label fx:id="totalUsersValue" styleClass="metric-value" text="0" />
+                    <Label styleClass="metric-label" text="Total Users" />
+                </VBox>
+
+                <!-- Metric Card 2 - Projects -->
+                <VBox fx:id="projectsCard" onMouseClicked="#handleViewProjects" style="-fx-cursor: hand;" styleClass="metric-card" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                    <HBox styleClass="metric-header">
+                        <Label styleClass="metric-icon" text="📁" HBox.hgrow="ALWAYS" />
+                        <Label fx:id="projectsChange" styleClass="metric-change" text="↑ 8%" />
+                    </HBox>
+                    <Label fx:id="totalProjectsValue" styleClass="metric-value" text="0" />
+                    <Label styleClass="metric-label" text="Total Projects" />
+                </VBox>
+
+                <!-- Metric Card 3 - Mentorships -->
+                <VBox fx:id="mentorshipsCard" onMouseClicked="#handleViewMentorships" style="-fx-cursor: hand;" styleClass="metric-card" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                    <HBox styleClass="metric-header">
+                        <Label styleClass="metric-icon" text="🤝" HBox.hgrow="ALWAYS" />
+                        <Label fx:id="mentorshipsChange" styleClass="metric-change" text="↑ 24%" />
+                    </HBox>
+                    <Label fx:id="activeMentorshipsValue" styleClass="metric-value" text="0" />
+                    <Label styleClass="metric-label" text="Active Mentorships" />
+                </VBox>
+
+                <!-- Metric Card 4 - Ratings -->
+                <VBox fx:id="ratingsCard" onMouseClicked="#handleViewRatings" style="-fx-cursor: hand;" styleClass="metric-card" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                    <HBox styleClass="metric-header">
+                        <Label styleClass="metric-icon" text="⭐" HBox.hgrow="ALWAYS" />
+                        <Label fx:id="ratingChange" styleClass="metric-change" text="↑ 5%" />
+                    </HBox>
+                    <Label fx:id="avgRatingValue" styleClass="metric-value" text="0.0" />
+                    <Label styleClass="metric-label" text="Avg. Rating" />
+                </VBox>
+            <columnConstraints>
+               <ColumnConstraints />
+               <ColumnConstraints />
+               <ColumnConstraints />
+               <ColumnConstraints />
+            </columnConstraints>
+            <rowConstraints>
+               <RowConstraints />
+            </rowConstraints>
+
+            </GridPane>
+
+            <!-- Charts Row -->
+            <GridPane styleClass="charts-row">
+
+                <!-- User Distribution Pie Chart (REAL CHART) -->
+                <VBox styleClass="chart-card" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                    <Label styleClass="chart-title" text="📊 User Distribution" />
+                    <PieChart fx:id="userDistributionChart" legendVisible="true" maxHeight="280" minHeight="280" styleClass="dashboard-pie-chart" VBox.vgrow="ALWAYS" />
+                </VBox>
+            <columnConstraints>
+               <ColumnConstraints />
+               <ColumnConstraints />
+            </columnConstraints>
+            <rowConstraints>
+               <RowConstraints />
+            </rowConstraints>
+
+            </GridPane>
+
+        </VBox>
+    </VBox>
+
+</ScrollPane>

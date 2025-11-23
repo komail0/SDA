@@ -21,11 +21,12 @@ public class Project {
     private InputStream pdfFileStream; // Used for saving (BLOB insertion)
     private byte[] pdfFileBytes;       // Used for reading/retrieval
     private Timestamp uploadedAt;
+    private String status;             // NEW FIELD: pending, approved, rejected
 
     // NEW FIELD: Author's Name for display purposes
     private String authorName;
 
-    // Constructor for creating a new project (upload)
+    // Constructor for creating a new project (upload) - Status defaults to DB default (pending)
     public Project(int userId, String title, String description, String category, int year,
                    String university, String supervisor, String githubLink, String technologies,
                    InputStream pdfFileStream) {
@@ -39,12 +40,13 @@ public class Project {
         this.githubLink = githubLink;
         this.technologies = technologies;
         this.pdfFileStream = pdfFileStream;
+        this.status = "pending"; // Default for new objects
     }
 
-    // Constructor for reading project data from the database (omitted BLOB retrieval for simplicity)
+    // Constructor for reading project data from the database (Updated with Status)
     public Project(int projectId, int userId, String title, String description, String category,
                    int year, String university, String supervisor, String githubLink,
-                   String technologies, Timestamp uploadedAt) {
+                   String technologies, Timestamp uploadedAt, String authorName, String status) {
         this.projectId = projectId;
         this.userId = userId;
         this.title = title;
@@ -56,16 +58,9 @@ public class Project {
         this.githubLink = githubLink;
         this.technologies = technologies;
         this.uploadedAt = uploadedAt;
-    }
-
-    // NEW Constructor overload to include Author Name for search results
-    public Project(int projectId, int userId, String title, String description, String category,
-                   int year, String university, String supervisor, String githubLink,
-                   String technologies, Timestamp uploadedAt, String authorName) {
-        this(projectId, userId, title, description, category, year, university, supervisor, githubLink, technologies, uploadedAt);
         this.authorName = authorName;
+        this.status = status;
     }
-
 
     // --- Getters and Setters ---
 
@@ -87,4 +82,7 @@ public class Project {
 
     public String getAuthorName() { return authorName; }
     public void setAuthorName(String authorName) { this.authorName = authorName; }
+
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
 }

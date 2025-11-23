@@ -50,5 +50,8 @@ module com.example.sda {
     exports com.example.sda.controllers.auth;
     exports com.example.sda.controllers.shared;
     exports com.example.sda.controllers.components;
+
+    opens com.example.sda.controllers.admin to javafx.fxml;
+
     // NOTE: You may need to add exports for other controller packages (admin/components) later.
 }

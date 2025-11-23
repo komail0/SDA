@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane
+        xmlns="http://javafx.com/javafx/21"
+        xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.sda.controllers.admin.RepositoryManagementController"
+            fitToWidth="true"
+            fitToHeight="true"
+            style="-fx-background-color: #0a0a0a;"
+            stylesheets="@../../css/styles/repository-management-style.css">
+
+    <VBox styleClass="content-wrapper" spacing="20">
+        <padding>
+            <Insets top="30" right="30" bottom="30" left="30"/>
+        </padding>
+
+        <HBox styleClass="page-header" alignment="CENTER_LEFT">
+            <VBox HBox.hgrow="ALWAYS">
+                <Label styleClass="page-title" text="Repository Management"/>
+                <Label styleClass="page-subtitle" text="Review and manage all project submissions"/>
+            </VBox>
+        </HBox>
+
+        <HBox styleClass="search-bar" spacing="15" alignment="CENTER_LEFT">
+            <TextField fx:id="searchField" styleClass="search-field"
+                       promptText="🔍 Search by title, description, or owner..."
+                       HBox.hgrow="ALWAYS" onKeyReleased="#handleSearch"/>
+            <ComboBox fx:id="statusFilter" styleClass="filter-dropdown"
+                      promptText="Filter Status" onAction="#handleSearch" prefWidth="150"/>
+            <Label fx:id="totalProjectsLabel" styleClass="stats-label" text="Total: 0"/>
+            <Button styleClass="btn-refresh" text="🔄 Refresh" onAction="#handleRefresh"/>
+        </HBox>
+
+        <TableView fx:id="projectsTable" styleClass="data-table" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="colId" text="ID" prefWidth="50" styleClass="table-column"/>
+                <TableColumn fx:id="colTitle" text="Title" prefWidth="250" styleClass="table-column"/>
+                <TableColumn fx:id="colDescription" text="Description" prefWidth="300" styleClass="table-column"/>
+                <TableColumn fx:id="colOwner" text="Owner" prefWidth="150" styleClass="table-column"/>
+                <TableColumn fx:id="colStatus" text="Status" prefWidth="100" styleClass="table-column"/>
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+            </columnResizePolicy>
+        </TableView>
+
+        <HBox styleClass="action-bar" spacing="15" alignment="CENTER_RIGHT">
+            <Button styleClass="btn-danger" text="🗑️ Delete" onAction="#handleDelete"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button styleClass="btn-warning" text="✗ Reject" onAction="#handleReject"/>
+            <Button styleClass="btn-success" text="✓ Approve" onAction="#handleApprove"/>
+        </HBox>
+    </VBox>
+</ScrollPane>

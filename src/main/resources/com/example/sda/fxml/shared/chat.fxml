@@ -8,26 +8,21 @@
 
 <HBox styleClass="chat-container" stylesheets="@../../css/styles/chat.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sda.controllers.shared.ChatController">
 
-    <!-- Chat List Sidebar -->
     <VBox styleClass="chat-list">
         <VBox styleClass="chat-list-header">
             <HBox styleClass="chat-list-title">
                 <Label text="💬 Messages" textFill="#83fb83" />
             </HBox>
-            <TextField promptText="🔍 Search chats..." styleClass="search-chat" />
+            <TextField fx:id="searchField" promptText="🔍 Search chats..." styleClass="search-chat" />
         </VBox>
 
         <ScrollPane fitToWidth="true" styleClass="chats-list" VBox.vgrow="ALWAYS">
-            <!-- Dynamic List Container -->
             <VBox fx:id="chatListContainer">
-                <!-- Chats loaded here by controller -->
             </VBox>
         </ScrollPane>
     </VBox>
 
-    <!-- Chat Area (Right Side) -->
     <VBox fx:id="chatContentArea" styleClass="chat-area" HBox.hgrow="ALWAYS">
-        <!-- Placeholder when no chat is selected -->
         <VBox alignment="CENTER" VBox.vgrow="ALWAYS">
             <Label style="-fx-text-fill: #666; -fx-font-size: 16px;" text="Select a chat to start messaging" />
         </VBox>

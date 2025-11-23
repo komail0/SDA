@@ -1,59 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Text?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
-<!-- HBox is the root container for the toast layout -->
-<HBox fx:id="toastRoot"
-      xmlns="http://javafx.com/javafx/21"
-      xmlns:fx="http://javafx.com/fxml/1"
-      stylesheets="@../../css/components/Toast.css"
-      styleClass="toast-root"
-      alignment="CENTER_LEFT"
-      spacing="0"
-      maxWidth="800"
-      maxHeight="70"
-      minHeight="60">
+<HBox fx:id="toastRoot" alignment="CENTER_LEFT" maxWidth="700" minHeight="65" prefHeight="76.0" prefWidth="327.0" spacing="0" styleClass="toast-root" stylesheets="@../../css/components/Toast.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
 
-    <!-- Status Indicator / Logo Area with AB -->
-    <StackPane fx:id="statusIconContainer"
-               HBox.hgrow="NEVER"
-               prefWidth="70"
-               minWidth="70"
-               maxWidth="70"
-               styleClass="toast-icon-wrapper">
-        <Text fx:id="toastLogo" text="AB" styleClass="toast-logo-char"/>
+    <StackPane fx:id="statusIconContainer" maxWidth="70" minWidth="70" prefWidth="70" styleClass="toast-icon-wrapper" HBox.hgrow="NEVER">
+        <Text fx:id="toastLogo" styleClass="toast-logo-char" text="AB" />
     </StackPane>
 
-    <!-- Content VBox -->
-    <VBox spacing="4" HBox.hgrow="ALWAYS" styleClass="toast-content">
+    <VBox spacing="4" styleClass="toast-content" HBox.hgrow="ALWAYS">
         <padding>
-            <Insets top="15" right="45" bottom="15" left="15"/>
+            <Insets bottom="15" left="15" right="35" top="15" />
         </padding>
 
-        <!-- Title -->
-        <Text fx:id="toastTitle"
-              text="Notification Title"
-              styleClass="toast-title"/>
+        <Text fx:id="toastTitle" styleClass="toast-title" text="Notification Title" />
 
-        <!-- Message -->
-        <Label fx:id="toastMessage"
-               text="This is the detailed message."
-               wrapText="true"
-               maxWidth="240"
-               styleClass="toast-message"/>
+        <Label fx:id="toastMessage" maxWidth="400" minWidth="-Infinity" styleClass="toast-message" text="This is the detailed message." wrapText="true" />
     </VBox>
 
-    <!-- Close Button -->
-    <Button fx:id="closeButton"
-            text="×"
-            styleClass="toast-close-btn"
-            HBox.hgrow="NEVER">
+    <Button fx:id="closeButton" styleClass="toast-close-btn" text="×" HBox.hgrow="NEVER">
         <HBox.margin>
-            <Insets top="8" right="8" bottom="0" left="-35"/>
+            <Insets bottom="0" left="-30" right="5" top="5" />
         </HBox.margin>
     </Button>
 </HBox>

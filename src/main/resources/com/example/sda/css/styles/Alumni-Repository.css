@@ -1,8 +1,14 @@
 /* Reuse basic structural styles from Search/Global */
 .content-wrapper {
     -fx-background-color: #0a0a0a;
+    -fx-background: #0a0a0a;
 }
+
 .content-wrapper > .viewport {
+    -fx-background-color: #0a0a0a;
+}
+
+.content-wrapper .content {
     -fx-background-color: #0a0a0a;
 }
 .content-container {
@@ -98,4 +104,32 @@
 .delete-btn:hover {
     -fx-background-color: rgba(255, 68, 68, 0.2);
     -fx-effect: dropshadow(gaussian, rgba(255, 68, 68, 0.2), 10, 0, 0, 2);
+}
+
+/* STATUS TAGS - Newly Added */
+.status-tag {
+    -fx-padding: 4 10;
+    -fx-background-radius: 10;
+    -fx-font-size: 11px;
+    -fx-font-weight: 700;
+    -fx-border-width: 1;
+    -fx-border-style: solid;
+}
+
+.status-pending {
+    -fx-background-color: rgba(255, 187, 51, 0.15);
+    -fx-border-color: rgba(255, 187, 51, 0.3);
+    -fx-text-fill: #ffbb33;
+}
+
+.status-approved {
+    -fx-background-color: rgba(0, 255, 136, 0.15);
+    -fx-border-color: rgba(0, 255, 136, 0.3);
+    -fx-text-fill: #00ff88;
+}
+
+.status-rejected {
+    -fx-background-color: rgba(255, 68, 68, 0.15);
+    -fx-border-color: rgba(255, 68, 68, 0.3);
+    -fx-text-fill: #ff4444;
 }
