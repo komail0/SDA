@@ -13,6 +13,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <StackPane styleClass="body" stylesheets="@../../css/styles/Registration.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sda.controllers.auth.RegistrationController">
@@ -184,7 +185,13 @@
                 <!-- Login Link -->
                 <HBox alignment="CENTER" spacing="5" styleClass="login-link-container">
                     <Text styleClass="login-text" text="Already have an account?" />
-                    <Hyperlink onAction="#goToLogin" styleClass="login-link" text="Login here" />
+                    <Hyperlink onAction="#goToLogin" styleClass="login-link" text="Login here">
+                  <HBox.margin>
+                     <Insets left="-110.0" top="10.0" />
+                  </HBox.margin>
+                  <font>
+                     <Font size="15.0" />
+                  </font></Hyperlink>
                 </HBox>
             </VBox>
         </VBox>

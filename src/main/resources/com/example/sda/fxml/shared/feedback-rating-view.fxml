@@ -24,9 +24,9 @@
 
                 <!-- Header Section -->
                 <VBox styleClass="header-section" alignment="CENTER" spacing="10">
-                    <Label styleClass="mentor-avatar-large" text="MW"/>
+                    <Label styleClass="mentor-avatar-large" text="👨‍💼"/>
                     <Label styleClass="page-title" text="Rate Your Experience"/>
-                    <Label fx:id="mentorNameLabel" styleClass="mentor-name-subtitle" text="with Muhammad Waqas"/>
+                    <Label fx:id="mentorNameLabel" styleClass="mentor-name-subtitle" text="with Mentor Name"/>
                 </VBox>
 
                 <!-- Rating Section -->
@@ -36,13 +36,13 @@
                     <VBox styleClass="overall-rating" alignment="CENTER" spacing="10">
                         <Label styleClass="rating-question" text="How was your mentorship experience?"/>
                         <HBox fx:id="starsContainer" styleClass="stars-container" spacing="10" alignment="CENTER">
-                            <Button styleClass="star-btn, filled" text="⭐" userData="1"/>
-                            <Button styleClass="star-btn, filled" text="⭐" userData="2"/>
-                            <Button styleClass="star-btn, filled" text="⭐" userData="3"/>
-                            <Button styleClass="star-btn, filled" text="⭐" userData="4"/>
-                            <Button styleClass="star-btn, filled" text="⭐" userData="5"/>
+                            <Button styleClass="star-btn, empty" text="⭐"/>
+                            <Button styleClass="star-btn, empty" text="⭐"/>
+                            <Button styleClass="star-btn, empty" text="⭐"/>
+                            <Button styleClass="star-btn, empty" text="⭐"/>
+                            <Button styleClass="star-btn, empty" text="⭐"/>
                         </HBox>
-                        <Label fx:id="ratingLabel" styleClass="rating-label" text="Excellent!"/>
+                        <Label fx:id="ratingLabel" styleClass="rating-label" text="Select a rating"/>
                     </VBox>
 
                     <!-- Separator -->
@@ -55,11 +55,11 @@
                         <HBox styleClass="category-item" spacing="10" alignment="CENTER_LEFT">
                             <Label styleClass="category-label" text="Communication" HBox.hgrow="ALWAYS"/>
                             <HBox fx:id="communicationStars" styleClass="category-stars" spacing="5">
-                                <Button styleClass="small-star, filled" text="⭐" userData="communication-1"/>
-                                <Button styleClass="small-star, filled" text="⭐" userData="communication-2"/>
-                                <Button styleClass="small-star, filled" text="⭐" userData="communication-3"/>
-                                <Button styleClass="small-star, filled" text="⭐" userData="communication-4"/>
-                                <Button styleClass="small-star, empty" text="⭐" userData="communication-5"/>
+                                <Button styleClass="small-star, empty" text="⭐"/>
+                                <Button styleClass="small-star, empty" text="⭐"/>
+                                <Button styleClass="small-star, empty" text="⭐"/>
+                                <Button styleClass="small-star, empty" text="⭐"/>
+                                <Button styleClass="small-star, empty" text="⭐"/>
                             </HBox>
                         </HBox>
 
@@ -67,11 +67,11 @@
                         <HBox styleClass="category-item" spacing="10" alignment="CENTER_LEFT">
                             <Label styleClass="category-label" text="Knowledge &amp; Expertise" HBox.hgrow="ALWAYS"/>
                             <HBox fx:id="knowledgeStars" styleClass="category-stars" spacing="5">
-                                <Button styleClass="small-star, filled" text="⭐" userData="knowledge-1"/>
-                                <Button styleClass="small-star, filled" text="⭐" userData="knowledge-2"/>
-                                <Button styleClass="small-star, filled" text="⭐" userData="knowledge-3"/>
-                                <Button styleClass="small-star, filled" text="⭐" userData="knowledge-4"/>
-                                <Button styleClass="small-star, filled" text="⭐" userData="knowledge-5"/>
+                                <Button styleClass="small-star, empty" text="⭐"/>
+                                <Button styleClass="small-star, empty" text="⭐"/>
+                                <Button styleClass="small-star, empty" text="⭐"/>
+                                <Button styleClass="small-star, empty" text="⭐"/>
+                                <Button styleClass="small-star, empty" text="⭐"/>
                             </HBox>
                         </HBox>
 
@@ -79,11 +79,11 @@
                         <HBox styleClass="category-item" spacing="10" alignment="CENTER_LEFT">
                             <Label styleClass="category-label" text="Responsiveness" HBox.hgrow="ALWAYS"/>
                             <HBox fx:id="responsivenessStars" styleClass="category-stars" spacing="5">
-                                <Button styleClass="small-star, filled" text="⭐" userData="responsiveness-1"/>
-                                <Button styleClass="small-star, filled" text="⭐" userData="responsiveness-2"/>
-                                <Button styleClass="small-star, filled" text="⭐" userData="responsiveness-3"/>
-                                <Button styleClass="small-star, filled" text="⭐" userData="responsiveness-4"/>
-                                <Button styleClass="small-star, filled" text="⭐" userData="responsiveness-5"/>
+                                <Button styleClass="small-star, empty" text="⭐"/>
+                                <Button styleClass="small-star, empty" text="⭐"/>
+                                <Button styleClass="small-star, empty" text="⭐"/>
+                                <Button styleClass="small-star, empty" text="⭐"/>
+                                <Button styleClass="small-star, empty" text="⭐"/>
                             </HBox>
                         </HBox>
 
@@ -91,11 +91,11 @@
                         <HBox styleClass="category-item" spacing="10" alignment="CENTER_LEFT">
                             <Label styleClass="category-label" text="Helpfulness" HBox.hgrow="ALWAYS"/>
                             <HBox fx:id="helpfulnessStars" styleClass="category-stars" spacing="5">
-                                <Button styleClass="small-star, filled" text="⭐" userData="helpfulness-1"/>
-                                <Button styleClass="small-star, filled" text="⭐" userData="helpfulness-2"/>
-                                <Button styleClass="small-star, filled" text="⭐" userData="helpfulness-3"/>
-                                <Button styleClass="small-star, filled" text="⭐" userData="helpfulness-4"/>
-                                <Button styleClass="small-star, filled" text="⭐" userData="helpfulness-5"/>
+                                <Button styleClass="small-star, empty" text="⭐"/>
+                                <Button styleClass="small-star, empty" text="⭐"/>
+                                <Button styleClass="small-star, empty" text="⭐"/>
+                                <Button styleClass="small-star, empty" text="⭐"/>
+                                <Button styleClass="small-star, empty" text="⭐"/>
                             </HBox>
                         </HBox>
 
@@ -116,7 +116,7 @@
 
                     <!-- Action Buttons -->
                     <HBox styleClass="action-buttons" spacing="15" alignment="CENTER">
-                        <Button fx:id="skipBtn" styleClass="skip-btn" text="Skip"
+                        <Button fx:id="skipBtn" styleClass="skip-btn" text="Cancel"
                                 prefWidth="150" prefHeight="45"/>
                         <Button fx:id="submitRatingBtn" styleClass="submit-rating-btn" text="Submit Rating"
                                 prefWidth="150" prefHeight="45"/>

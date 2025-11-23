@@ -1,0 +1,241 @@
+/* Popup Container */
+.popup-container {
+    -fx-background-color: rgba(0, 0, 0, 0.85);
+    -fx-alignment: center;
+    -fx-padding: 40;
+}
+
+/* Main Popup Card */
+.popup-card {
+    -fx-background-color: #1a1a1a;
+    -fx-background-radius: 25;
+    -fx-border-color: #333;
+    -fx-border-width: 2;
+    -fx-border-radius: 25;
+    -fx-padding: 0;
+    -fx-max-width: 600;
+    -fx-effect: dropshadow(gaussian, rgba(0, 255, 136, 0.3), 40, 0, 0, 0);
+}
+
+/* Popup Header */
+.popup-header {
+    -fx-background-color: linear-gradient(to bottom right, rgba(0, 255, 136, 0.15), rgba(0, 204, 106, 0.05));
+    -fx-padding: 25 30;
+    -fx-background-radius: 25 25 0 0;
+    -fx-border-color: transparent transparent #333 transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-spacing: 12;
+}
+
+.popup-title-row {
+    -fx-alignment: center-left;
+    -fx-spacing: 15;
+}
+
+.popup-icon {
+    -fx-font-size: 32;
+}
+
+.popup-title {
+    -fx-font-size: 24;
+    -fx-font-weight: 800;
+    -fx-text-fill: #ffffff;
+}
+
+.popup-subtitle {
+    -fx-font-size: 14;
+    -fx-text-fill: #808080;
+    -fx-padding: 0 0 0 47;
+}
+
+.close-icon-btn {
+    -fx-padding: 8 8;
+    -fx-background-color: transparent;
+    -fx-border-color: #666;
+    -fx-border-width: 2;
+    -fx-border-radius: 50%;
+    -fx-background-radius: 50%;
+    -fx-text-fill: #c0c0c0;
+    -fx-font-weight: 700;
+    -fx-cursor: hand;
+    -fx-font-size: 16;
+    -fx-min-width: 35;
+    -fx-min-height: 35;
+    -fx-max-width: 35;
+    -fx-max-height: 35;
+}
+
+.close-icon-btn:hover {
+    -fx-border-color: #ff4444;
+    -fx-text-fill: #ff4444;
+    -fx-background-color: rgba(255, 68, 68, 0.1);
+}
+
+/* Popup Content */
+.popup-content {
+    -fx-padding: 30;
+    -fx-spacing: 25;
+}
+
+/* Project Info Display */
+.project-info-box {
+    -fx-background-color: rgba(0, 255, 136, 0.05);
+    -fx-padding: 20;
+    -fx-background-radius: 15;
+    -fx-border-color: rgba(0, 255, 136, 0.2);
+    -fx-border-width: 1;
+    -fx-border-radius: 15;
+    -fx-spacing: 8;
+}
+
+.project-info-label {
+    -fx-font-size: 12;
+    -fx-text-fill: #00ff88;
+    -fx-font-weight: 600;
+}
+
+.project-info-value {
+    -fx-font-size: 16;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: 600;
+    -fx-wrap-text: true;
+}
+
+.project-description-value {
+    -fx-font-size: 14;
+    -fx-text-fill: #c0c0c0;
+    -fx-wrap-text: true;
+    -fx-line-spacing: 3;
+}
+
+/* Form Section */
+.popup-form-section {
+    -fx-spacing: 20;
+}
+
+.popup-form-group {
+    -fx-spacing: 8;
+}
+
+.popup-label {
+    -fx-font-size: 14;
+    -fx-font-weight: 600;
+    -fx-text-fill: #c0c0c0;
+}
+
+.popup-required {
+    -fx-text-fill: #00ff88;
+}
+
+.popup-input {
+                 -fx-pref-width: 540;
+                 -fx-padding: 14 18;
+                 -fx-background-color: #0f0f0f;
+                 -fx-border-color: #333;
+                 -fx-border-width: 2;
+                 -fx-border-radius: 12;
+                 -fx-background-radius: 12;
+                 -fx-text-fill: #ffffff;
+                 -fx-font-size: 15;
+                 -fx-font-family: "Segoe UI", Arial, sans-serif;
+             }
+.popup-textarea {
+    -fx-pref-width: 540;
+    -fx-padding: 14 18;
+    -fx-background-color: #0f0f0f;
+    -fx-border-color: #333;
+    -fx-border-width: 2;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+    -fx-text-fill: #0000000;
+    -fx-font-size: 15;
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.popup-textarea {
+    -fx-pref-height: 100;
+}
+
+.popup-input:focused,
+.popup-textarea:focused {
+    -fx-border-color: #00ff88;
+    -fx-background-color: #0a0a0a;
+    -fx-effect: dropshadow(gaussian, rgba(0, 255, 136, 0.15), 5, 0, 0, 0);
+}
+
+.popup-input {
+    -fx-prompt-text-fill: #666;
+}
+
+.popup-textarea {
+    -fx-prompt-text-fill: #666;
+}
+
+/* Grid for 2-column layout */
+.popup-form-grid {
+    -fx-hgap: 15;
+    -fx-vgap: 20;
+}
+
+/* Popup Actions */
+.popup-actions {
+    -fx-spacing: 15;
+    -fx-alignment: center;
+    -fx-padding: 10 0 0 0;
+}
+
+.popup-cancel-btn {
+    -fx-padding: 14 35;
+    -fx-background-color: transparent;
+    -fx-border-color: #333;
+    -fx-border-width: 2;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+    -fx-text-fill: #c0c0c0;
+    -fx-font-weight: 600;
+    -fx-cursor: hand;
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-font-size: 15;
+}
+
+.popup-cancel-btn:hover {
+    -fx-border-color: #666;
+    -fx-background-color: rgba(255, 255, 255, 0.05);
+}
+
+.popup-submit-btn {
+    -fx-padding: 14 40;
+    -fx-background-color: linear-gradient(to bottom right, #00ff88, #00cc6a);
+    -fx-border-width: 0;
+    -fx-background-radius: 12;
+    -fx-text-fill: #000000;
+    -fx-font-weight: 700;
+    -fx-cursor: hand;
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-font-size: 15;
+}
+
+.popup-submit-btn:hover {
+    -fx-translate-y: -2;
+    -fx-effect: dropshadow(gaussian, rgba(0, 255, 136, 0.4), 30, 0, 0, 10);
+}
+
+/* Status Message */
+.popup-status-message {
+    -fx-padding: 12 18;
+    -fx-background-color: rgba(255, 187, 51, 0.1);
+    -fx-background-radius: 10;
+    -fx-border-color: #ffbb33;
+    -fx-border-width: 1;
+    -fx-border-radius: 10;
+    -fx-text-fill: #ffbb33;
+    -fx-font-size: 13;
+    -fx-font-weight: 600;
+    -fx-wrap-text: true;
+}
+
+.popup-error-message {
+    -fx-background-color: rgba(255, 68, 68, 0.1);
+    -fx-border-color: #ff4444;
+    -fx-text-fill: #ff4444;
+}

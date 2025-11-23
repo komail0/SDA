@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane styleClass="popup-container"
+           stylesheets="@../../css/styles/Send-Requests.css"
+           xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.example.sda.controllers.shared.SendRequestController">
+
+    <VBox styleClass="popup-card">
+
+        <!-- Popup Header -->
+        <VBox styleClass="popup-header">
+            <HBox styleClass="popup-title-row">
+                <Region HBox.hgrow="ALWAYS" />
+                <Label styleClass="popup-icon" text="🤝" />
+                <Label styleClass="popup-title" text="Request Mentorship" HBox.hgrow="ALWAYS" />
+            </HBox>
+            <Label styleClass="popup-subtitle" text="Connect with an alumni mentor for guidance on this project" />
+        </VBox>
+
+        <!-- Popup Content -->
+        <VBox styleClass="popup-content">
+
+            <!-- Status Message (hidden by default) -->
+            <Label fx:id="statusLabel" managed="false" styleClass="popup-status-message" text="" />
+
+            <!-- Request Form -->
+            <VBox styleClass="popup-form-section">
+
+                <!-- Your Information Label -->
+                <Label style="-fx-font-size: 16; -fx-text-fill: #ffffff;" styleClass="popup-label" text="Your Information" />
+
+                <!-- 2-Column Grid for Student Info -->
+                <GridPane styleClass="popup-form-grid">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="ALWAYS" percentWidth="50.0" />
+                        <ColumnConstraints hgrow="ALWAYS" percentWidth="50.0" />
+                    </columnConstraints>
+
+                    <!-- Student Name -->
+                    <VBox styleClass="popup-form-group" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                        <HBox spacing="3">
+                            <Label styleClass="popup-label" text="Your Name" />
+                            <Label styleClass="popup-label, popup-required" text="*" />
+                        </HBox>
+                        <TextField fx:id="studentNameField" prefWidth="260" promptText="Enter your full name" styleClass="popup-input" />
+                    </VBox>
+
+                    <!-- University Name -->
+                    <VBox styleClass="popup-form-group" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                        <HBox spacing="3">
+                            <Label styleClass="popup-label" text="University" />
+                            <Label styleClass="popup-label, popup-required" text="*" />
+                        </HBox>
+                        <TextField fx:id="universityNameField" prefWidth="260" promptText="Your university name" styleClass="popup-input" />
+                    </VBox>
+
+                    <!-- Academic Year -->
+                    <VBox styleClass="popup-form-group" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                        <HBox spacing="3">
+                            <Label styleClass="popup-label" text="Academic Year" />
+                            <Label styleClass="popup-label, popup-required" text="*" />
+                        </HBox>
+                        <TextField fx:id="academicYearField" prefWidth="260" promptText="e.g., 2024-2025" styleClass="popup-input" />
+                    </VBox>
+
+                    <!-- Email (Optional) -->
+                    <VBox styleClass="popup-form-group" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Label styleClass="popup-label" text="Email (Optional)" />
+                        <TextField fx:id="emailField" prefWidth="260" promptText="your.email@university.edu" styleClass="popup-input" />
+                    </VBox>
+                    <rowConstraints>
+                        <RowConstraints />
+                        <RowConstraints />
+                    </rowConstraints>
+                </GridPane>
+
+                <!-- Request Message -->
+                <VBox styleClass="popup-form-group">
+                    <HBox spacing="3">
+                        <Label styleClass="popup-label" text="Request Message" />
+                        <Label styleClass="popup-label, popup-required" text="*" />
+                    </HBox>
+                    <TextArea fx:id="requestMessageArea" promptText="Explain why you're interested in this project and what kind of mentorship you're looking for..." styleClass="popup-textarea" wrapText="true" />
+                </VBox>
+
+            </VBox>
+
+            <!-- Popup Actions -->
+            <HBox styleClass="popup-actions">
+                <Button fx:id="cancelBtn" styleClass="popup-cancel-btn" text="Cancel" />
+                <Button fx:id="sendRequestBtn" styleClass="popup-submit-btn" text="Send Request" />
+            </HBox>
+
+        </VBox>
+
+    </VBox>
+
+</StackPane>

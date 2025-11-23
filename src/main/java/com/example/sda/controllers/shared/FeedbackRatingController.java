@@ -1,285 +1,150 @@
 package com.example.sda.controllers.shared;
 
-import com.example.sda.dao.RatingDAO;
+import com.example.sda.controllers.components.SidebarController;
 import com.example.sda.models.Rating;
+import com.example.sda.models.User;
+import com.example.sda.services.RatingService;
+import com.example.sda.utils.SessionManager;
+import com.example.sda.utils.ToastHelper;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.HBox;
+import javafx.scene.Node;
 
-/**
- * Controller for the Rate Mentor screen
- * Handles user interactions and rating submissions
- */
+import java.util.HashMap;
+import java.util.Map;
+
 public class FeedbackRatingController {
 
     @FXML private Label mentorNameLabel;
-    @FXML private Label ratingLabel;
-    @FXML private TextArea feedbackTextArea;
-    @FXML private Button skipBtn;
-    @FXML private Button submitRatingBtn;
-
-    // Star buttons for overall rating
     @FXML private HBox starsContainer;
-
-    // Category star containers
     @FXML private HBox communicationStars;
     @FXML private HBox knowledgeStars;
     @FXML private HBox responsivenessStars;
     @FXML private HBox helpfulnessStars;
+    @FXML private TextArea feedbackTextArea;
+    @FXML private Button submitRatingBtn;
+    @FXML private Button skipBtn;
+    @FXML private Label ratingLabel;
 
-    private RatingDAO ratingDAO;
+    private User mentor;
+    private SidebarController sidebarController;
+    private final RatingService ratingService = new RatingService();
 
-    // Track current ratings
-    private int overallRating = 5; // Default 5 stars
-    private int communicationRating = 4;
-    private int knowledgeRating = 5;
-    private int responsivenessRating = 5;
-    private int helpfulnessRating = 5;
+    // Store ratings: "overall", "communication", etc.
+    private final Map<String, Integer> ratings = new HashMap<>();
 
-    // For now, we'll use hardcoded IDs - later you'll get these from your login system
-    private int currentStudentId = 1; // This should come from your logged-in user session
-    private int currentMentorId = 1; // The mentor being rated (Muhammad Waqas from our sample data)
-
-    /**
-     * Initialize method - called automatically when the FXML is loaded
-     */
     @FXML
     public void initialize() {
-        ratingDAO = new RatingDAO();
+        setupStarGroup(starsContainer, "overall", ratingLabel);
+        setupStarGroup(communicationStars, "communication", null);
+        setupStarGroup(knowledgeStars, "knowledge", null);
+        setupStarGroup(responsivenessStars, "responsiveness", null);
+        setupStarGroup(helpfulnessStars, "helpfulness", null);
 
-        // Set up star button click handlers
-        setupStarHandlers();
+        submitRatingBtn.setOnAction(e -> handleSubmit());
+        skipBtn.setOnAction(e -> goBack());
 
-        // Set up button actions
-        setupButtonHandlers();
-
-        System.out.println("FeedbackRatingController initialized!");
+        // Default ratings
+        ratings.put("overall", 0);
+        ratings.put("communication", 0);
+        ratings.put("knowledge", 0);
+        ratings.put("responsiveness", 0);
+        ratings.put("helpfulness", 0);
     }
 
-    /**
-     * Set up click handlers for all star buttons
-     */
-    private void setupStarHandlers() {
-        // Overall rating stars
-        if (starsContainer != null) {
-            for (int i = 0; i < starsContainer.getChildren().size(); i++) {
-                if (starsContainer.getChildren().get(i) instanceof Button) {
-                    Button starBtn = (Button) starsContainer.getChildren().get(i);
-                    int rating = i + 1;
-                    starBtn.setOnAction(e -> setOverallRating(rating));
-                }
-            }
-        }
-
-        // Communication rating stars
-        setupCategoryStars(communicationStars, "communication");
-
-        // Knowledge rating stars
-        setupCategoryStars(knowledgeStars, "knowledge");
-
-        // Responsiveness rating stars
-        setupCategoryStars(responsivenessStars, "responsiveness");
-
-        // Helpfulness rating stars
-        setupCategoryStars(helpfulnessStars, "helpfulness");
+    public void setMentorData(User mentor, SidebarController sidebar) {
+        this.mentor = mentor;
+        this.sidebarController = sidebar;
+        mentorNameLabel.setText("with " + mentor.getUsername());
     }
 
-    /**
-     * Set up click handlers for category star buttons
-     */
-    private void setupCategoryStars(HBox container, String category) {
-        if (container != null) {
-            for (int i = 0; i < container.getChildren().size(); i++) {
-                if (container.getChildren().get(i) instanceof Button) {
-                    Button starBtn = (Button) container.getChildren().get(i);
-                    int rating = i + 1;
-                    starBtn.setOnAction(e -> setCategoryRating(category, rating));
-                }
-            }
-        }
-    }
+    private void setupStarGroup(HBox container, String key, Label labelToUpdate) {
+        int index = 1;
+        for (Node node : container.getChildren()) {
+            if (node instanceof Button) {
+                Button starBtn = (Button) node;
+                int value = index++;
 
-    /**
-     * Set up button click handlers
-     */
-    private void setupButtonHandlers() {
-        if (submitRatingBtn != null) {
-            submitRatingBtn.setOnAction(e -> submitRating());
-        }
+                // Reset visual state to empty initially
+                updateStarVisuals(container, 0);
 
-        if (skipBtn != null) {
-            skipBtn.setOnAction(e -> skipRating());
-        }
-    }
-
-    /**
-     * Update overall rating
-     */
-    private void setOverallRating(int rating) {
-        this.overallRating = rating;
-        updateRatingLabel(rating);
-        updateStarDisplay(starsContainer, rating);
-        System.out.println("Overall rating set to: " + rating);
-    }
-
-    /**
-     * Update category rating
-     */
-    private void setCategoryRating(String category, int rating) {
-        switch (category) {
-            case "communication":
-                this.communicationRating = rating;
-                updateStarDisplay(communicationStars, rating);
-                break;
-            case "knowledge":
-                this.knowledgeRating = rating;
-                updateStarDisplay(knowledgeStars, rating);
-                break;
-            case "responsiveness":
-                this.responsivenessRating = rating;
-                updateStarDisplay(responsivenessStars, rating);
-                break;
-            case "helpfulness":
-                this.helpfulnessRating = rating;
-                updateStarDisplay(helpfulnessStars, rating);
-                break;
-        }
-        System.out.println(category + " rating set to: " + rating);
-    }
-
-    /**
-     * Update the rating label text based on rating value
-     */
-    private void updateRatingLabel(int rating) {
-        if (ratingLabel != null) {
-            String text = switch (rating) {
-                case 1 -> "Poor";
-                case 2 -> "Fair";
-                case 3 -> "Good";
-                case 4 -> "Very Good";
-                case 5 -> "Excellent!";
-                default -> "";
-            };
-            ratingLabel.setText(text);
-        }
-    }
-
-    /**
-     * Update visual display of stars (filled/empty)
-     */
-    private void updateStarDisplay(HBox container, int rating) {
-        if (container != null) {
-            for (int i = 0; i < container.getChildren().size(); i++) {
-                if (container.getChildren().get(i) instanceof Button) {
-                    Button starBtn = (Button) container.getChildren().get(i);
-                    if (i < rating) {
-                        // Filled star
-                        if (!starBtn.getStyleClass().contains("filled")) {
-                            starBtn.getStyleClass().add("filled");
-                        }
-                        starBtn.getStyleClass().remove("empty");
-                    } else {
-                        // Empty star
-                        if (!starBtn.getStyleClass().contains("empty")) {
-                            starBtn.getStyleClass().add("empty");
-                        }
-                        starBtn.getStyleClass().remove("filled");
+                starBtn.setOnAction(e -> {
+                    ratings.put(key, value);
+                    updateStarVisuals(container, value);
+                    if (labelToUpdate != null) {
+                        updateLabelText(labelToUpdate, value);
                     }
+                });
+            }
+        }
+    }
+
+    private void updateStarVisuals(HBox container, int value) {
+        int i = 1;
+        for (Node node : container.getChildren()) {
+            if (node instanceof Button) {
+                Button btn = (Button) node;
+                btn.getStyleClass().removeAll("filled", "empty");
+                if (i <= value) {
+                    btn.getStyleClass().add("filled");
+                } else {
+                    btn.getStyleClass().add("empty");
                 }
+                i++;
             }
         }
     }
 
-    /**
-     * Submit the rating to the database
-     */
-    private void submitRating() {
-        try {
-            // Get feedback text (empty string if null or blank)
-            String feedbackText = feedbackTextArea != null ? feedbackTextArea.getText() : "";
-            if (feedbackText == null || feedbackText.trim().isEmpty()) {
-                feedbackText = "No feedback provided";
-            }
-
-            // Create rating object
-            Rating rating = new Rating(
-                    currentStudentId,
-                    currentMentorId,
-                    overallRating,
-                    communicationRating,
-                    knowledgeRating,
-                    responsivenessRating,
-                    helpfulnessRating,
-                    feedbackText
-            );
-
-            // Save to database
-            boolean success = ratingDAO.insertRating(rating);
-
-            if (success) {
-                showAlert(AlertType.INFORMATION, "Success!", "Your rating has been submitted successfully! 🎉");
-                System.out.println("Rating submitted successfully!");
-                // TODO: Navigate to another screen or close this window
-            } else {
-                showAlert(AlertType.ERROR, "Error", "Failed to submit rating. Please try again.");
-            }
-
-        } catch (Exception e) {
-            showAlert(AlertType.ERROR, "Error", "An error occurred: " + e.getMessage());
-            e.printStackTrace();
+    private void updateLabelText(Label label, int value) {
+        switch (value) {
+            case 1: label.setText("Poor"); break;
+            case 2: label.setText("Fair"); break;
+            case 3: label.setText("Good"); break;
+            case 4: label.setText("Very Good"); break;
+            case 5: label.setText("Excellent!"); break;
+            default: label.setText("Select a rating");
         }
     }
 
-    /**
-     * Skip rating
-     */
-    private void skipRating() {
-        System.out.println("Rating skipped");
-        showAlert(AlertType.INFORMATION, "Skipped", "You can rate this mentor later! ⏭️");
-        // TODO: Navigate to another screen
+    private void handleSubmit() {
+        if (ratings.get("overall") == 0) {
+            ToastHelper.showWarning("Rating Required", "Please select at least an overall rating.");
+            return;
+        }
+
+        User currentUser = SessionManager.getInstance().getCurrentUser();
+        if (currentUser == null) return;
+
+        Rating rating = new Rating(
+                currentUser.getId(),
+                mentor.getId(),
+                ratings.get("overall"),
+                ratings.get("communication"),
+                ratings.get("knowledge"),
+                ratings.get("responsiveness"),
+                ratings.get("helpfulness"),
+                feedbackTextArea.getText().trim()
+        );
+
+        if (ratingService.submitRating(rating)) {
+            ToastHelper.showSuccess("Thank You!", "Your feedback has been submitted.");
+            goBack();
+        } else {
+            ToastHelper.showError("Error", "Could not submit rating. Try again.");
+        }
     }
 
-    /**
-     * Show a custom styled alert dialog
-     */
-    private void showAlert(AlertType type, String title, String message) {
-        Alert alert = new Alert(type);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
+    private void goBack() {
+        if (sidebarController != null) {
+            // FIX: Capture the returned controller and inject the sidebar dependency again
+            Object controller = sidebarController.loadContentView("shared/mentor-rating.fxml");
 
-        // Apply custom styling to the dialog
-        alert.getDialogPane().setStyle(
-                "-fx-background-color: #1a1a1a;" +
-                        "-fx-border-color: #00ff88;" +
-                        "-fx-border-width: 2;" +
-                        "-fx-border-radius: 15;" +
-                        "-fx-background-radius: 15;" +
-                        "-fx-padding: 20;"
-        );
-
-        // Style the content text
-        alert.getDialogPane().lookup(".content.label").setStyle(
-                "-fx-text-fill: #ffffff;" +
-                        "-fx-font-size: 16;" +
-                        "-fx-font-weight: 600;"
-        );
-
-        // Style the OK button
-        alert.getDialogPane().lookupButton(alert.getButtonTypes().get(0)).setStyle(
-                "-fx-background-color: linear-gradient(to right, #00ff88, #00cc6a);" +
-                        "-fx-text-fill: #000000;" +
-                        "-fx-font-weight: 700;" +
-                        "-fx-font-size: 14;" +
-                        "-fx-padding: 10 30;" +
-                        "-fx-background-radius: 8;" +
-                        "-fx-cursor: hand;"
-        );
-
-        alert.showAndWait();
+            if (controller instanceof MentorRatingListController) {
+                ((MentorRatingListController) controller).setSidebarController(sidebarController);
+            }
+        }
     }
 }

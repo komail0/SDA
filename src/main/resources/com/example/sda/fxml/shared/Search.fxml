@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.sda.controllers.shared.ProjectSearchController"
+            styleClass="content-wrapper"
+            stylesheets="@../../css/styles/Search.css"
+            fitToWidth="true"
+            hbarPolicy="NEVER">
+
+    <!-- Content Container - VBox -->
+    <VBox fx:id="contentContainer" styleClass="content-container" spacing="40">
+        <padding>
+            <Insets top="40" right="40" bottom="40" left="40"/>
+        </padding>
+
+        <!-- Page Header - VBox -->
+        <VBox styleClass="page-header" spacing="10">
+            <HBox styleClass="page-title-container">
+                <Text text="Project " styleClass="page-title"/>
+                <Text text="Search" styleClass="page-title, title-accent"/>
+            </HBox>
+            <Text text="Explore past projects, find inspiration, and learn from previous work"
+                  styleClass="page-subtitle"/>
+        </VBox>
+
+        <!-- Filter Section - VBox -->
+        <VBox styleClass="filter-section" spacing="20">
+            <padding>
+                <Insets top="25" right="25" bottom="25" left="25"/>
+            </padding>
+
+            <!-- Filter Grid - GridPane -->
+            <GridPane styleClass="filter-grid" hgap="20" vgap="20">
+                <!-- Search Projects by Title/Keyword (1/3 width) -->
+                <VBox styleClass="filter-group" spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <Label text="🔍 Search by Title/Keyword" styleClass="filter-label"/>
+                    <TextField fx:id="searchField" styleClass="filter-input"
+                               promptText="Search by title, keywords..."/>
+                </VBox>
+
+                <!-- Filter by Year (DatePicker, 1/3 width) -->
+                <VBox styleClass="filter-group" spacing="8" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                    <Label text="📅 Filter by Year" styleClass="filter-label"/>
+                    <!-- Change Year ComboBox to DatePicker -->
+                    <DatePicker fx:id="yearFilterPicker" promptText="Select a year" styleClass="filter-input, filter-select" prefWidth="9999"/>
+                </VBox>
+
+                <!-- Filter by Category (TextField, 1/3 width) -->
+                <VBox styleClass="filter-group" spacing="8" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                    <Label text="📂 Filter by Category" styleClass="filter-label"/>
+                    <!-- Change Category ComboBox to TextField -->
+                    <TextField fx:id="categoryFilterField" styleClass="filter-input"
+                               promptText="e.g., AI/ML, Web Dev..."/>
+                </VBox>
+
+                <!-- Apply Button -->
+                <Button fx:id="applyFilterBtn" text="🔍 GO"
+                        onAction="#handleSearch"
+                        styleClass="filter-btn"
+                        GridPane.columnIndex="3"
+                        GridPane.rowIndex="0"
+                        GridPane.valignment="CENTER">
+                    <GridPane.margin>
+                        <Insets top="10" right="0" bottom="0" left="0"/>
+                    </GridPane.margin>
+                </Button>
+            </GridPane>
+        </VBox>
+
+        <!-- Stats Grid - GridPane (2 Cards Only) -->
+        <GridPane fx:id="statsGrid" styleClass="stats-grid" hgap="20" vgap="20">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="50.0" />
+                <ColumnConstraints percentWidth="50.0" />
+            </columnConstraints>
+
+            <!-- Stat Card 1: Total Projects -->
+            <VBox styleClass="stat-card" spacing="12" alignment="CENTER"
+                  GridPane.columnIndex="0" GridPane.rowIndex="0" HBox.hgrow="ALWAYS">
+                <padding>
+                    <Insets top="25" right="25" bottom="25" left="25"/>
+                </padding>
+                <Text text="📚" styleClass="stat-icon"/>
+                <Text fx:id="totalProjectsText" text="0" styleClass="stat-value"/>
+                <Text text="Total Projects" styleClass="stat-label"/>
+            </VBox>
+
+            <!-- Stat Card 2: Contributors -->
+            <VBox styleClass="stat-card" spacing="12" alignment="CENTER"
+                  GridPane.columnIndex="1" GridPane.rowIndex="0" HBox.hgrow="ALWAYS">
+                <padding>
+                    <Insets top="25" right="25" bottom="25" left="25"/>
+                </padding>
+                <Text text="👥" styleClass="stat-icon"/>
+                <Text fx:id="totalContributorsText" text="0" styleClass="stat-value"/>
+                <Text text="Unique Contributors" styleClass="stat-label"/>
+            </VBox>
+
+        </GridPane>
+
+        <!-- Projects Grid - GridPane (DYNAMIC CONTENT) -->
+        <GridPane fx:id="projectsGrid" styleClass="projects-grid" hgap="25" vgap="25">
+            <columnConstraints>
+                <!-- FIX 2: 2 Columns only -->
+                <ColumnConstraints hgrow="ALWAYS" percentWidth="50.0" />
+                <ColumnConstraints hgrow="ALWAYS" percentWidth="50.0" />
+            </columnConstraints>
+            <!-- Projects will be dynamically inserted here -->
+
+            <Label fx:id="projectStatusLabel" text="Loading projects..." GridPane.columnSpan="2" styleClass="page-subtitle" textFill="#ffbb33"/>
+
+        </GridPane>
+    </VBox>
+</ScrollPane>

@@ -1,0 +1,131 @@
+/* --- Base Styles for ControlsFX Popup --- */
+
+/* This targets the standard ControlsFX VBox wrapper around our custom FXML Node */
+.custom-controlsfx-notification {
+    -fx-background-color: 000000;
+    -fx-padding: 0;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.9), 20, 0, 0, 8);
+}
+
+/* --- Custom FXML Styles (Toast.fxml) --- */
+
+.toast-root {
+    -fx-background-color: #0d0d0d;        /* darker black */
+    -fx-background-radius: 12;
+    -fx-border-color: #222;               /* subtle dark border */
+    -fx-border-width: 1.5;
+    -fx-border-radius: 12;
+
+    -fx-padding: 12 18;
+    -fx-spacing: 0;
+
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 20, 0.2, 0, 6);
+
+    -fx-opacity: 0.92;                    /* slight transparency like Android */
+}
+
+
+/* --- ICON / STATUS BAR AREA --- */
+
+.toast-icon-wrapper {
+    -fx-background-color: #0f0f0f;
+    -fx-background-radius: 11 0 0 11;
+    -fx-border-color: transparent;
+    -fx-border-width: 0 2 0 0;
+    -fx-alignment: center;
+}
+
+/* Logo character style - "AB" for AcadBridge */
+.toast-logo-char {
+    -fx-font-size: 24;
+    -fx-font-weight: 800;
+    -fx-fill: #808080;
+}
+
+/* --- SUCCESS STYLING --- */
+.toast-success-bg {
+    -fx-border-color: #00ff88;
+}
+
+.toast-success-bg .toast-icon-wrapper {
+    -fx-background-color: rgba(0, 255, 136, 0.15);
+    -fx-border-color: #00ff88;
+}
+
+.toast-success-bg .toast-logo-char {
+    -fx-fill: #00ff88;
+    -fx-effect: dropshadow(gaussian, rgba(0, 255, 136, 0.5), 10, 0, 0, 0);
+}
+
+/* --- ERROR STYLING --- */
+.toast-error-bg {
+    -fx-border-color: #ff4444;
+}
+
+.toast-error-bg .toast-icon-wrapper {
+    -fx-background-color: rgba(255, 68, 68, 0.15);
+    -fx-border-color: #ff4444;
+}
+
+.toast-error-bg .toast-logo-char {
+    -fx-fill: #ff4444;
+    -fx-effect: dropshadow(gaussian, rgba(255, 68, 68, 0.5), 10, 0, 0, 0);
+}
+
+/* --- WARNING STYLING --- */
+.toast-warning-bg {
+    -fx-border-color: #ffbb33;
+}
+
+.toast-warning-bg .toast-icon-wrapper {
+    -fx-background-color: rgba(255, 187, 51, 0.15);
+    -fx-border-color: #ffbb33;
+}
+
+.toast-warning-bg .toast-logo-char {
+    -fx-fill: #ffbb33;
+    -fx-effect: dropshadow(gaussian, rgba(255, 187, 51, 0.5), 10, 0, 0, 0);
+}
+
+/* --- CONTENT AREA --- */
+
+.toast-content {
+    -fx-background-color: transparent;
+}
+
+.toast-title {
+    -fx-font-size: 15;
+    -fx-font-weight: 700;
+    -fx-fill: #ffffff;
+}
+
+.toast-message {
+    -fx-font-size: 13;
+    -fx-text-fill: #ffffff;
+    -fx-wrap-text: true;
+}
+
+/* --- CLOSE BUTTON --- */
+
+.toast-close-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #666666;
+    -fx-font-size: 24;
+    -fx-font-weight: 400;
+    -fx-cursor: hand;
+    -fx-padding: 4 8 4 8;
+    -fx-background-radius: 6;
+    -fx-min-width: 28;
+    -fx-min-height: 28;
+    -fx-max-width: 28;
+    -fx-max-height: 28;
+}
+
+.toast-close-btn:hover {
+    -fx-text-fill: #ffffff;
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+}
+
+.toast-close-btn:pressed {
+    -fx-background-color: rgba(255, 255, 255, 0.15);
+}

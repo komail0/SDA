@@ -14,30 +14,30 @@ import java.sql.Statement;
  */
 public class UserDAO {
 
-    /**
-     * Finds a user by email address.
-     * @param email The email to search for.
-     * @return A User object if found, otherwise null.
-     */
-    public User getUserByEmail(String email) {
-        String query = "SELECT id, username, email, password, account_type FROM users WHERE email = ?";
+
+    public User getUserByEmail(String identifier) {
+        // Updated query to check both email and username
+        String query = "SELECT id, username, email, password, account_type FROM user WHERE email = ? OR username = ?";
+
         try (Connection conn = DB.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
 
-            stmt.setString(1, email);
+            // Set the identifier for both placeholders
+            stmt.setString(1, identifier);
+            stmt.setString(2, identifier);
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
                 return new User(
-                    rs.getInt("id"),
-                    rs.getString("username"),
-                    rs.getString("email"),
-                    rs.getString("password"),
-                    UserRole.valueOf(rs.getString("account_type").toUpperCase())
+                        rs.getInt("id"),
+                        rs.getString("username"),
+                        rs.getString("email"),
+                        rs.getString("password"),
+                        UserRole.valueOf(rs.getString("account_type").toUpperCase())
                 );
             }
         } catch (Exception e) {
-            System.err.println("Error fetching user by email: " + e.getMessage());
+            System.err.println("Error fetching user by identifier: " + e.getMessage());
         }
         return null;
     }
@@ -48,7 +48,7 @@ public class UserDAO {
      * @return The ID of the newly created user, or -1 on failure.
      */
     public int saveUser(User user) {
-        String query = "INSERT INTO users (username, email, password, account_type) VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO user (username, email, password, account_type) VALUES (?, ?, ?, ?)";
         int generatedId = -1;
 
         try (Connection conn = DB.getConnection();

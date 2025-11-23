@@ -2,9 +2,12 @@ package com.example.sda.controllers.auth;
 
 import com.example.sda.services.AuthService;
 import com.example.sda.enums.UserRole;
-import com.example.sda.utils.AlertHelper;
+import com.example.sda.utils.AlertHelper; // Keep for now
 import com.example.sda.utils.SceneManager;
 import com.example.sda.utils.Validator;
+import com.example.sda.utils.SessionManager;
+import com.example.sda.models.User;
+import com.example.sda.utils.ToastHelper; // NEW
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -21,9 +24,13 @@ import javafx.util.Duration;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller for the Registration View. Includes advanced client-side validation,
+ * password feedback, and asynchronous registration logic.
+ */
 public class RegistrationController implements Initializable {
 
-    // --- FXML Injections ---
+    // --- FXML Injections (omitted for brevity) ---
     @FXML private TextField fullNameField;
     @FXML private TextField emailField;
     @FXML private PasswordField passwordField;
@@ -53,7 +60,19 @@ public class RegistrationController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Removed manual maximization. SceneManager handles it.
+        // Initialization logic omitted for brevity
+        if (visiblePasswordField != null) {
+            visiblePasswordField.setManaged(false);
+            visiblePasswordField.setVisible(false);
+        }
+        if (visibleConfirmPasswordField != null) {
+            visibleConfirmPasswordField.setManaged(false);
+            visibleConfirmPasswordField.setVisible(false);
+        }
+        if (passwordVisibilityBtn != null) passwordVisibilityBtn.setText("👁");
+        if (confirmPasswordVisibilityBtn != null) confirmPasswordVisibilityBtn.setText("👁");
+
+
         Platform.runLater(() -> fullNameField.requestFocus());
 
         setupPasswordToggle(passwordField, visiblePasswordField, passwordVisibilityBtn);
@@ -61,20 +80,28 @@ public class RegistrationController implements Initializable {
         setupValidationListeners();
         setupEnterKeyHandlers();
 
-        studentRole.selectedProperty().addListener((obs, wasSelected, isSelected) -> updateRoleVisuals());
-        alumniRole.selectedProperty().addListener((obs, wasSelected, isSelected) -> updateRoleVisuals());
-        updateRoleVisuals();
+        if (studentRole != null && alumniRole != null) {
+            studentRole.selectedProperty().addListener((obs, wasSelected, isSelected) -> updateRoleVisuals());
+            alumniRole.selectedProperty().addListener((obs, wasSelected, isSelected) -> updateRoleVisuals());
+            updateRoleVisuals();
+        }
     }
+
+    // Toggle, Validation, Visuals, and Enter Key methods omitted for brevity
 
     private void setupPasswordToggle(PasswordField passField, TextField textField, Button toggleBtn) {
         passField.textProperty().bindBidirectional(textField.textProperty());
+
         toggleBtn.setOnAction(e -> {
             boolean isVisible = textField.isVisible();
+
             textField.setVisible(!isVisible);
             textField.setManaged(!isVisible);
             passField.setVisible(isVisible);
             passField.setManaged(isVisible);
+
             toggleBtn.setText(isVisible ? "👁" : "✖");
+
             if (!isVisible) textField.requestFocus();
             else passField.requestFocus();
             textField.positionCaret(textField.getText().length());
@@ -108,68 +135,110 @@ public class RegistrationController implements Initializable {
     }
 
     private void updateFieldValidation(VBox group, Label errorLabel, boolean isValid, boolean isEmpty, String errorMsg) {
-        group.getStyleClass().removeAll(CLASS_ERROR, CLASS_SUCCESS);
-        errorLabel.setVisible(false);
-        errorLabel.setManaged(false);
-        if (isEmpty) return;
-        if (isValid) {
-            group.getStyleClass().add(CLASS_SUCCESS);
-        } else {
-            group.getStyleClass().add(CLASS_ERROR);
-            errorLabel.setText(errorMsg);
-            errorLabel.setVisible(true);
-            errorLabel.setManaged(true);
-        }
+        Platform.runLater(() -> {
+            group.getStyleClass().removeAll(CLASS_ERROR, CLASS_SUCCESS);
+            errorLabel.setVisible(false);
+            errorLabel.setManaged(false);
+            if (isEmpty) return;
+            if (isValid) {
+                group.getStyleClass().add(CLASS_SUCCESS);
+            } else {
+                group.getStyleClass().add(CLASS_ERROR);
+                errorLabel.setText(errorMsg);
+                errorLabel.setVisible(true);
+                errorLabel.setManaged(true);
+            }
+        });
     }
 
     private void updatePasswordStrength(String password) {
-        strengthIndicator.setVisible(!password.isEmpty());
-        strengthIndicator.setManaged(!password.isEmpty());
-        int strength = Validator.checkPasswordStrength(password);
-        for (Node node : strengthIndicator.getChildren()) {
-            node.setStyle("-fx-fill: #444;");
-        }
-        if (password.isEmpty()) return;
-        String color = switch (strength) {
-            case 0 -> "#ff4444";
-            case 1 -> "#ffbb33";
-            case 2 -> "#00C851";
-            default -> "#444";
-        };
-        int barsToFill = strength + 1;
-        for (int i = 0; i < barsToFill && i < strengthIndicator.getChildren().size(); i++) {
-            strengthIndicator.getChildren().get(i).setStyle("-fx-fill: " + color + ";");
-        }
+        Platform.runLater(() -> {
+            if (strengthIndicator != null) {
+                strengthIndicator.setVisible(!password.isEmpty());
+                strengthIndicator.setManaged(!password.isEmpty());
+
+                int strength = Validator.checkPasswordStrength(password);
+
+                for (Node node : strengthIndicator.getChildren()) {
+                    node.setStyle("-fx-fill: #444;");
+                }
+
+                if (password.isEmpty()) return;
+
+                String color = switch (strength) {
+                    case 0 -> "#ff4444"; // Weak (Red)
+                    case 1 -> "#ffbb33"; // Medium (Yellow)
+                    case 2 -> "#00C851"; // Strong (Green)
+                    default -> "#444";
+                };
+
+                int barsToFill = strength + 1;
+                for (int i = 0; i < barsToFill && i < strengthIndicator.getChildren().size(); i++) {
+                    strengthIndicator.getChildren().get(i).setStyle("-fx-fill: " + color + ";");
+                }
+            }
+        });
     }
 
     private void updateRoleVisuals() {
-        if (studentRole.isSelected()) {
-            studentRole.getStyleClass().add("selected-role");
-            alumniRole.getStyleClass().remove("selected-role");
-        } else {
-            alumniRole.getStyleClass().add("selected-role");
-            studentRole.getStyleClass().remove("selected-role");
-        }
+        Platform.runLater(() -> {
+            if (studentRole.isSelected()) {
+                studentRole.getStyleClass().add("selected-role");
+                alumniRole.getStyleClass().remove("selected-role");
+            } else {
+                alumniRole.getStyleClass().add("selected-role");
+                studentRole.getStyleClass().remove("selected-role");
+            }
+        });
     }
 
     private void setupEnterKeyHandlers() {
+        // Key handler logic omitted for brevity
         fullNameField.setOnKeyPressed(e -> { if (e.getCode() == KeyCode.ENTER) emailField.requestFocus(); });
-        emailField.setOnKeyPressed(e -> { if (e.getCode() == KeyCode.ENTER) passwordField.requestFocus(); });
-        passwordField.setOnKeyPressed(e -> { if (e.getCode() == KeyCode.ENTER) confirmPasswordField.requestFocus(); });
-        visiblePasswordField.setOnKeyPressed(e -> { if (e.getCode() == KeyCode.ENTER) confirmPasswordField.requestFocus(); });
+        emailField.setOnKeyPressed(e -> {
+            if (e.getCode() == KeyCode.ENTER) {
+                if (visiblePasswordField.isVisible()) visiblePasswordField.requestFocus();
+                else passwordField.requestFocus();
+            }
+        });
+        passwordField.setOnKeyPressed(e -> {
+            if (e.getCode() == KeyCode.ENTER) {
+                if (visibleConfirmPasswordField.isVisible()) visibleConfirmPasswordField.requestFocus();
+                else confirmPasswordField.requestFocus();
+            }
+        });
+        visiblePasswordField.setOnKeyPressed(e -> {
+            if (e.getCode() == KeyCode.ENTER) {
+                if (visibleConfirmPasswordField.isVisible()) visibleConfirmPasswordField.requestFocus();
+                else confirmPasswordField.requestFocus();
+            }
+        });
         confirmPasswordField.setOnKeyPressed(e -> { if(e.getCode() == KeyCode.ENTER) handleRegistration(new ActionEvent()); });
         visibleConfirmPasswordField.setOnKeyPressed(e -> { if(e.getCode() == KeyCode.ENTER) handleRegistration(new ActionEvent()); });
     }
 
+
     @FXML
     private void handleRegistration(ActionEvent event) {
         feedbackLabel.setText("");
+        feedbackLabel.setStyle("");
+
+        // Final client-side validation check (omitted for brevity)
         if (!Validator.isFullNameValid(fullNameField.getText()) ||
                 !Validator.isEmailValid(emailField.getText()) ||
                 !Validator.isPasswordValid(passwordField.getText()) ||
-                !passwordField.getText().equals(confirmPasswordField.getText())) {
-            feedbackLabel.setText("Please correct the errors highlighted above.");
-            feedbackLabel.setStyle("-fx-text-fill: #ff6666;");
+                !passwordField.getText().equals(confirmPasswordField.getText()) ||
+                passwordField.getText().isEmpty()) {
+
+            // NEW: Use Toast for immediate validation failure
+            ToastHelper.showError("Validation Failed", "Please correct the errors.");
+
+            // Manually trigger the visual update for all fields (omitted for brevity)
+            updateFieldValidation(fullNameGroup, fullNameErrorLabel, Validator.isFullNameValid(fullNameField.getText()), fullNameField.getText().isEmpty(), "Name must be at least 3 characters");
+            updateFieldValidation(emailGroup, emailErrorLabel, Validator.isEmailValid(emailField.getText()), emailField.getText().isEmpty(), "Invalid email format");
+            updateFieldValidation(passwordGroup, passwordErrorLabel, Validator.isPasswordValid(passwordField.getText()), passwordField.getText().isEmpty(), "Min 8 chars, include number & special char");
+            validateConfirmPassword();
+
             return;
         }
 
@@ -177,37 +246,85 @@ public class RegistrationController implements Initializable {
         submitBtn.setText("Registering...");
         UserRole role = studentRole.isSelected() ? UserRole.STUDENT : UserRole.ALUMNI;
 
+        final String email = emailField.getText();
+        final String password = passwordField.getText();
+
+        // Perform registration and immediate login on a background thread
         new Thread(() -> {
             try {
-                Thread.sleep(1000);
+                // 1. Attempt Registration
                 boolean success = authService.registerUser(
                         fullNameField.getText(),
-                        emailField.getText(),
-                        passwordField.getText(),
+                        email,
+                        password,
                         role
                 );
 
+                User loggedInUser;
+                if (success) {
+                    // 2. Immediately Log In the newly created user
+                    loggedInUser = authService.authenticate(email, password);
+                } else {
+                    loggedInUser = null;
+                }
+
                 Platform.runLater(() -> {
-                    if (success) {
-                        feedbackLabel.setText("Account created successfully! Redirecting...");
-                        feedbackLabel.setStyle("-fx-text-fill: #00C851; -fx-font-weight: bold;");
+                    if (loggedInUser != null) {
+                        // Registration and Login Successful
+                        SessionManager.getInstance().setCurrentUser(loggedInUser);
+
+                        // NEW: Use Toast for success and remove feedback label updates
+                        ToastHelper.showSuccess("Account Created", "Welcome to AcadBridge, " + loggedInUser.getUsername() + "!");
                         submitBtn.setText("Success!");
-                        try {
-                            AlertHelper.showSuccessAlert("Success", "Account created successfully!");
-                        } catch (Exception ignored) {}
-                        PauseTransition delay = new PauseTransition(Duration.seconds(1.5));
-                        delay.setOnFinished(e -> goToLogin(null));
+
+                        // --- NAVIGATION TO SIDEBAR ---
+                        String fxmlFile;
+                        String title;
+
+                        if (loggedInUser.getAccountType() == UserRole.STUDENT) {
+                            fxmlFile = "components/student_sidebar.fxml";
+                            title = "Student Portal - Dashboard";
+                        } else if (loggedInUser.getAccountType() == UserRole.ALUMNI) {
+                            fxmlFile = "components/alumni_sidebar.fxml";
+                            title = "Alumni Portal - Dashboard";
+                        } else {
+                            fxmlFile = "components/admin_sidebar.fxml";
+                            title = "Admin Portal - Dashboard";
+                        }
+
+                        PauseTransition delay = new PauseTransition(Duration.seconds(0.5)); // Reduced delay
+                        delay.setOnFinished(e -> {
+                            ActionEvent dummyEvent = new ActionEvent(submitBtn, null);
+                            SceneManager.getInstance().loadScene(fxmlFile, title, dummyEvent);
+                        });
                         delay.play();
+
+                    } else if (success) {
+                        // Fallback if registration succeeded but immediate authentication failed
+                        ToastHelper.showWarning("Login Required", "Account created, but automatic login failed. Please log in manually.");
+                        resetButton();
+                        PauseTransition delay = new PauseTransition(Duration.seconds(1.0)); // Reduced delay
+                        delay.setOnFinished(e -> {
+                            ActionEvent dummyEvent = new ActionEvent(submitBtn, null);
+                            goToLogin(dummyEvent);
+                        });
+                        delay.play();
+
                     } else {
-                        feedbackLabel.setText("Email already registered or connection failed.");
-                        feedbackLabel.setStyle("-fx-text-fill: #ff6666;");
+                        // Registration failed (email already exists or DB connection failure)
+                        ToastHelper.showError("Registration Failed", "Email already registered or connection failed.");
                         resetButton();
                     }
                 });
+            } catch (IllegalArgumentException e) {
+                // Catches the specific email already exists error from AuthService
+                Platform.runLater(() -> {
+                    ToastHelper.showWarning("Registration Failed", e.getMessage());
+                    resetButton();
+                });
             } catch (Exception e) {
                 Platform.runLater(() -> {
-                    feedbackLabel.setText("Error: " + e.getMessage());
-                    feedbackLabel.setStyle("-fx-text-fill: #ff6666;");
+                    ToastHelper.showError("System Error", "An unexpected error occurred during registration.");
                     resetButton();
                 });
             }
@@ -221,6 +338,6 @@ public class RegistrationController implements Initializable {
 
     @FXML
     private void goToLogin(ActionEvent event) {
-        SceneManager.getInstance().loadScene("Login.fxml", "User Login", event);
+        SceneManager.getInstance().loadScene("auth/Login.fxml", "User Login", event);
     }
 }

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.sda.controllers.shared.AlumniRequestsController"
+            styleClass="scroll-pane"
+            stylesheets="@../../css/styles/Pending-Requests.css"
+            fitToWidth="true"
+            hbarPolicy="NEVER">
+
+    <VBox styleClass="content-wrapper">
+        <VBox styleClass="content-container">
+
+            <VBox styleClass="page-header">
+                <HBox styleClass="title-container">
+                    <Text text="Incoming " styleClass="page-title"/>
+                    <Text text="Mentorship Requests" styleClass="page-title, title-accent"/>
+                </HBox>
+                <Label text="Review and manage requests from students seeking your guidance" styleClass="page-subtitle"/>
+            </VBox>
+
+            <HBox styleClass="tab-header">
+                <Label text="📥 Received Requests" styleClass="tab-title"/>
+            </HBox>
+
+            <VBox fx:id="requestsContainer" styleClass="requests-container">
+                <!-- Loaded dynamically by AlumniRequestsController -->
+            </VBox>
+
+        </VBox>
+    </VBox>
+</ScrollPane>

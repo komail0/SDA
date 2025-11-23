@@ -1,0 +1,228 @@
+/* ScrollPane */
+.scroll-pane {
+    -fx-background-color: #0a0a0a;
+    -fx-border-width: 0;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: #0a0a0a;
+}
+
+/* Main Content Container */
+.content-wrapper {
+    -fx-background-color: #0a0a0a;
+    -fx-padding: 40;
+    -fx-min-height: 100;
+}
+
+/* Content VBox */
+.content-container {
+    -fx-spacing: 30;
+    -fx-max-width: 1000;
+    -fx-alignment: top-center;
+}
+
+/* Page Header - VBox */
+.page-header {
+    -fx-spacing: 5; /* Reduced from 10 */
+}
+
+.title-container {
+    -fx-spacing: 0;
+}
+
+.page-title {
+    -fx-font-size: 36; /* Slightly reduced for compactness */
+    -fx-font-weight: 800;
+    -fx-fill: #ffffff;
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.2), 20, 0, 0, 0);
+}
+
+.title-accent {
+    -fx-fill: #00ff88;
+}
+
+.page-subtitle {
+    -fx-font-size: 16;
+    -fx-text-fill: #808080;
+}
+
+/* Single Tab Header */
+.tab-header {
+    -fx-background-color: rgba(0, 255, 136, 0.05);
+    -fx-padding: 10 20; /* Reduced padding */
+    -fx-background-radius: 15;
+    -fx-border-color: rgba(0, 255, 136, 0.1);
+    -fx-border-width: 1;
+    -fx-border-radius: 15;
+    -fx-alignment: center-left;
+}
+
+.tab-title {
+    -fx-font-size: 16;
+    -fx-font-weight: 700;
+    -fx-text-fill: #00ff88;
+}
+
+/* Requests Container - VBox */
+.requests-container {
+    -fx-spacing: 12; /* Reduced gap between cards */
+}
+
+/* Request Card - VBox */
+.request-card {
+    -fx-background-color: #1a1a1a;
+    -fx-padding: 15; /* Reduced from 25 */
+    -fx-background-radius: 15;
+    -fx-border-color: #333;
+    -fx-border-width: 1;
+    -fx-border-radius: 15;
+    -fx-spacing: 8; /* Reduced internal spacing from 20 */
+}
+
+.request-card:hover {
+    -fx-border-color: #00ff88;
+    -fx-effect: dropshadow(gaussian, rgba(0, 255, 136, 0.15), 25, 0, 0, 8);
+}
+
+/* Request Header - HBox */
+.request-header {
+    -fx-spacing: 15;
+    -fx-alignment: center-left;
+}
+
+.mentor-avatar {
+    -fx-min-width: 50;  /* Reduced avatar size */
+    -fx-min-height: 50;
+    -fx-max-width: 50;
+    -fx-max-height: 50;
+    -fx-background-color: linear-gradient(to bottom right, #00ff88, #00cc6a);
+    -fx-background-radius: 50%;
+    -fx-alignment: center;
+    -fx-font-size: 24;
+    -fx-text-fill: #000000;
+}
+
+/* Mentor Info - VBox */
+.mentor-info {
+    -fx-spacing: 0; /* Reduced from 6 to tightly pack text */
+}
+
+.mentor-name {
+    -fx-font-size: 18;
+    -fx-font-weight: 700;
+    -fx-text-fill: #ffffff;
+}
+
+.mentor-title {
+    -fx-font-size: 12;
+    -fx-text-fill: #808080;
+}
+
+.request-date {
+    -fx-font-size: 11;
+    -fx-text-fill: #666;
+    -fx-padding: 2 0 0 0;
+}
+
+/* Status Badge - VBox (right side) */
+.status-section {
+    -fx-spacing: 8;
+    -fx-alignment: top-right;
+}
+
+.status-badge {
+    -fx-background-color: rgba(255, 187, 51, 0.15);
+    -fx-border-color: rgba(255, 187, 51, 0.3);
+    -fx-border-width: 1;
+    -fx-padding: 4 8; /* Smaller badge padding */
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-font-size: 14;
+    -fx-text-fill: #ffbb33;
+    -fx-font-weight: 700;
+}
+
+.status-accepted {
+    -fx-background-color: rgba(0, 255, 136, 0.15);
+    -fx-border-color: rgba(0, 255, 136, 0.3);
+    -fx-text-fill: #00ff88;
+}
+
+.status-rejected {
+    -fx-background-color: rgba(255, 68, 68, 0.15);
+    -fx-border-color: rgba(255, 68, 68, 0.3);
+    -fx-text-fill: #ff4444;
+}
+
+/* Request Body - VBox */
+.request-body {
+    -fx-spacing: 5; /* Tighter spacing between title and message */
+}
+
+.project-title {
+    -fx-font-size: 16;
+    -fx-font-weight: 700;
+    -fx-text-fill: #00ff88;
+}
+
+.request-message {
+    -fx-font-size: 14;
+    -fx-line-spacing: 1.2;
+    -fx-text-fill: #c0c0c0;
+}
+
+.your-message-label {
+    -fx-font-size: 12;
+    -fx-text-fill: #808080;
+    -fx-font-weight: 600;
+}
+
+/* Delete Button - Compact Version */
+.delete-btn {
+    -fx-padding: 6 15; /* Reduced padding */
+    -fx-background-color: transparent;
+    -fx-border-color: #ff4444;
+    -fx-border-width: 1; /* Thinner border */
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-text-fill: #ff4444;
+    -fx-font-weight: 600;
+    -fx-cursor: hand;
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-font-size: 13;
+}
+
+.delete-btn:hover {
+    -fx-background-color: rgba(255, 68, 68, 0.1);
+    -fx-border-color: #ff6666;
+    -fx-text-fill: #ff6666;
+}
+
+/* Empty State */
+.empty-state {
+    -fx-alignment: center;
+    -fx-padding: 40 20;
+    -fx-background-color: #1a1a1a;
+    -fx-background-radius: 20;
+    -fx-border-color: #333;
+    -fx-border-width: 1;
+    -fx-border-radius: 20;
+    -fx-spacing: 10;
+}
+
+.empty-icon {
+    -fx-font-size: 48;
+    -fx-text-fill: #666;
+}
+
+.empty-title {
+    -fx-font-size: 20;
+    -fx-font-weight: 700;
+    -fx-text-fill: #ffffff;
+}
+
+.empty-text {
+    -fx-font-size: 14;
+    -fx-text-fill: #808080;
+}

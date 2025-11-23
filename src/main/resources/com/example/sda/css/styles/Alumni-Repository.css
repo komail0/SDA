@@ -1,0 +1,101 @@
+/* Reuse basic structural styles from Search/Global */
+.content-wrapper {
+    -fx-background-color: #0a0a0a;
+}
+.content-wrapper > .viewport {
+    -fx-background-color: #0a0a0a;
+}
+.content-container {
+    -fx-max-width: 1400;
+    -fx-alignment: top-center;
+}
+
+/* Header */
+.page-title {
+    -fx-font-size: 42;
+    -fx-font-weight: 800;
+    -fx-fill: #ffffff;
+}
+.title-accent {
+    -fx-fill: #00ff88;
+}
+.page-subtitle {
+    -fx-font-size: 18;
+    -fx-fill: #808080;
+}
+
+/* Stats Card */
+.stat-card {
+    -fx-background-color: #1a1a1a;
+    -fx-background-radius: 16;
+    -fx-border-color: #333;
+    -fx-border-radius: 16;
+    -fx-border-width: 1;
+}
+.stat-icon { -fx-font-size: 32; }
+.stat-value {
+    -fx-font-size: 28;
+    -fx-font-weight: 800;
+    -fx-fill: #ffffff;
+}
+.stat-label {
+    -fx-font-size: 14;
+    -fx-fill: #808080;
+}
+
+/* Project Card Styles */
+.project-card {
+    -fx-background-color: #1a1a1a;
+    -fx-background-radius: 20;
+    -fx-border-color: #333;
+    -fx-border-radius: 20;
+    -fx-border-width: 1;
+}
+.project-header {
+    -fx-background-color: linear-gradient(to bottom right, rgba(0, 255, 136, 0.1), rgba(0, 204, 106, 0.1));
+    -fx-border-color: transparent transparent #333 transparent;
+    -fx-border-width: 0 0 1 0;
+}
+.project-title {
+    -fx-font-size: 20;
+    -fx-font-weight: 700;
+    -fx-fill: #ffffff;
+}
+.author-text {
+    -fx-font-size: 14;
+    -fx-fill: #808080;
+}
+.project-description {
+    -fx-font-size: 14;
+    -fx-line-spacing: 0.6;
+    -fx-fill: #c0c0c0;
+}
+.tag {
+    -fx-padding: 6 14;
+    -fx-background-color: rgba(0, 255, 136, 0.15);
+    -fx-border-color: rgba(0, 255, 136, 0.3);
+    -fx-border-width: 1;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-font-size: 12;
+    -fx-text-fill: #00ff88;
+    -fx-font-weight: 600;
+}
+
+/* Delete Button */
+.delete-btn {
+    -fx-padding: 8 20;
+    -fx-background-color: rgba(255, 68, 68, 0.1);
+    -fx-border-color: #ff4444;
+    -fx-border-width: 1;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-text-fill: #ff4444;
+    -fx-font-weight: 600;
+    -fx-cursor: hand;
+    -fx-font-size: 13;
+}
+.delete-btn:hover {
+    -fx-background-color: rgba(255, 68, 68, 0.2);
+    -fx-effect: dropshadow(gaussian, rgba(255, 68, 68, 0.2), 10, 0, 0, 2);
+}

@@ -12,7 +12,7 @@
 .content-wrapper {
     -fx-background-color: #0a0a0a;
     -fx-padding: 40;
-    -fx-min-height: 100vh;
+    -fx-min-height: 100;
     -fx-alignment: top-center;
 }
 

@@ -1,0 +1,202 @@
+/* ScrollPane */
+.scroll-pane {
+    -fx-background-color: #0a0a0a;
+    -fx-border-width: 0;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: #0a0a0a;
+}
+
+/* Main Content Container */
+.content-wrapper {
+    -fx-background-color: #0a0a0a;
+    -fx-padding: 40;
+    -fx-min-height: 100;
+}
+
+/* Content VBox */
+.content-container {
+    -fx-spacing: 30;
+    -fx-max-width: 1000;
+    -fx-alignment: top-center;
+}
+
+/* Page Header - VBox */
+.page-header {
+    -fx-spacing: 10;
+}
+
+.title-container {
+    -fx-spacing: 0;
+}
+
+.page-title {
+    -fx-font-size: 42;
+    -fx-font-weight: 800;
+    -fx-fill: #ffffff;
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.2), 20, 0, 0, 0);
+}
+
+.title-accent {
+    -fx-fill: #00ff88;
+}
+
+.page-subtitle {
+    -fx-font-size: 18;
+    -fx-text-fill: #808080;
+}
+
+/* Info Banner */
+.info-banner {
+    -fx-background-color: rgba(0, 255, 136, 0.1);
+    -fx-padding: 20 25;
+    -fx-background-radius: 15;
+    -fx-border-color: rgba(0, 255, 136, 0.3);
+    -fx-border-width: 1;
+    -fx-border-radius: 15;
+    -fx-spacing: 12;
+    -fx-alignment: center-left;
+}
+
+.info-icon {
+    -fx-font-size: 24;
+}
+
+.info-text {
+    -fx-font-size: 16;
+    -fx-text-fill: #00ff88;
+    -fx-font-weight: 600;
+}
+
+/* Mentors Grid - GridPane */
+.mentors-grid {
+    -fx-hgap: 25;
+    -fx-vgap: 25;
+}
+
+/* Mentor Card - VBox */
+.mentor-card {
+    -fx-background-color: #1a1a1a;
+    -fx-padding: 30;
+    -fx-background-radius: 20;
+    -fx-border-color: #333;
+    -fx-border-width: 1;
+    -fx-border-radius: 20;
+    -fx-spacing: 20;
+    -fx-alignment: center;
+}
+
+.mentor-card:hover {
+    -fx-border-color: #00ff88;
+    -fx-effect: dropshadow(gaussian, rgba(0, 255, 136, 0.2), 30, 0, 0, 10);
+    -fx-translate-y: -5;
+}
+
+/* Mentor Avatar */
+.mentor-avatar {
+    -fx-min-width: 100;
+    -fx-min-height: 100;
+    -fx-max-width: 100;
+    -fx-max-height: 100;
+    -fx-background-color: linear-gradient(to bottom right, #00ff88, #00cc6a);
+    -fx-background-radius: 50%;
+    -fx-alignment: center;
+    -fx-font-size: 48;
+}
+
+/* Mentor Info - VBox */
+.mentor-info {
+    -fx-spacing: 8;
+    -fx-alignment: center;
+}
+
+.mentor-name {
+    -fx-font-size: 22;
+    -fx-font-weight: 700;
+    -fx-text-fill: #ffffff;
+    -fx-text-alignment: center;
+}
+
+.mentor-title {
+    -fx-font-size: 14;
+    -fx-text-fill: #808080;
+    -fx-text-alignment: center;
+}
+
+.session-count {
+    -fx-font-size: 13;
+    -fx-text-fill: #00ff88;
+    -fx-font-weight: 600;
+}
+
+/* Separator Line */
+.separator {
+    -fx-background-color: #333;
+    -fx-pref-height: 1;
+    -fx-min-height: 1;
+    -fx-max-height: 1;
+}
+
+/* Rate Button */
+.rate-btn {
+    -fx-padding: 12 30;
+    -fx-background-color: linear-gradient(to bottom right, #00ff88, #00cc6a);
+    -fx-border-width: 0;
+    -fx-background-radius: 12;
+    -fx-text-fill: #000000;
+    -fx-font-weight: 700;
+    -fx-cursor: hand;
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-font-size: 15;
+    -fx-min-width: 150;
+}
+
+.rate-btn:hover {
+    -fx-translate-y: -2;
+    -fx-effect: dropshadow(gaussian, rgba(0, 255, 136, 0.4), 25, 0, 0, 8);
+}
+
+/* Already Rated Button */
+.rated-btn {
+    -fx-padding: 12 30;
+    -fx-background-color: transparent;
+    -fx-border-color: #666;
+    -fx-border-width: 2;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+    -fx-text-fill: #808080;
+    -fx-font-weight: 600;
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-font-size: 15;
+    -fx-min-width: 150;
+    -fx-cursor: default;
+}
+
+/* Empty State */
+.empty-state {
+    -fx-alignment: center;
+    -fx-padding: 60 20;
+    -fx-background-color: #1a1a1a;
+    -fx-background-radius: 20;
+    -fx-border-color: #333;
+    -fx-border-width: 1;
+    -fx-border-radius: 20;
+    -fx-spacing: 15;
+}
+
+.empty-icon {
+    -fx-font-size: 64;
+    -fx-text-fill: #666;
+}
+
+.empty-title {
+    -fx-font-size: 24;
+    -fx-font-weight: 700;
+    -fx-text-fill: #ffffff;
+}
+
+.empty-text {
+    -fx-font-size: 16;
+    -fx-text-fill: #808080;
+}

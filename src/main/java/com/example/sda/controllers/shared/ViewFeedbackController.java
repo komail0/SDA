@@ -1,22 +1,23 @@
 package com.example.sda.controllers.shared;
 
-import com.example.sda.dao.FeedbackDAO;
-import com.example.sda.models.Feedback;
+import com.example.sda.models.Rating;
+import com.example.sda.models.User;
+import com.example.sda.services.RatingService;
+import com.example.sda.utils.SessionManager;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.FlowPane;
-import javafx.geometry.Insets;
+import javafx.scene.layout.VBox;
 
+import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.ResourceBundle;
 
-/**
- * Controller for the View Feedback screen
- * Displays mentor ratings and student reviews
- */
-public class ViewFeedbackController {
+public class ViewFeedbackController implements Initializable {
 
     @FXML private Label mentorNameLabel;
     @FXML private Label mentorRoleLabel;
@@ -24,196 +25,153 @@ public class ViewFeedbackController {
     @FXML private Label totalReviewsLabel;
     @FXML private Label studentsMentoredLabel;
 
-    @FXML private ProgressBar rating5Bar;
-    @FXML private ProgressBar rating4Bar;
-    @FXML private ProgressBar rating3Bar;
-    @FXML private ProgressBar rating2Bar;
-    @FXML private ProgressBar rating1Bar;
-
-    @FXML private Label rating5Percent;
-    @FXML private Label rating4Percent;
-    @FXML private Label rating3Percent;
-    @FXML private Label rating2Percent;
-    @FXML private Label rating1Percent;
+    @FXML private ProgressBar rating5Bar, rating4Bar, rating3Bar, rating2Bar, rating1Bar;
+    @FXML private Label rating5Percent, rating4Percent, rating3Percent, rating2Percent, rating1Percent;
 
     @FXML private VBox reviewsContainer;
 
-    private FeedbackDAO feedbackDAO;
-    private int currentMentorId = 1; // Default to mentor ID 1 (Muhammad Waqas)
+    private final RatingService ratingService = new RatingService();
 
-    /**
-     * Initialize method - called automatically when FXML is loaded
-     */
-    @FXML
-    public void initialize() {
-        feedbackDAO = new FeedbackDAO();
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
         loadFeedbackData();
-        System.out.println("ViewFeedbackController initialized!");
     }
 
-    /**
-     * Load all feedback data for the current mentor
-     */
     private void loadFeedbackData() {
-        try {
-            // Get statistics
-            double[] averages = feedbackDAO.getAverageRatings(currentMentorId);
-            int totalReviews = feedbackDAO.getTotalFeedbackCount(currentMentorId);
-            int studentsMentored = feedbackDAO.getStudentsMentoredCount(currentMentorId);
-            int[] distribution = feedbackDAO.getRatingDistribution(currentMentorId);
+        User user = SessionManager.getInstance().getCurrentUser();
+        if (user == null) return;
 
-            // Update profile stats
-            updateProfileStats(averages[0], totalReviews, studentsMentored);
+        // Set Profile Header
+        mentorNameLabel.setText(user.getUsername());
+        mentorRoleLabel.setText("Alumni Mentor"); // Or specific role if available
 
-            // Update rating breakdown
-            updateRatingBreakdown(distribution, totalReviews);
-
-            // Load and display reviews
-            loadReviews();
-
-        } catch (Exception e) {
-            System.err.println("Error loading feedback data: " + e.getMessage());
-            e.printStackTrace();
-        }
+        new Thread(() -> {
+            List<Rating> ratings = ratingService.getMentorRatings(user.getId());
+            
+            Platform.runLater(() -> {
+                if (ratings.isEmpty()) {
+                    showEmptyState();
+                } else {
+                    calculateAndDisplayStats(ratings);
+                    renderReviews(ratings);
+                }
+            });
+        }).start();
     }
 
-    /**
-     * Update profile statistics section
-     */
-    private void updateProfileStats(double avgRating, int totalReviews, int studentsMentored) {
-        if (overallRatingLabel != null) {
-            overallRatingLabel.setText(String.format("⭐ %.1f", avgRating));
+    private void calculateAndDisplayStats(List<Rating> ratings) {
+        int total = ratings.size();
+        double sum = 0;
+        int[] counts = new int[6]; // Index 1-5
+
+        for (Rating r : ratings) {
+            sum += r.getOverallRating();
+            int stars = Math.min(5, Math.max(1, r.getOverallRating()));
+            counts[stars]++;
         }
-        if (totalReviewsLabel != null) {
-            totalReviewsLabel.setText(String.valueOf(totalReviews));
-        }
-        if (studentsMentoredLabel != null) {
-            studentsMentoredLabel.setText(String.valueOf(studentsMentored));
-        }
+
+        // 1. Top Stats
+        double average = sum / total;
+        overallRatingLabel.setText(String.format("⭐ %.1f", average));
+        totalReviewsLabel.setText(String.valueOf(total));
+        
+        long uniqueStudents = ratings.stream().map(Rating::getStudentId).distinct().count();
+        studentsMentoredLabel.setText(String.valueOf(uniqueStudents));
+
+        // 2. Progress Bars
+        updateBar(rating5Bar, rating5Percent, counts[5], total);
+        updateBar(rating4Bar, rating4Percent, counts[4], total);
+        updateBar(rating3Bar, rating3Percent, counts[3], total);
+        updateBar(rating2Bar, rating2Percent, counts[2], total);
+        updateBar(rating1Bar, rating1Percent, counts[1], total);
     }
 
-    /**
-     * Update rating breakdown bars
-     */
-    private void updateRatingBreakdown(int[] distribution, int totalReviews) {
-        if (totalReviews == 0) return;
-
-        ProgressBar[] bars = {rating5Bar, rating4Bar, rating3Bar, rating2Bar, rating1Bar};
-        Label[] labels = {rating5Percent, rating4Percent, rating3Percent, rating2Percent, rating1Percent};
-
-        for (int i = 0; i < 5; i++) {
-            double percentage = (double) distribution[i] / totalReviews;
-            if (bars[i] != null) {
-                bars[i].setProgress(percentage);
-            }
-            if (labels[i] != null) {
-                labels[i].setText(String.format("%d%%", (int)(percentage * 100)));
-            }
-        }
+    private void updateBar(ProgressBar bar, Label percentLabel, int count, int total) {
+        double progress = (double) count / total;
+        bar.setProgress(progress);
+        percentLabel.setText(String.format("%.0f%%", progress * 100));
     }
 
-    /**
-     * Load and display all reviews
-     */
-    private void loadReviews() {
-        if (reviewsContainer == null) return;
-
-        // Clear existing reviews
+    private void renderReviews(List<Rating> ratings) {
         reviewsContainer.getChildren().clear();
-
-        // Get all feedback
-        List<Feedback> feedbackList = feedbackDAO.getFeedbackByMentorId(currentMentorId);
-
-        // Create review cards
-        for (Feedback feedback : feedbackList) {
-            VBox reviewCard = createReviewCard(feedback);
-            reviewsContainer.getChildren().add(reviewCard);
+        
+        // Re-add the header (It gets cleared if we clear the VBox children directly if it's inside)
+        // Wait, the FXML structure has a header INSIDE reviewsContainer? No, it's in VBox.
+        // Let's check FXML. If Header is inside 'reviews-section', we shouldn't clear the whole VBox.
+        // The FXML provided shows 'reviewsContainer' IS the VBox. The Header is inside it.
+        // So we need to be careful not to remove the sort header.
+        
+        // Correction: Looking at your FXML, `reviewsContainer` contains the Header HBox as the first child.
+        // We should remove all children AFTER index 0.
+        if (!reviewsContainer.getChildren().isEmpty()) {
+            reviewsContainer.getChildren().remove(1, reviewsContainer.getChildren().size());
         }
 
-        System.out.println("Loaded " + feedbackList.size() + " reviews");
+        for (Rating r : ratings) {
+            reviewsContainer.getChildren().add(createReviewCard(r));
+        }
     }
 
-    /**
-     * Create a review card UI element
-     */
-    private VBox createReviewCard(Feedback feedback) {
-        VBox card = new VBox(15);
+    private VBox createReviewCard(Rating r) {
+        VBox card = new VBox();
         card.getStyleClass().add("review-card");
 
-        // Header with avatar and student info
-        HBox header = new HBox(15);
+        // Header
+        HBox header = new HBox();
         header.getStyleClass().add("review-header");
 
-        Label avatar = new Label(getInitials(feedback.getStudentName()));
+        Label avatar = new Label("👤");
         avatar.getStyleClass().add("reviewer-avatar");
 
-        VBox info = new VBox(5);
+        VBox info = new VBox();
         info.getStyleClass().add("reviewer-info");
-
-        Label name = new Label(feedback.getStudentName());
+        
+        Label name = new Label(r.getStudentName() != null ? r.getStudentName() : "Anonymous Student");
         name.getStyleClass().add("reviewer-name");
 
-        HBox meta = new HBox(8);
-        meta.getStyleClass().add("review-meta");
+        // Stars string
+        StringBuilder stars = new StringBuilder();
+        for(int i=0; i<r.getOverallRating(); i++) stars.append("⭐");
+        
+        Label meta = new Label(stars.toString());
+        meta.getStyleClass().add("review-stars");
 
-        Label stars = new Label(feedback.getStarsString(feedback.getOverallRating()));
-        stars.getStyleClass().add("review-stars");
-
-        Label date = new Label("• " + feedback.getFormattedDate());
-        date.getStyleClass().add("review-date");
-
-        meta.getChildren().addAll(stars, date);
         info.getChildren().addAll(name, meta);
         header.getChildren().addAll(avatar, info);
 
-        // Feedback text
-        Label feedbackText = new Label(feedback.getFeedbackText());
-        feedbackText.getStyleClass().add("review-text");
-        feedbackText.setWrapText(true);
+        // Text
+        Label feedback = new Label(r.getFeedbackText());
+        feedback.getStyleClass().add("review-text");
+        feedback.setWrapText(true);
 
-        // Category ratings
-        FlowPane categories = new FlowPane(15, 15);
-        categories.getStyleClass().add("review-categories");
+        // Date
+        SimpleDateFormat sdf = new SimpleDateFormat("MMM d, yyyy");
+        String dateStr = r.getCreatedAt() != null ? sdf.format(r.getCreatedAt()) : "";
+        Label dateLabel = new Label(dateStr);
+        dateLabel.getStyleClass().add("review-date");
 
-        if (feedback.getCommunicationRating() > 0) {
-            Label comm = new Label("Communication: " + feedback.getStarsString(feedback.getCommunicationRating()));
-            comm.getStyleClass().add("review-category");
-            categories.getChildren().add(comm);
-        }
-
-        if (feedback.getKnowledgeRating() > 0) {
-            Label know = new Label("Knowledge: " + feedback.getStarsString(feedback.getKnowledgeRating()));
-            know.getStyleClass().add("review-category");
-            categories.getChildren().add(know);
-        }
-
-        if (feedback.getResponsivenessRating() > 0) {
-            Label resp = new Label("Responsiveness: " + feedback.getStarsString(feedback.getResponsivenessRating()));
-            resp.getStyleClass().add("review-category");
-            categories.getChildren().add(resp);
-        }
-
-        if (feedback.getHelpfulnessRating() > 0) {
-            Label help = new Label("Helpfulness: " + feedback.getStarsString(feedback.getHelpfulnessRating()));
-            help.getStyleClass().add("review-category");
-            categories.getChildren().add(help);
-        }
-
-        card.getChildren().addAll(header, feedbackText, categories);
+        card.getChildren().addAll(header, feedback, dateLabel);
         return card;
     }
 
-    /**
-     * Get initials from a name
-     */
-    private String getInitials(String name) {
-        if (name == null || name.trim().isEmpty()) return "?";
+    private void showEmptyState() {
+        overallRatingLabel.setText("N/A");
+        totalReviewsLabel.setText("0");
+        studentsMentoredLabel.setText("0");
+        
+        // Clear bars
+        rating5Bar.setProgress(0); rating5Percent.setText("0%");
+        rating4Bar.setProgress(0); rating4Percent.setText("0%");
+        rating3Bar.setProgress(0); rating3Percent.setText("0%");
+        rating2Bar.setProgress(0); rating2Percent.setText("0%");
+        rating1Bar.setProgress(0); rating1Percent.setText("0%");
 
-        String[] parts = name.trim().split("\\s+");
-        if (parts.length == 1) {
-            return parts[0].substring(0, Math.min(2, parts[0].length())).toUpperCase();
-        } else {
-            return (parts[0].charAt(0) + "" + parts[parts.length - 1].charAt(0)).toUpperCase();
+        if (reviewsContainer.getChildren().size() > 1) {
+            reviewsContainer.getChildren().remove(1, reviewsContainer.getChildren().size());
         }
+        
+        Label empty = new Label("No reviews yet.");
+        empty.setStyle("-fx-text-fill: #808080; -fx-font-size: 16px; -fx-padding: 20;");
+        reviewsContainer.getChildren().add(empty);
     }
 }

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.sda.controllers.shared.ViewProjectController"
+            styleClass="scroll-pane"
+            stylesheets="@../../css/styles/View-Project.css"
+            fitToWidth="true"
+            hbarPolicy="NEVER">
+
+    <!-- Main Content Wrapper -->
+    <VBox styleClass="detail-content-wrapper">
+
+        <!-- Close Button at Top Right -->
+        <HBox styleClass="close-button-container">
+            <Button fx:id="closeBtn" text="✕" styleClass="close-btn" onAction="#handleClose"/>
+        </HBox>
+
+        <!-- Main Content Container -->
+        <VBox styleClass="detail-container">
+
+            <!-- Status/Feedback Label -->
+            <Label fx:id="statusLabel" text="Loading project details..." managed="true" styleClass="status-message"/>
+
+            <!-- Project Header Section -->
+            <VBox styleClass="project-header">
+                <!-- Project Title -->
+                <Text fx:id="projectTitle" text="Project Title Here" styleClass="project-title"/>
+
+                <!-- Project Metadata -->
+                <HBox styleClass="project-meta">
+                    <!-- Category -->
+                    <HBox styleClass="meta-item">
+                        <Label text="📂" styleClass="meta-icon"/>
+                        <Label styleClass="meta-text">
+                            <text>Category: </text>
+                        </Label>
+                        <Label fx:id="categoryLabel" text="[Category]" styleClass="meta-text, meta-value"/>
+                    </HBox>
+
+                    <!-- Completion Date -->
+                    <HBox styleClass="meta-item">
+                        <Label text="📅" styleClass="meta-icon"/>
+                        <Label styleClass="meta-text">
+                            <text>Completed: </text>
+                        </Label>
+                        <Label fx:id="completionDateLabel" text="[Year]" styleClass="meta-text, meta-value"/>
+                    </HBox>
+
+                    <!-- University -->
+                    <HBox styleClass="meta-item">
+                        <Label text="🎓" styleClass="meta-icon"/>
+                        <Label fx:id="universityLabel" text="[University Name]" styleClass="meta-text, meta-value"/>
+                    </HBox>
+                </HBox>
+
+                <!-- Action Buttons -->
+                <HBox styleClass="action-buttons">
+                    <Button fx:id="mentorshipBtn" text="🤝 Request Mentorship" styleClass="mentorship-btn" onAction="#handleMentorshipRequest" />
+                    <Button fx:id="githubBtn" text="💻 View on GitHub" styleClass="github-btn" onAction="#handleViewGitHub" />
+                </HBox>
+            </VBox>
+
+            <!-- Project Description Section -->
+            <VBox fx:id="descriptionSection" styleClass="content-section">
+                <HBox styleClass="section-header">
+                    <Label text="📝" styleClass="section-icon"/>
+                    <Label text="Project Description" styleClass="section-title"/>
+                </HBox>
+                <Label fx:id="descriptionLabel" text="Project description will appear here..."
+                       styleClass="section-content" wrapText="true"/>
+            </VBox>
+
+            <!-- Technologies Used Section -->
+            <VBox fx:id="technologiesSection" styleClass="content-section">
+                <HBox styleClass="section-header">
+                    <Label text="🛠️" styleClass="section-icon"/>
+                    <Label text="Technologies Used" styleClass="section-title"/>
+                </HBox>
+                <FlowPane fx:id="technologiesContainer" styleClass="technologies-container"
+                          hgap="10" vgap="10">
+                    <Label text="No technologies listed" styleClass="section-content" fx:id="noTechLabel"/>
+                </FlowPane>
+            </VBox>
+
+            <!-- Additional Information Section -->
+            <VBox fx:id="infoSection" styleClass="content-section">
+                <HBox styleClass="section-header">
+                    <Label text="ℹ️" styleClass="section-icon"/>
+                    <Label text="Additional Information" styleClass="section-title"/>
+                </HBox>
+                <GridPane styleClass="info-grid" hgap="20" vgap="15">
+                    <!-- Supervisor -->
+                    <VBox styleClass="info-item" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                        <Label text="Project Supervisor" styleClass="info-label"/>
+                        <Label fx:id="supervisorLabel" text="Not specified" styleClass="info-value"/>
+                    </VBox>
+
+                    <!-- Alumni Name (Uploader) -->
+                    <VBox styleClass="info-item" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                        <Label text="Uploaded By" styleClass="info-label"/>
+                        <Label fx:id="uploaderLabel" text="[Alumni Name]" styleClass="info-value"/>
+                    </VBox>
+
+                    <!-- Upload Date -->
+                    <VBox styleClass="info-item" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                        <Label text="Upload Date" styleClass="info-label"/>
+                        <Label fx:id="uploadDateLabel" text="[Date]" styleClass="info-value"/>
+                    </VBox>
+                </GridPane>
+            </VBox>
+
+            <!-- PDF Viewer Section -->
+            <VBox fx:id="pdfSection" styleClass="pdf-section">
+                <HBox styleClass="section-header">
+                    <Label text="📄" styleClass="section-icon"/>
+                    <Label text="Project Document" styleClass="section-title"/>
+                </HBox>
+
+                <!-- PDF Viewer Container (Placeholder) -->
+                <VBox styleClass="pdf-viewer-container">
+                    <VBox styleClass="pdf-placeholder">
+                        <Label text="📋" styleClass="pdf-icon"/>
+                        <Label text="PDF document available for viewing" styleClass="pdf-text"/>
+                        <Button fx:id="viewPdfBtn" text="Open PDF Document" styleClass="view-pdf-btn" onAction="#handleViewPdf"/>
+                    </VBox>
+                </VBox>
+            </VBox>
+
+        </VBox>
+    </VBox>
+</ScrollPane>

@@ -10,6 +10,7 @@ module com.example.sda {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires jbcrypt;
+    requires java.desktop;
 
 
     // --- JPMS ACCESS RULES ---
@@ -24,6 +25,9 @@ module com.example.sda {
 
     // Opens the utility package to allow resources (like CSS for AlertHelper) to be loaded via reflection
     opens com.example.sda.utils to javafx.fxml;
+
+
+    opens com.example.sda.controllers.components to javafx.fxml;
 
 
     // 2. EXPORTS (Allow code access to packages across module boundaries)
@@ -45,5 +49,6 @@ module com.example.sda {
     // Export controllers (optional, but often done if other modules might navigate to them)
     exports com.example.sda.controllers.auth;
     exports com.example.sda.controllers.shared;
+    exports com.example.sda.controllers.components;
     // NOTE: You may need to add exports for other controller packages (admin/components) later.
 }

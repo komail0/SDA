@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.sda.controllers.shared.StudentRequestsController"
+            styleClass="scroll-pane"
+            stylesheets="@../../css/styles/Pending-Requests.css"
+            fitToWidth="true"
+            hbarPolicy="NEVER">
+
+    <!-- Main Content Wrapper -->
+    <VBox styleClass="content-wrapper">
+
+        <!-- Content Container (VBox) -->
+        <VBox styleClass="content-container">
+
+            <!-- Page Header -->
+            <VBox styleClass="page-header">
+                <HBox styleClass="title-container">
+                    <Text text="My " styleClass="page-title"/>
+                    <Text text="Requests" styleClass="page-title, title-accent"/>
+                </HBox>
+                <Label text="Track your mentorship requests and their status" styleClass="page-subtitle"/>
+            </VBox>
+
+            <!-- Tab Header (Single Tab) -->
+            <HBox styleClass="tab-header">
+                <Label text="📋 Requests" styleClass="tab-title"/>
+            </HBox>
+
+            <!-- Requests Container -->
+            <VBox fx:id="requestsContainer" styleClass="requests-container">
+                <!-- Items are loaded dynamically by StudentRequestsController -->
+            </VBox>
+
+        </VBox>
+    </VBox>
+</ScrollPane>

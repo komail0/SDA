@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+
+<!-- HBox is the root container for the toast layout -->
+<HBox fx:id="toastRoot"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      stylesheets="@../../css/components/Toast.css"
+      styleClass="toast-root"
+      alignment="CENTER_LEFT"
+      spacing="0"
+      maxWidth="800"
+      maxHeight="70"
+      minHeight="60">
+
+    <!-- Status Indicator / Logo Area with AB -->
+    <StackPane fx:id="statusIconContainer"
+               HBox.hgrow="NEVER"
+               prefWidth="70"
+               minWidth="70"
+               maxWidth="70"
+               styleClass="toast-icon-wrapper">
+        <Text fx:id="toastLogo" text="AB" styleClass="toast-logo-char"/>
+    </StackPane>
+
+    <!-- Content VBox -->
+    <VBox spacing="4" HBox.hgrow="ALWAYS" styleClass="toast-content">
+        <padding>
+            <Insets top="15" right="45" bottom="15" left="15"/>
+        </padding>
+
+        <!-- Title -->
+        <Text fx:id="toastTitle"
+              text="Notification Title"
+              styleClass="toast-title"/>
+
+        <!-- Message -->
+        <Label fx:id="toastMessage"
+               text="This is the detailed message."
+               wrapText="true"
+               maxWidth="240"
+               styleClass="toast-message"/>
+    </VBox>
+
+    <!-- Close Button -->
+    <Button fx:id="closeButton"
+            text="×"
+            styleClass="toast-close-btn"
+            HBox.hgrow="NEVER">
+        <HBox.margin>
+            <Insets top="8" right="8" bottom="0" left="-35"/>
+        </HBox.margin>
+    </Button>
+</HBox>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.sda.controllers.shared.MentorRatingListController"
+            styleClass="scroll-pane"
+            stylesheets="@../../css/styles/mentor-ratinglist.css"
+            fitToWidth="true"
+            hbarPolicy="NEVER">
+
+    <VBox styleClass="content-wrapper">
+        <VBox styleClass="content-container">
+
+            <VBox styleClass="page-header">
+                <HBox styleClass="title-container">
+                    <Text text="Rate Your " styleClass="page-title"/>
+                    <Text text="Mentors" styleClass="page-title, title-accent"/>
+                </HBox>
+                <Label text="Share your experience and help future students" styleClass="page-subtitle"/>
+            </VBox>
+
+            <HBox styleClass="info-banner">
+                <Label text="ℹ️" styleClass="info-icon"/>
+                <Label text="You have had mentorship sessions with the following mentors" styleClass="info-text"/>
+            </HBox>
+
+            <!-- Mentors Grid -->
+            <GridPane fx:id="mentorsGrid" styleClass="mentors-grid">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="ALWAYS" percentWidth="50.0"/>
+                    <ColumnConstraints hgrow="ALWAYS" percentWidth="50.0"/>
+                </columnConstraints>
+                <!-- Dynamic Items Loaded Here -->
+            </GridPane>
+
+            <!-- Empty State -->
+            <VBox fx:id="emptyState" styleClass="empty-state" managed="false" visible="false">
+                <Label text="👥" styleClass="empty-icon"/>
+                <Label text="No Mentorship Sessions Yet" styleClass="empty-title"/>
+                <Label text="Complete mentorship sessions to rate your mentors" styleClass="empty-text"/>
+            </VBox>
+
+        </VBox>
+    </VBox>
+</ScrollPane>

@@ -1,0 +1,270 @@
+/* Content Wrapper - ScrollPane */
+.content-wrapper {
+    -fx-background-color: #0a0a0a;
+}
+
+.content-wrapper > .viewport {
+    -fx-background-color: #0a0a0a;
+}
+
+.content-wrapper .scroll-bar {
+    -fx-background-color: #0a0a0a;
+}
+
+.content-wrapper .scroll-bar .thumb {
+    -fx-background-color: #333;
+    -fx-background-radius: 5;
+}
+
+/* Content Container - VBox */
+.content-container {
+    -fx-max-width: 1400;
+    -fx-alignment: top-center;
+}
+
+/* Page Header - VBox */
+.page-header {
+    -fx-spacing: 10;
+}
+
+.page-title-container {
+    -fx-spacing: 0;
+}
+
+.page-title {
+    -fx-font-size: 42;
+    -fx-font-weight: 800;
+    -fx-fill: #ffffff;
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.2), 20, 0, 0, 0);
+}
+
+.title-accent {
+    -fx-fill: #00ff88;
+}
+
+.page-subtitle {
+    -fx-font-size: 18;
+    -fx-fill: #808080;
+}
+
+/* Filter Section - VBox */
+.filter-section {
+    -fx-background-color: #1a1a1a;
+    -fx-background-radius: 20;
+    -fx-border-color: #333;
+    -fx-border-radius: 20;
+    -fx-border-width: 1;
+}
+
+/* Filter Grid - GridPane */
+.filter-grid {
+}
+
+/* Filter Group - VBox */
+.filter-group {
+    -fx-spacing: 8;
+}
+
+.filter-label {
+    -fx-font-size: 14;
+    -fx-font-weight: 600;
+    -fx-text-fill: #c0c0c0;
+}
+
+.filter-input {
+    -fx-pref-width: 9999;
+    -fx-padding: 12 16 12 16;
+    -fx-background-color: #0f0f0f;
+    -fx-border-color: #333;
+    -fx-border-width: 2;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 15;
+    -fx-prompt-text-fill: #666;
+}
+
+.filter-input:focused {
+    -fx-border-color: #00ff88;
+    -fx-background-color: #0a0a0a;
+    -fx-effect: dropshadow(gaussian, rgba(0, 255, 136, 0.1), 0, 0, 0, 0);
+}
+
+.filter-select {
+    -fx-pref-width: 9999;
+    -fx-padding: 12 16 12 16;
+    -fx-background-color: #0f0f0f;
+    -fx-border-color: #333;
+    -fx-border-width: 2;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 15;
+}
+
+.filter-select:focused {
+    -fx-border-color: #00ff88;
+    -fx-background-color: #0a0a0a;
+    -fx-effect: dropshadow(gaussian, rgba(0, 255, 136, 0.1), 0, 0, 0, 0);
+}
+
+.filter-select .list-cell {
+    -fx-background-color: #0f0f0f;
+    -fx-text-fill: #ffffff;
+}
+
+.filter-btn {
+     -fx-padding: 0 10 0 10;
+     -fx-min-height: 45;
+     -fx-pref-height: 45;
+     -fx-min-width: 80;      /* ADD THIS */
+     -fx-pref-width: 80;     /* ADD THIS */
+     -fx-font-size: 16;
+     -fx-background-color: linear-gradient(to bottom right, #00ff88, #00cc6a);
+     -fx-background-radius: 12;
+     -fx-text-fill: #000;
+     -fx-font-weight: 600;
+ }
+
+.filter-btn:hover {
+    -fx-translate-y: -2;
+    -fx-effect: dropshadow(gaussian, rgba(0, 255, 136, 0.3), 30, 0, 0, 10);
+}
+
+/* Stats Grid - GridPane */
+.stats-grid {
+    /* Ensures the two remaining cards fill the width */
+    -fx-max-width: 9999;
+}
+
+/* Stat Card - VBox */
+.stat-card {
+    -fx-background-color: #1a1a1a;
+    -fx-background-radius: 16;
+    -fx-border-color: #333;
+    -fx-border-radius: 16;
+    -fx-border-width: 1;
+}
+
+
+.stat-icon {
+    -fx-font-size: 32;
+    -fx-fill: #808080;
+}
+
+.stat-value {
+    -fx-font-size: 28;
+    -fx-font-weight: 800;
+    -fx-fill: #ffffff;
+}
+
+.stat-label {
+    -fx-font-size: 14;
+    -fx-fill: #808080;
+}
+
+/* Projects Grid - GridPane */
+.projects-grid {
+    /* FIX: Ensure the grid spans two columns based on FXML setup */
+}
+
+/* Project Card - VBox */
+.project-card {
+    -fx-background-color: #1a1a1a;
+    -fx-background-radius: 20;
+    -fx-border-color: #333;
+    -fx-border-radius: 20;
+    -fx-border-width: 1;
+    -fx-cursor: hand;
+}
+
+.project-card:hover {
+    -fx-translate-y: -5; /* Reduced jump slightly */
+    -fx-effect: dropshadow(gaussian, rgba(0, 255, 136, 0.2), 40, 0, 0, 10); /* Reduced shadow intensity */
+    -fx-border-color: #00ff88;
+}
+
+/* Project Header - VBox */
+.project-header {
+    -fx-background-color: linear-gradient(to bottom right, rgba(0, 255, 136, 0.1), rgba(0, 204, 106, 0.1));
+    -fx-border-color: transparent transparent #333 transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+.project-title {
+    -fx-font-size: 20;
+    -fx-font-weight: 700;
+    -fx-fill: #ffffff;
+}
+
+.project-author {
+    -fx-spacing: 8;
+}
+
+.author-text {
+    -fx-font-size: 14;
+    -fx-fill: #808080;
+}
+
+/* Project Body - VBox */
+.project-body {
+    -fx-spacing: 15;
+}
+
+.project-description {
+    -fx-font-size: 14;
+    -fx-line-spacing: 0.6;
+    -fx-fill: #c0c0c0;
+}
+
+/* Project Tags - HBox */
+.project-tags {
+    -fx-spacing: 8;
+}
+
+.tag {
+    -fx-padding: 6 14 6 14;
+    -fx-background-color: rgba(0, 255, 136, 0.15);
+    -fx-border-color: rgba(0, 255, 136, 0.3);
+    -fx-border-width: 1;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-font-size: 12;
+    -fx-text-fill: #00ff88;
+    -fx-font-weight: 600;
+}
+
+/* Project Footer - HBox */
+.project-footer {
+    /* FIX: Ensure the footer is clearly separated */
+    -fx-border-color: #333 transparent transparent transparent;
+    -fx-border-width: 1 0 0 0;
+}
+
+/* Project Footer Metadata (REMOVED) */
+.project-meta {
+    -fx-spacing: 15;
+    -fx-padding: 0; /* Remove padding if metadata is gone */
+}
+
+.meta-text {
+    -fx-font-size: 13;
+    -fx-fill: #808080;
+}
+
+.view-btn {
+    -fx-padding: 8 20 8 20;
+    -fx-background-color: linear-gradient(to bottom right, #00ff88, #00cc6a);
+    -fx-border-width: 0;
+    -fx-background-radius: 8;
+    -fx-text-fill: #000000;
+    -fx-font-weight: 600;
+    -fx-cursor: hand;
+    -fx-font-size: 13;
+}
+
+.view-btn:hover {
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+    -fx-effect: dropshadow(gaussian, rgba(0, 255, 136, 0.4), 15, 0, 0, 5);
+}

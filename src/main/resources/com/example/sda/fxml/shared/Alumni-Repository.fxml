@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.sda.controllers.shared.AlumniRepositoryController"
+            styleClass="content-wrapper"
+            stylesheets="@../../css/styles/Alumni-Repository.css"
+            fitToWidth="true"
+            hbarPolicy="NEVER">
+
+    <VBox styleClass="content-container" spacing="40">
+        <padding>
+            <Insets top="40" right="40" bottom="40" left="40"/>
+        </padding>
+
+        <!-- Page Header -->
+        <VBox styleClass="page-header" spacing="10">
+            <HBox styleClass="page-title-container">
+                <Text text="My " styleClass="page-title"/>
+                <Text text="Repositories" styleClass="page-title, title-accent"/>
+            </HBox>
+            <Text text="Manage your uploaded projects and research work" styleClass="page-subtitle"/>
+        </VBox>
+
+        <!-- Stats Grid (Simplified) -->
+        <GridPane styleClass="stats-grid" hgap="20" vgap="20">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="100.0" />
+            </columnConstraints>
+
+            <VBox styleClass="stat-card" spacing="12" alignment="CENTER"
+                  GridPane.columnIndex="0" GridPane.rowIndex="0" HBox.hgrow="ALWAYS">
+                <padding>
+                    <Insets top="25" right="25" bottom="25" left="25"/>
+                </padding>
+                <Text text="📂" styleClass="stat-icon"/>
+                <Text fx:id="totalProjectsText" text="0" styleClass="stat-value"/>
+                <Text text="Total Uploaded Projects" styleClass="stat-label"/>
+            </VBox>
+        </GridPane>
+
+        <!-- Projects Grid -->
+        <GridPane fx:id="projectsGrid" styleClass="projects-grid" hgap="25" vgap="25">
+            <columnConstraints>
+                <ColumnConstraints hgrow="ALWAYS" percentWidth="50.0" />
+                <ColumnConstraints hgrow="ALWAYS" percentWidth="50.0" />
+            </columnConstraints>
+
+            <Label fx:id="statusLabel" text="Loading repositories..." GridPane.columnSpan="2" styleClass="page-subtitle" textFill="#ffbb33"/>
+        </GridPane>
+    </VBox>
+</ScrollPane>
