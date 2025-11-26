@@ -9,10 +9,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane fitToWidth="true" style="-fx-background-color: #0a0a0a;" stylesheets="@../../css/styles/admin-dashboard-style.css"
-            xmlns="http://javafx.com/javafx/21"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.sda.controllers.admin.AdminDashboardController">
+<ScrollPane fitToWidth="true" style="-fx-background-color: #0a0a0a;" stylesheets="@../../css/styles/admin-dashboard-style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sda.controllers.admin.AdminDashboardController">
 
     <VBox styleClass="content-wrapper">
         <VBox styleClass="content-container">
@@ -32,8 +29,7 @@
                 <!-- Metric Card 1 - Users -->
                 <VBox fx:id="usersCard" onMouseClicked="#handleViewUsers" style="-fx-cursor: hand;" styleClass="metric-card" GridPane.columnIndex="0" GridPane.rowIndex="0">
                     <HBox styleClass="metric-header">
-                        <Label styleClass="metric-icon" text="👥" HBox.hgrow="ALWAYS" />
-                        <Label fx:id="usersChange" styleClass="metric-change" text="↑ 12%" />
+                        <Label styleClass="metric-icon" text="👥" textFill="#e0e0e0" HBox.hgrow="ALWAYS" />
                     </HBox>
                     <Label fx:id="totalUsersValue" styleClass="metric-value" text="0" />
                     <Label styleClass="metric-label" text="Total Users" />
@@ -42,8 +38,7 @@
                 <!-- Metric Card 2 - Projects -->
                 <VBox fx:id="projectsCard" onMouseClicked="#handleViewProjects" style="-fx-cursor: hand;" styleClass="metric-card" GridPane.columnIndex="1" GridPane.rowIndex="0">
                     <HBox styleClass="metric-header">
-                        <Label styleClass="metric-icon" text="📁" HBox.hgrow="ALWAYS" />
-                        <Label fx:id="projectsChange" styleClass="metric-change" text="↑ 8%" />
+                        <Label styleClass="metric-icon" text="📁" textFill="#e0e0e0" HBox.hgrow="ALWAYS" />
                     </HBox>
                     <Label fx:id="totalProjectsValue" styleClass="metric-value" text="0" />
                     <Label styleClass="metric-label" text="Total Projects" />
@@ -52,8 +47,7 @@
                 <!-- Metric Card 3 - Mentorships -->
                 <VBox fx:id="mentorshipsCard" onMouseClicked="#handleViewMentorships" style="-fx-cursor: hand;" styleClass="metric-card" GridPane.columnIndex="2" GridPane.rowIndex="0">
                     <HBox styleClass="metric-header">
-                        <Label styleClass="metric-icon" text="🤝" HBox.hgrow="ALWAYS" />
-                        <Label fx:id="mentorshipsChange" styleClass="metric-change" text="↑ 24%" />
+                        <Label styleClass="metric-icon" text="🤝" textFill="#e0e0e0" HBox.hgrow="ALWAYS" />
                     </HBox>
                     <Label fx:id="activeMentorshipsValue" styleClass="metric-value" text="0" />
                     <Label styleClass="metric-label" text="Active Mentorships" />
@@ -62,8 +56,7 @@
                 <!-- Metric Card 4 - Ratings -->
                 <VBox fx:id="ratingsCard" onMouseClicked="#handleViewRatings" style="-fx-cursor: hand;" styleClass="metric-card" GridPane.columnIndex="3" GridPane.rowIndex="0">
                     <HBox styleClass="metric-header">
-                        <Label styleClass="metric-icon" text="⭐" HBox.hgrow="ALWAYS" />
-                        <Label fx:id="ratingChange" styleClass="metric-change" text="↑ 5%" />
+                        <Label styleClass="metric-icon" text="⭐" textFill="#e0e0e0" HBox.hgrow="ALWAYS" />
                     </HBox>
                     <Label fx:id="avgRatingValue" styleClass="metric-value" text="0.0" />
                     <Label styleClass="metric-label" text="Avg. Rating" />

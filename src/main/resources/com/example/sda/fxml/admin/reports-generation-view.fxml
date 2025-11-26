@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane fitToWidth="true" style="-fx-background-color: #0a0a0a;" stylesheets="@../../css/styles/reports-generation-style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sda.controllers.admin.ReportsGenerationController">
+<ScrollPane fitToWidth="true" style="-fx-background-color: #0a0a0a;" stylesheets="@../../css/styles/reports-generation-style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sda.controllers.admin.ReportsGenerationController">
 
     <VBox spacing="20" styleClass="content-wrapper">
 
@@ -46,19 +46,19 @@
         <!-- Statistics Cards -->
         <GridPane hgap="20" styleClass="stats-grid" vgap="20">
             <VBox styleClass="stat-card" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                <Label styleClass="stat-icon" text="👥" />
+                <Label styleClass="stat-icon" text="👥" textFill="#e0e0e0" />
                 <Label fx:id="totalUsersLabel" styleClass="stat-value" text="0" />
                 <Label styleClass="stat-label" text="Total Users" />
             </VBox>
 
             <VBox styleClass="stat-card" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                <Label styleClass="stat-icon" text="📁" />
+                <Label styleClass="stat-icon" text="📁" textFill="#e0e0e0" />
                 <Label fx:id="totalProjectsLabel" styleClass="stat-value" text="0" />
                 <Label styleClass="stat-label" text="Total Projects" />
             </VBox>
 
             <VBox styleClass="stat-card" GridPane.columnIndex="2" GridPane.rowIndex="0">
-                <Label styleClass="stat-icon" text="🤝" />
+                <Label styleClass="stat-icon" text="🤝" textFill="#e0e0e0" />
                 <Label fx:id="totalMentorsLabel" styleClass="stat-value" text="0" />
                 <Label styleClass="stat-label" text="Active Mentors" />
             </VBox>
@@ -117,7 +117,7 @@
 
         </GridPane>
 
-        <!-- Action Buttons -->
+
         <HBox spacing="15" styleClass="action-bar">
             <Region HBox.hgrow="ALWAYS" />
         </HBox>

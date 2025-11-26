@@ -1,34 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.geometry.Insets?>
-<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
-<ScrollPane xmlns="http://javafx.com/javafx/21"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.sda.controllers.shared.UploadProjectController"
-            styleClass="scroll-pane"
-            stylesheets="@../../css/styles/Upload-Project.css"
-            fitToWidth="true"
-            hbarPolicy="NEVER">
+<ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="scroll-pane" stylesheets="@../../css/styles/Upload-Project.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sda.controllers.shared.UploadProjectController">
 
     <!-- Main Content Wrapper -->
-    <VBox styleClass="content-wrapper" VBox.vgrow="ALWAYS" alignment="CENTER">
+    <VBox alignment="CENTER" styleClass="content-wrapper" VBox.vgrow="ALWAYS">
         <!-- Status and Feedback Label -->
-        <Label fx:id="statusLabel" text="" minHeight="25" wrapText="true" />
+        <Label fx:id="statusLabel" minHeight="25" text="" wrapText="true" />
 
         <!-- Content Container (VBox) -->
-        <VBox styleClass="content-container" alignment="TOP_CENTER">
+        <VBox alignment="TOP_CENTER" styleClass="content-container">
 
             <!-- Page Header -->
             <VBox styleClass="page-header">
                 <HBox styleClass="title-container">
-                    <Text text="Upload" styleClass="page-title, title-accent"/>
-                    <Text text=" Project Summary" styleClass="page-title"/>
+                    <Text styleClass="page-title, title-accent" text="Upload" />
+                    <Text styleClass="page-title" text=" Project " />
                 </HBox>
-                <Label text="Share your project and help future students" styleClass="page-subtitle"/>
+                <Label styleClass="page-subtitle" text="Share your project and help future students" />
             </VBox>
 
             <!-- Upload Form -->
@@ -37,108 +38,117 @@
                 <!-- Project Title -->
                 <VBox styleClass="form-group">
                     <HBox styleClass="label-container">
-                        <Label text="Project Title " styleClass="form-label"/>
-                        <Label text="*" styleClass="form-label, required"/>
+                        <Label styleClass="form-label" text="Project Title " />
+                        <Label styleClass="form-label, required" text="*" />
                     </HBox>
-                    <TextField fx:id="titleField" promptText="Enter project title (Max 255 chars)" styleClass="form-input"/>
+                    <TextField fx:id="titleField" promptText="Enter project title (Max 255 chars)" styleClass="form-input" />
                 </VBox>
 
                 <!-- GitHub Link (NEW) -->
                 <VBox styleClass="form-group">
                     <HBox styleClass="label-container">
-                        <Label text="GitHub Repository Link" styleClass="form-label"/>
+                        <Label styleClass="form-label" text="GitHub Repository Link" />
                     </HBox>
-                    <TextField fx:id="githubField" promptText="Optional: https://github.com/your-project" styleClass="form-input"/>
+                    <TextField fx:id="githubField" promptText="Optional: https://github.com/your-project" styleClass="form-input" />
                 </VBox>
 
                 <!-- Project Description -->
                 <VBox styleClass="form-group">
                     <HBox styleClass="label-container">
-                        <Label text="Project Description " styleClass="form-label"/>
-                        <Label text="*" styleClass="form-label, required"/>
+                        <Label styleClass="form-label" text="Project Description " />
+                        <Label styleClass="form-label, required" text="*" />
                     </HBox>
                     <TextArea fx:id="descriptionArea" promptText="Describe your project in detail (Min 50 chars)..." styleClass="form-textarea" wrapText="true" />
                 </VBox>
 
                 <!-- Form Grid (3 columns) -->
-                <GridPane styleClass="form-grid" hgap="20" vgap="20">
+                <GridPane hgap="20" styleClass="form-grid" vgap="20">
                     <!-- Category (Changed to TextField) -->
                     <VBox styleClass="form-group" GridPane.columnIndex="0" GridPane.rowIndex="0">
                         <HBox styleClass="label-container">
-                            <Label text="Category " styleClass="form-label"/>
-                            <Label text="*" styleClass="form-label, required"/>
+                            <Label styleClass="form-label" text="Category " />
+                            <Label styleClass="form-label, required" text="*" />
                         </HBox>
-                        <TextField fx:id="categoryField" promptText="e.g., AI/ML, Web Development" styleClass="form-input" prefWidth="250"/>
+                        <TextField fx:id="categoryField" prefWidth="250" promptText="e.g., AI/ML, Web Development" styleClass="form-input" />
                     </VBox>
 
                     <!-- Year (Changed to DatePicker) -->
                     <VBox styleClass="form-group" GridPane.columnIndex="1" GridPane.rowIndex="0">
                         <HBox styleClass="label-container">
-                            <Label text="Completion Date " styleClass="form-label"/>
-                            <Label text="*" styleClass="form-label, required"/>
+                            <Label styleClass="form-label" text="Completion Date " />
+                            <Label styleClass="form-label, required" text="*" />
                         </HBox>
-                        <DatePicker fx:id="yearPicker" promptText="Select completion date" styleClass="form-input, form-select" prefWidth="250"/>
+                        <DatePicker fx:id="yearPicker" prefWidth="250" promptText="Select completion date" styleClass="form-input, form-select" />
                     </VBox>
 
                     <!-- University (NEW) -->
                     <VBox styleClass="form-group" GridPane.columnIndex="0" GridPane.rowIndex="1">
                         <HBox styleClass="label-container">
-                            <Label text="University " styleClass="form-label"/>
-                            <Label text="*" styleClass="form-label, required"/>
+                            <Label styleClass="form-label" text="University " />
+                            <Label styleClass="form-label, required" text="*" />
                         </HBox>
-                        <TextField fx:id="universityField" promptText="e.g., XYZ University" styleClass="form-input" prefWidth="250"/>
+                        <TextField fx:id="universityField" prefWidth="250" promptText="e.g., XYZ University" styleClass="form-input" />
                     </VBox>
 
                     <!-- Supervisor (Existing) -->
                     <VBox styleClass="form-group" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                        <Label text="Supervisor" styleClass="form-label"/>
-                        <TextField fx:id="supervisorField" promptText="Optional: Professor/Advisor name" styleClass="form-input" prefWidth="250"/>
+                        <Label styleClass="form-label" text="Supervisor" />
+                        <TextField fx:id="supervisorField" prefWidth="250" promptText="Optional: Professor/Advisor name" styleClass="form-input" />
                     </VBox>
 
                     <!-- Technologies Used (Span 2 columns) -->
-                    <VBox styleClass="form-group" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.columnSpan="2">
-                        <Label text="Technologies Used" styleClass="form-label"/>
-                        <TextField fx:id="technologiesField" promptText="Optional: Python, TensorFlow, React, MySQL (Comma-separated)" styleClass="form-input"/>
+                    <VBox styleClass="form-group" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="2">
+                        <Label styleClass="form-label" text="Technologies Used" />
+                        <TextField fx:id="technologiesField" promptText="Optional: Python, TensorFlow, React, MySQL (Comma-separated)" styleClass="form-input" />
                     </VBox>
+               <columnConstraints>
+                  <ColumnConstraints />
+                  <ColumnConstraints />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+               </rowConstraints>
 
                 </GridPane>
 
                 <!-- File Upload Section -->
                 <VBox styleClass="file-upload-section">
                     <HBox styleClass="label-container">
-                        <Label text="📎 Upload Project PDF " styleClass="upload-label"/>
-                        <Label text="*" styleClass="form-label, required"/>
+                        <Label styleClass="upload-label" text="📎 Upload Project PDF " />
+                        <Label styleClass="form-label, required" text="*" />
                     </HBox>
 
                     <!-- Upload Area -->
-                    <VBox fx:id="uploadArea" styleClass="upload-area" onMouseClicked="#handleFileBrowse">
-                        <Label text="📁" styleClass="upload-icon"/>
-                        <Label text="Click here to browse for PDF file" styleClass="upload-text"/>
-                        <Label text="or" styleClass="upload-or"/>
-                        <Button fx:id="browseBtn" text="Browse Files" styleClass="browse-btn" onAction="#handleFileBrowse"/>
-                        <Label text="REQUIRED: PDF file only (Max 5 MB)" styleClass="upload-hint"/>
+                    <VBox fx:id="uploadArea" onMouseClicked="#handleFileBrowse" styleClass="upload-area">
+                        <Label styleClass="upload-icon" text="📁" />
+                        <Label styleClass="upload-text" text="Click here to browse for PDF file" />
+                        <Label styleClass="upload-or" text="or" />
+                        <Button fx:id="browseBtn" onAction="#handleFileBrowse" styleClass="browse-btn" text="Browse Files" />
+                        <Label styleClass="upload-hint" text="REQUIRED: PDF file only (Max 5 MB)" />
                     </VBox>
 
                     <!-- File List (shown when file is selected) -->
-                    <VBox styleClass="file-list" fx:id="fileListContainer" managed="false">
+                    <VBox fx:id="fileListContainer" managed="false" styleClass="file-list">
                         <!-- File Item (Dynamically added HBox) -->
                         <HBox fx:id="fileItem" styleClass="file-item">
-                            <Label text="📄" styleClass="file-icon"/>
+                            <Label styleClass="file-icon" text="📄" />
                             <VBox styleClass="file-info" HBox.hgrow="ALWAYS">
-                                <Label fx:id="fileNameLabel" text="[No file selected]" styleClass="file-name"/>
-                                <Label fx:id="fileSizeLabel" text="" styleClass="file-size"/>
+                                <Label fx:id="fileNameLabel" styleClass="file-name" text="[No file selected]" />
+                                <Label fx:id="fileSizeLabel" styleClass="file-size" text="" />
                             </VBox>
-                            <Button fx:id="removeFileBtn" text="Remove" styleClass="file-remove" onAction="#handleFileRemove"/>
+                            <Button fx:id="removeFileBtn" onAction="#handleFileRemove" styleClass="file-remove" text="Remove" />
                         </HBox>
                         <!-- Error feedback specific to file -->
-                        <Label fx:id="fileErrorLabel" text="" styleClass="file-error" />
+                        <Label fx:id="fileErrorLabel" styleClass="file-error" text="" />
                     </VBox>
                 </VBox>
 
                 <!-- Form Actions -->
                 <HBox styleClass="form-actions">
-                    <Button fx:id="cancelBtn" text="Cancel" styleClass="cancel-btn" onAction="#handleCancel"/>
-                    <Button fx:id="submitBtn" text="Submit Project" styleClass="submit-btn" onAction="#handleSubmit"/>
+                    <Button fx:id="cancelBtn" onAction="#handleCancel" styleClass="cancel-btn" text="Cancel" />
+                    <Button fx:id="submitBtn" onAction="#handleSubmit" styleClass="submit-btn" text="Submit Project" />
                 </HBox>
 
             </VBox>
