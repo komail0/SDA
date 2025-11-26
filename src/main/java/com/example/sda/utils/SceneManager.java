@@ -13,10 +13,7 @@ import java.util.Objects;
 import javafx.stage.Screen;
 
 
-/**
- * Manages the navigation and loading of different FXML scenes.
- * Enforces maximized window state globally.
- */
+
 public class SceneManager {
     private static SceneManager instance;
 
@@ -31,12 +28,6 @@ public class SceneManager {
         return instance;
     }
 
-    /**
-     * Loads a new FXML scene into the current window and maximizes it.
-     * @param fxmlFile The path to the FXML file (e.g., "auth/login-view.fxml"). This path must be relative to the fxml/ folder.
-     * @param title The title for the stage.
-     * @param event The ActionEvent that triggered the scene change.
-     */
     public void loadScene(String fxmlFile, String title, ActionEvent event) {
         String fullPath = null;
         try {

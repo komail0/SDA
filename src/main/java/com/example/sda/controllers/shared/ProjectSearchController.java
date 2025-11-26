@@ -19,7 +19,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import javafx.util.StringConverter;
-
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.List;

@@ -2,9 +2,6 @@ package com.example.sda.models;
 
 import com.example.sda.enums.UserRole;
 
-/**
- * Represents a user in the system, mapping directly to the 'users' table.
- */
 public class User {
     private int id;
     private String username; // Mapped to fullNameField

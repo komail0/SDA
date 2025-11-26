@@ -2,10 +2,7 @@ package com.example.sda.models;
 
 import java.time.LocalDateTime;
 
-/**
- * Model class representing feedback/review from a student about a mentor
- * This uses data from the ratings table
- */
+
 public class Feedback {
     private int id;
     private int studentId;

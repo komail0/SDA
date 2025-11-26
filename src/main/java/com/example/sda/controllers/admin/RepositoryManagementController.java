@@ -124,7 +124,7 @@ public class RepositoryManagementController {
             return;
         }
 
-        // KEEPING CONFIRMATION DIALOG (Toasts cannot do Yes/No input)
+
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete this project?");
         alert.setHeaderText("Delete Project");
         if (alert.showAndWait().orElse(ButtonType.CANCEL) == ButtonType.OK) {

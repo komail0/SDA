@@ -7,17 +7,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Data Access Object for Feedback
- * Handles all database operations related to viewing feedback/reviews
- */
 public class FeedbackDAO {
 
-    /**
-     * Get all feedback for a specific mentor
-     * @param mentorId The ID of the mentor
-     * @return List of feedback/reviews for that mentor
-     */
+
     public List<Feedback> getFeedbackByMentorId(int mentorId) {
         List<Feedback> feedbackList = new ArrayList<>();
         String sql = """
@@ -60,11 +52,6 @@ public class FeedbackDAO {
         return feedbackList;
     }
 
-    /**
-     * Get average ratings for a mentor
-     * @param mentorId The ID of the mentor
-     * @return Array of doubles: [overall, communication, knowledge, responsiveness, helpfulness]
-     */
     public double[] getAverageRatings(int mentorId) {
         String sql = """
             SELECT 
@@ -101,11 +88,7 @@ public class FeedbackDAO {
         return averages;
     }
 
-    /**
-     * Get rating distribution (how many 5-star, 4-star, etc.)
-     * @param mentorId The ID of the mentor
-     * @return Array of integers: [count of 5-star, 4-star, 3-star, 2-star, 1-star]
-     */
+
     public int[] getRatingDistribution(int mentorId) {
         String sql = """
             SELECT overall_rating, COUNT(*) as count
@@ -139,11 +122,7 @@ public class FeedbackDAO {
         return distribution;
     }
 
-    /**
-     * Get total count of feedback for a mentor
-     * @param mentorId The mentor's ID
-     * @return Number of feedback/reviews
-     */
+
     public int getTotalFeedbackCount(int mentorId) {
         String sql = "SELECT COUNT(*) FROM ratings WHERE mentor_id = ?";
 
@@ -165,11 +144,7 @@ public class FeedbackDAO {
         return 0;
     }
 
-    /**
-     * Get total number of unique students mentored
-     * @param mentorId The mentor's ID
-     * @return Number of students
-     */
+
     public int getStudentsMentoredCount(int mentorId) {
         String sql = "SELECT COUNT(DISTINCT student_id) FROM ratings WHERE mentor_id = ?";
 

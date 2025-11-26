@@ -1,5 +1,6 @@
 package com.example.sda.controllers.shared;
 
+import com.example.sda.dao.RatingDAO; // NEW IMPORT
 import com.example.sda.models.Project;
 import com.example.sda.services.ProjectService;
 import com.example.sda.utils.ToastHelper;
@@ -20,7 +21,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
 import java.awt.Desktop;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -41,6 +41,9 @@ public class ViewProjectController implements Initializable {
     @FXML private Button githubBtn;
     @FXML private Button closeBtn;
 
+    // NEW: Rating Label
+    @FXML private Label ratingBadge;
+
     @FXML private Label descriptionLabel;
     @FXML private FlowPane technologiesContainer;
     @FXML private Label supervisorLabel;
@@ -51,10 +54,10 @@ public class ViewProjectController implements Initializable {
     @FXML private VBox pdfSection;
 
     private final ProjectService projectService = new ProjectService();
+    private final RatingDAO ratingDAO = new RatingDAO(); // NEW DAO
+
     private Project currentProject;
     private int projectId;
-
-    // The parent controller instance
     private SidebarController sidebarController;
 
     @Override
@@ -64,6 +67,9 @@ public class ViewProjectController implements Initializable {
         githubBtn.setOnAction(this::handleViewGitHub);
         viewPdfBtn.setOnAction(this::handleViewPdf);
         mentorshipBtn.setOnAction(this::handleMentorshipRequest);
+
+        // Hide badge initially until data loads
+        if (ratingBadge != null) ratingBadge.setVisible(false);
     }
 
     public void setSidebarController(SidebarController controller) {
@@ -79,10 +85,18 @@ public class ViewProjectController implements Initializable {
     private void loadProjectDetails(int id) {
         new Thread(() -> {
             Project project = projectService.getProjectById(id);
+
+            // NEW: Fetch Rating in background
+            double avgRating = 0.0;
+            if (project != null) {
+                avgRating = ratingDAO.getMentorAverageRating(project.getUserId());
+            }
+
+            double finalAvgRating = avgRating;
             Platform.runLater(() -> {
                 if (project != null) {
                     currentProject = project;
-                    populateUI(project);
+                    populateUI(project, finalAvgRating);
                 } else {
                     statusLabel.setText("Error: Project not found.");
                     statusLabel.getStyleClass().add("error-message");
@@ -91,7 +105,7 @@ public class ViewProjectController implements Initializable {
         }).start();
     }
 
-    private void populateUI(Project project) {
+    private void populateUI(Project project, double rating) {
         projectTitle.setText(project.getTitle());
         categoryLabel.setText(project.getCategory());
         completionDateLabel.setText(String.valueOf(project.getYear()));
@@ -103,6 +117,7 @@ public class ViewProjectController implements Initializable {
         SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d, yyyy");
         uploadDateLabel.setText(project.getUploadedAt() != null ? dateFormat.format(project.getUploadedAt()) : "N/A");
 
+        // GitHub Button Logic
         if (project.getGithubLink() == null || project.getGithubLink().isEmpty()) {
             githubBtn.setDisable(true);
             githubBtn.setText("GitHub Link Unavailable");
@@ -111,6 +126,19 @@ public class ViewProjectController implements Initializable {
             githubBtn.setText("💻 View on GitHub");
         }
 
+        // NEW: Populate Rating Badge
+        if (ratingBadge != null) {
+            ratingBadge.setVisible(true);
+            if (rating > 0) {
+                ratingBadge.setText(String.format("⭐ %.1f", rating));
+                ratingBadge.setStyle("-fx-background-color: #ffbb33; -fx-text-fill: black; -fx-font-weight: bold; -fx-padding: 8 15; -fx-background-radius: 5; -fx-font-size: 14px;");
+            } else {
+                ratingBadge.setText("No Ratings");
+                ratingBadge.setStyle("-fx-background-color: #444; -fx-text-fill: #aaa; -fx-font-weight: normal; -fx-padding: 8 15; -fx-background-radius: 5; -fx-font-size: 14px;");
+            }
+        }
+
+        // Technologies Logic
         technologiesContainer.getChildren().clear();
         String techString = project.getTechnologies();
         if (techString != null && !techString.isEmpty()) {
@@ -137,20 +165,12 @@ public class ViewProjectController implements Initializable {
             return;
         }
 
-        // 1. Load the search view
-        // NOTE: Ensure this string matches your actual FXML file name for the Search view!
         Object searchController = sidebarController.loadContentView("shared/Search.fxml");
-
-        // 2. Set button active
         sidebarController.setActiveMenuItem(sidebarController.searchProjectsButton);
 
-        // 3. Initialize the search controller
         if (searchController instanceof ProjectSearchController) {
             ProjectSearchController psc = (ProjectSearchController) searchController;
-
-            // FIX: Pass the sidebar back to the new search controller instance!
             psc.setSidebarController(this.sidebarController);
-
             psc.handleSearch(null);
         } else {
             ToastHelper.showWarning("Refresh Error", "Failed to load Project Search controller instance.");
@@ -205,17 +225,15 @@ public class ViewProjectController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sda/fxml/shared/Send-Request.fxml"));
             Parent root = loader.load();
 
-            // Pass data to the popup controller
             SendRequestController controller = loader.getController();
             controller.setRequestData(currentProject);
 
-            // Create the popup stage
             Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL); // Block interaction with background
-            stage.initStyle(StageStyle.TRANSPARENT); // Remove OS window borders
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.TRANSPARENT);
 
             Scene scene = new Scene(root);
-            scene.setFill(Color.TRANSPARENT); // Allow rounded corners
+            scene.setFill(Color.TRANSPARENT);
             stage.setScene(scene);
             stage.showAndWait();
 

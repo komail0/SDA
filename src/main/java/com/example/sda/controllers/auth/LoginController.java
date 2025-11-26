@@ -1,7 +1,6 @@
 package com.example.sda.controllers.auth;
 
 import com.example.sda.services.AuthService;
-import com.example.sda.utils.AlertHelper; // Keep for now, but not used for toast
 import com.example.sda.utils.SceneManager;
 import com.example.sda.utils.SessionManager;
 import com.example.sda.models.User;
@@ -28,9 +27,9 @@ public class LoginController implements Initializable {
     @FXML private PasswordField passwordField;
     @FXML private TextField visiblePasswordField;
     @FXML private Button passwordVisibilityBtn;
-    @FXML private Button loginBtn; // CRITICAL: Used as the event source
-    @FXML private Label feedbackLabel; // Retain only for immediate input errors
-    @FXML private CheckBox rememberCheckbox;
+    @FXML private Button loginBtn;
+    @FXML private Label feedbackLabel;
+
 
     private AuthService authService;
 

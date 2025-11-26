@@ -2,13 +2,11 @@ package com.example.sda.controllers.auth;
 
 import com.example.sda.services.AuthService;
 import com.example.sda.enums.UserRole;
-import com.example.sda.utils.AlertHelper; // Keep for now
 import com.example.sda.utils.SceneManager;
 import com.example.sda.utils.Validator;
 import com.example.sda.utils.SessionManager;
 import com.example.sda.models.User;
-import com.example.sda.utils.ToastHelper; // NEW
-
+import com.example.sda.utils.ToastHelper;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,13 +18,11 @@ import javafx.scene.layout.VBox;
 import javafx.event.ActionEvent;
 import javafx.animation.PauseTransition;
 import javafx.util.Duration;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class RegistrationController implements Initializable {
 
-    // --- FXML Injections (omitted for brevity) ---
     @FXML private TextField fullNameField;
     @FXML private TextField emailField;
     @FXML private PasswordField passwordField;
@@ -35,7 +31,6 @@ public class RegistrationController implements Initializable {
     @FXML private TextField visibleConfirmPasswordField;
     @FXML private ToggleButton studentRole;
     @FXML private ToggleButton alumniRole;
-    @FXML private ToggleGroup roleGroup;
     @FXML private VBox fullNameGroup;
     @FXML private VBox emailGroup;
     @FXML private VBox passwordGroup;
@@ -83,7 +78,7 @@ public class RegistrationController implements Initializable {
         }
     }
 
-    // Toggle, Validation, Visuals, and Enter Key methods omitted for brevity
+
 
     private void setupPasswordToggle(PasswordField passField, TextField textField, Button toggleBtn) {
         passField.textProperty().bindBidirectional(textField.textProperty());
@@ -226,10 +221,9 @@ public class RegistrationController implements Initializable {
                 !passwordField.getText().equals(confirmPasswordField.getText()) ||
                 passwordField.getText().isEmpty()) {
 
-            // NEW: Use Toast for immediate validation failure
+
             ToastHelper.showError("Validation Failed", "Please correct the errors.");
 
-            // Manually trigger the visual update for all fields (omitted for brevity)
             updateFieldValidation(fullNameGroup, fullNameErrorLabel, Validator.isFullNameValid(fullNameField.getText()), fullNameField.getText().isEmpty(), "Name must be at least 3 characters");
             updateFieldValidation(emailGroup, emailErrorLabel, Validator.isEmailValid(emailField.getText()), emailField.getText().isEmpty(), "Invalid email format");
             updateFieldValidation(passwordGroup, passwordErrorLabel, Validator.isPasswordValid(passwordField.getText()), passwordField.getText().isEmpty(), "Min 8 chars, include number & special char");
@@ -245,7 +239,6 @@ public class RegistrationController implements Initializable {
         final String email = emailField.getText();
         final String password = passwordField.getText();
 
-        // Perform registration and immediate login on a background thread
         new Thread(() -> {
             try {
                 // 1. Attempt Registration

@@ -4,7 +4,6 @@ import com.example.sda.dao.UserDAO;
 import com.example.sda.models.User;
 import com.example.sda.enums.UserRole;
 import org.mindrot.jbcrypt.BCrypt; // Import the jBCrypt library
-import com.example.sda.utils.AlertHelper; // Keeping this import if used elsewhere
 
 
 public class AuthService {

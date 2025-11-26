@@ -17,10 +17,7 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.function.Consumer;
 
-/**
- * Utility class for displaying non-blocking Toast notifications using ControlsFX
- * with a custom FXML layout matching the AcadBridge dark theme.
- */
+
 public class ToastHelper {
 
     private static final String FXML_PATH = "/com/example/sda/fxml/components/Toast.fxml";
@@ -29,15 +26,7 @@ public class ToastHelper {
     private static final String STYLE_ERROR = "toast-error-bg";
     private static final String STYLE_WARNING = "toast-warning-bg";
 
-    /**
-     * Internal method to show a toast notification.
-     *
-     * @param title The notification title
-     * @param message The notification message
-     * @param accentStyle The CSS style class for the type (success/error/warning)
-     * @param position The screen position for the toast
-     * @param nodeProcessor Optional processor for additional customization
-     */
+
     private static void show(String title, String message, String accentStyle, Pos position, Consumer<Node> nodeProcessor) {
 
         Platform.runLater(() -> {
@@ -118,32 +107,17 @@ public class ToastHelper {
         });
     }
 
-    /**
-     * Displays a success toast notification.
-     *
-     * @param title The notification title
-     * @param message The notification message
-     */
+
     public static void showSuccess(String title, String message) {
         show(title, message, STYLE_SUCCESS, Pos.TOP_RIGHT, null);
     }
 
-    /**
-     * Displays an error toast notification.
-     *
-     * @param title The notification title
-     * @param message The notification message
-     */
+
     public static void showError(String title, String message) {
         show(title, message, STYLE_ERROR, Pos.TOP_RIGHT, null);
     }
 
-    /**
-     * Displays a warning toast notification.
-     *
-     * @param title The notification title
-     * @param message The notification message
-     */
+
     public static void showWarning(String title, String message) {
         show(title, message, STYLE_WARNING, Pos.TOP_RIGHT, null);
     }

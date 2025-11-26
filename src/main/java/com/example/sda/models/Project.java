@@ -3,10 +3,6 @@ package com.example.sda.models;
 import java.io.InputStream;
 import java.sql.Timestamp;
 
-/**
- * Represents a project uploaded by an Alumni user.
- * Maps to the 'projects' table.
- */
 public class Project {
     private int projectId;
     private int userId;

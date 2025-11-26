@@ -3,10 +3,6 @@ package com.example.sda.models;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-/**
- * Data Transfer Object for the Admin Repository TableView.
- * This must be a public standalone class for PropertyValueFactory to work.
- */
 public class ProjectDTO {
     private final SimpleIntegerProperty id;
     private final SimpleStringProperty title;

@@ -35,22 +35,18 @@ public class AdminSidebarController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Setup User Info
         User user = SessionManager.getInstance().getCurrentUser();
         if(user != null) userNameText.setText(user.getUsername());
 
-        // Track buttons for styling
         menuButtons = new ArrayList<>();
         menuButtons.add(dashboardButton);
         menuButtons.add(repoButton);
         menuButtons.add(usersButton);
         menuButtons.add(reportsButton);
 
-        // Load Default View (Dashboard)
         loadDashboard();
     }
 
-    // --- NAVIGATION LOGIC ---
 
     @FXML
     private void handleMenuNavigation(ActionEvent event) {

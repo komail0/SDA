@@ -9,7 +9,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane styleClass="main-layout" stylesheets="@../../css/components/alumni_sidebar.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sda.controllers.components.SidebarController">
+<BorderPane styleClass="main-layout" stylesheets="@../../css/components/alumni_sidebar.css" xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.sda.controllers.components.SidebarController">
 
     <!-- Sidebar - Left Section -->
     <left>

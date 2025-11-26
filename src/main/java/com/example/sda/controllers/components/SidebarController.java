@@ -6,7 +6,6 @@ import com.example.sda.controllers.shared.ProjectSearchController;
 import com.example.sda.models.User;
 import com.example.sda.utils.SessionManager;
 import com.example.sda.utils.SceneManager;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -24,15 +23,15 @@ import java.util.ResourceBundle;
 
 public class SidebarController implements Initializable {
 
-    // Sidebar User Info
+
     @FXML private Text userNameText;
     @FXML private Text userRoleText;
     @FXML private Text portalTitleText;
 
-    // Main Content Area
+
     @FXML private VBox mainContentArea;
 
-    // --- FXML Menu Buttons ---
+
     @FXML public Button searchProjectsButton;
     @FXML private Button uploadProjectButton;
     @FXML private Button viewProjectsButton;
@@ -65,7 +64,7 @@ public class SidebarController implements Initializable {
         String welcomeMessage;
 
         if (role.equals("ALUMNI")) {
-            welcomeMessage = "Welcome to the Alumni Portal. Please use the navigation menu on the left to view projects or upload your own work.";
+            welcomeMessage = "Welcome to the Alumni Portal. Please use the navigation menu on the left to view and upload your own work and give mentorship to desired candidates";
         } else if (role.equals("STUDENT")) {
             welcomeMessage = "Welcome to the Student Portal. Use the navigation menu to search for projects, chat with mentors, or manage your requests.";
         } else {

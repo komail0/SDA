@@ -66,9 +66,7 @@ public class ProjectDAO {
         return null;
     }
 
-    /**
-     * STUDENT/PUBLIC SEARCH: Only returns APPROVED projects.
-     */
+
     public List<Project> getProjectsByFilter(String keyword, Integer year, String category) {
         // Optimization: Explicitly select columns to avoid fetching BLOBs in lists if possible,
         // but for now, we keep logic consistent.
@@ -103,9 +101,7 @@ public class ProjectDAO {
         return getCount("SELECT COUNT(DISTINCT user_id) FROM project WHERE status = 'approved'");
     }
 
-    /**
-     * ALUMNI REPOSITORY: Returns ALL projects for a specific user.
-     */
+
     public List<Project> getProjectsByUserId(int userId) {
         String query = "SELECT p.*, u.username AS author_name FROM project p JOIN user u ON p.user_id = u.id WHERE p.user_id = ? ORDER BY p.uploaded_at DESC";
         List<Object> params = new ArrayList<>();

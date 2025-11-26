@@ -90,4 +90,16 @@ public class RatingDAO {
         } catch (Exception e) { e.printStackTrace(); }
         return ratings;
     }
+    public double getMentorAverageRating(int mentorId) {
+        String query = "SELECT AVG(overall_rating) FROM ratings WHERE mentor_id = ?";
+        try (Connection conn = DB.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, mentorId);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getDouble(1); // Returns 0.0 if no ratings exist
+            }
+        } catch (Exception e) { e.printStackTrace(); }
+        return 0.0;
+    }
 }

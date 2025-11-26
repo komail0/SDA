@@ -12,7 +12,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<StackPane styleClass="body" stylesheets="@../../css/styles/login.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sda.controllers.auth.LoginController">
+<StackPane styleClass="body" stylesheets="@../../css/styles/login.css"
+           xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sda.controllers.auth.LoginController">
 
     <!-- Main Card Container - Fixed Size HBox -->
     <!-- Changed: Fixed size (1000x600) to create the "Card" effect -->

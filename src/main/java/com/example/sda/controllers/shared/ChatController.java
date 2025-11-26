@@ -25,7 +25,7 @@ public class ChatController implements Initializable {
 
     @FXML private VBox chatListContainer;
     @FXML private VBox chatContentArea;
-    @FXML private TextField searchField; // Injected from FXML
+    @FXML private TextField searchField;
 
     private final ChatService chatService = new ChatService();
 

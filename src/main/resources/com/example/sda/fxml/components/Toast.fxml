@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<HBox fx:id="toastRoot" alignment="CENTER_LEFT" maxWidth="700" minHeight="65" prefHeight="76.0" prefWidth="327.0" spacing="0" styleClass="toast-root" stylesheets="@../../css/components/Toast.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:id="toastRoot" alignment="CENTER_LEFT" maxWidth="700" minHeight="65" prefHeight="76.0" prefWidth="327.0" spacing="0" styleClass="toast-root" stylesheets="@../../css/components/Toast.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
 
     <StackPane fx:id="statusIconContainer" maxWidth="70" minWidth="70" prefWidth="70" styleClass="toast-icon-wrapper" HBox.hgrow="NEVER">
         <Text fx:id="toastLogo" styleClass="toast-logo-char" text="AB" />

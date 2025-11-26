@@ -2,10 +2,7 @@ package com.example.sda.controllers.shared;
 
 import com.example.sda.models.Project;
 import com.example.sda.services.ProjectService;
-import com.example.sda.utils.AlertHelper; // Keep for now
-import com.example.sda.utils.SceneManager;
 import com.example.sda.utils.SessionManager;
-import com.example.sda.utils.Validator;
 import com.example.sda.models.User;
 import com.example.sda.utils.ToastHelper; // NEW
 
@@ -15,7 +12,6 @@ import javafx.fxml.Initializable;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -26,13 +22,9 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
-/**
- * Controller for the Upload Project form (accessible by Alumni).
- * Handles file upload (PDF to BLOB), validation, and submission.
- */
 public class UploadProjectController implements Initializable {
 
-    // --- FXML Bindings (Metadata) ---
+
     @FXML private TextField titleField;
     @FXML private TextField githubField;
     @FXML private TextArea descriptionArea;
@@ -44,7 +36,6 @@ public class UploadProjectController implements Initializable {
     @FXML private Label statusLabel; // Keep for showing status (e.g., uploading...)
     @FXML private VBox uploadForm;
 
-    // --- FXML Bindings (File Upload) ---
     @FXML private Button browseBtn;
     @FXML private Button submitBtn;
     @FXML private Button removeFileBtn;
@@ -65,7 +56,7 @@ public class UploadProjectController implements Initializable {
         fileListContainer.setVisible(false);
         fileListContainer.setManaged(false);
 
-        // Restrict DatePicker to not select future dates
+
         yearPicker.setDayCellFactory(picker -> new DateCell() {
             @Override
             public void updateItem(LocalDate date, boolean empty) {
@@ -75,7 +66,6 @@ public class UploadProjectController implements Initializable {
         });
     }
 
-    // --- Validation Helpers ---
 
     private boolean validateUrl(String url) {
         if (url == null || url.isEmpty()) return true; // Optional field
@@ -91,8 +81,7 @@ public class UploadProjectController implements Initializable {
             return false;
         }
 
-        // Basic field checks (we rely on individual field validation for visuals,
-        // but perform final check here for submission)
+
         if (titleField.getText().length() > 255 || titleField.getText().isEmpty()) {
             ToastHelper.showWarning("Input Error", "Project Title is required and cannot exceed 255 characters.");
             return false;
