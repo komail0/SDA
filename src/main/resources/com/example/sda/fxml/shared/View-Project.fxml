@@ -1,117 +1,123 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
-<ScrollPane xmlns="http://javafx.com/javafx/21"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.sda.controllers.shared.ViewProjectController"
-            styleClass="scroll-pane"
-            stylesheets="@../../css/styles/View-Project.css"
-            fitToWidth="true"
-            hbarPolicy="NEVER">
+<ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="scroll-pane" stylesheets="@../../css/styles/View-Project.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sda.controllers.shared.ViewProjectController">
 
     <VBox styleClass="detail-content-wrapper">
 
         <HBox styleClass="close-button-container">
-            <Button fx:id="closeBtn" text="✕" styleClass="close-btn" onAction="#handleClose"/>
+            <Button fx:id="closeBtn" onAction="#handleClose" styleClass="close-btn" text="✕" />
         </HBox>
 
         <VBox styleClass="detail-container">
 
-            <Label fx:id="statusLabel" text="Loading project details..." managed="true" styleClass="status-message"/>
+            <Label fx:id="statusLabel" managed="true" styleClass="status-message" text="Loading project details..." />
 
             <VBox styleClass="project-header">
-                <Text fx:id="projectTitle" text="Project Title Here" styleClass="project-title"/>
+                <Text fx:id="projectTitle" styleClass="project-title" text="Project Title Here" />
 
                 <HBox styleClass="project-meta">
                     <HBox styleClass="meta-item">
-                        <Label text="📂" styleClass="meta-icon"/>
+                        <Label styleClass="meta-icon" text="📂" />
                         <Label styleClass="meta-text">
                             <text>Category: </text>
                         </Label>
-                        <Label fx:id="categoryLabel" text="[Category]" styleClass="meta-text, meta-value"/>
+                        <Label fx:id="categoryLabel" styleClass="meta-text, meta-value" text="[Category]" />
                     </HBox>
 
                     <HBox styleClass="meta-item">
-                        <Label text="📅" styleClass="meta-icon"/>
+                        <Label styleClass="meta-icon" text="📅" />
                         <Label styleClass="meta-text">
                             <text>Completed: </text>
                         </Label>
-                        <Label fx:id="completionDateLabel" text="[Year]" styleClass="meta-text, meta-value"/>
+                        <Label fx:id="completionDateLabel" styleClass="meta-text, meta-value" text="[Year]" />
                     </HBox>
 
                     <HBox styleClass="meta-item">
-                        <Label text="🎓" styleClass="meta-icon"/>
-                        <Label fx:id="universityLabel" text="[University Name]" styleClass="meta-text, meta-value"/>
+                        <Label styleClass="meta-icon" text="🎓" />
+                        <Label fx:id="universityLabel" styleClass="meta-text, meta-value" text="[University Name]" />
                     </HBox>
                 </HBox>
 
-                <HBox styleClass="action-buttons" spacing="10">
-                    <Button fx:id="mentorshipBtn" text="🤝 Request Mentorship" styleClass="mentorship-btn" onAction="#handleMentorshipRequest" />
+                <HBox spacing="10" styleClass="action-buttons">
+                    <Button fx:id="mentorshipBtn" onAction="#handleMentorshipRequest" styleClass="mentorship-btn" text="🤝 Request Mentorship" />
 
-                    <Label fx:id="ratingBadge" text="⭐ 0.0" style="-fx-background-color: #ffbb33; -fx-text-fill: black; -fx-font-weight: bold; -fx-padding: 8 15; -fx-background-radius: 5; -fx-font-size: 14px;"/>
-
-                    <Button fx:id="githubBtn" text="💻 View on GitHub" styleClass="github-btn" onAction="#handleViewGitHub" />
+                    <Button fx:id="githubBtn" onAction="#handleViewGitHub" styleClass="github-btn" text="💻 View on GitHub" />
+   
+                       <Label fx:id="ratingBadge" style="-fx-background-color: #ffbb33; -fx-text-fill: black; -fx-font-weight: bold; -fx-padding: 8 15; -fx-background-radius: 5; -fx-font-size: 14px;" text="⭐ 0.0" />
                 </HBox>
             </VBox>
 
             <VBox fx:id="descriptionSection" styleClass="content-section">
                 <HBox styleClass="section-header">
-                    <Label text="📝" styleClass="section-icon"/>
-                    <Label text="Project Description" styleClass="section-title"/>
+                    <Label styleClass="section-icon" text="📝" />
+                    <Label styleClass="section-title" text="Project Description" />
                 </HBox>
-                <Label fx:id="descriptionLabel" text="Project description will appear here..."
-                       styleClass="section-content" wrapText="true"/>
+                <Label fx:id="descriptionLabel" styleClass="section-content" text="Project description will appear here..." wrapText="true" />
             </VBox>
 
             <VBox fx:id="technologiesSection" styleClass="content-section">
                 <HBox styleClass="section-header">
-                    <Label text="🛠️" styleClass="section-icon"/>
-                    <Label text="Technologies Used" styleClass="section-title"/>
+                    <Label styleClass="section-icon" text="🛠️" />
+                    <Label styleClass="section-title" text="Technologies Used" />
                 </HBox>
-                <FlowPane fx:id="technologiesContainer" styleClass="technologies-container"
-                          hgap="10" vgap="10">
-                    <Label text="No technologies listed" styleClass="section-content" fx:id="noTechLabel"/>
+                <FlowPane fx:id="technologiesContainer" hgap="10" styleClass="technologies-container" vgap="10">
+                    <Label fx:id="noTechLabel" styleClass="section-content" text="No technologies listed" />
                 </FlowPane>
             </VBox>
 
             <VBox fx:id="infoSection" styleClass="content-section">
                 <HBox styleClass="section-header">
-                    <Label text="ℹ️" styleClass="section-icon"/>
-                    <Label text="Additional Information" styleClass="section-title"/>
+                    <Label styleClass="section-icon" text="ℹ️" />
+                    <Label styleClass="section-title" text="Additional Information" />
                 </HBox>
-                <GridPane styleClass="info-grid" hgap="20" vgap="15">
+                <GridPane hgap="20" styleClass="info-grid" vgap="15">
                     <VBox styleClass="info-item" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                        <Label text="Project Supervisor" styleClass="info-label"/>
-                        <Label fx:id="supervisorLabel" text="Not specified" styleClass="info-value"/>
+                        <Label styleClass="info-label" text="Project Supervisor" />
+                        <Label fx:id="supervisorLabel" styleClass="info-value" text="Not specified" />
                     </VBox>
 
                     <VBox styleClass="info-item" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                        <Label text="Uploaded By" styleClass="info-label"/>
-                        <Label fx:id="uploaderLabel" text="[Alumni Name]" styleClass="info-value"/>
+                        <Label styleClass="info-label" text="Uploaded By" />
+                        <Label fx:id="uploaderLabel" styleClass="info-value" text="[Alumni Name]" />
                     </VBox>
 
                     <VBox styleClass="info-item" GridPane.columnIndex="0" GridPane.rowIndex="1">
-                        <Label text="Upload Date" styleClass="info-label"/>
-                        <Label fx:id="uploadDateLabel" text="[Date]" styleClass="info-value"/>
+                        <Label styleClass="info-label" text="Upload Date" />
+                        <Label fx:id="uploadDateLabel" styleClass="info-value" text="[Date]" />
                     </VBox>
+               <columnConstraints>
+                  <ColumnConstraints />
+                  <ColumnConstraints />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints />
+                  <RowConstraints />
+               </rowConstraints>
                 </GridPane>
             </VBox>
 
             <VBox fx:id="pdfSection" styleClass="pdf-section">
                 <HBox styleClass="section-header">
-                    <Label text="📄" styleClass="section-icon"/>
-                    <Label text="Project Document" styleClass="section-title"/>
+                    <Label styleClass="section-icon" text="📄" />
+                    <Label styleClass="section-title" text="Project Document" />
                 </HBox>
 
                 <VBox styleClass="pdf-viewer-container">
                     <VBox styleClass="pdf-placeholder">
-                        <Label text="📋" styleClass="pdf-icon"/>
-                        <Label text="PDF document available for viewing" styleClass="pdf-text"/>
-                        <Button fx:id="viewPdfBtn" text="Open PDF Document" styleClass="view-pdf-btn" onAction="#handleViewPdf"/>
+                        <Label styleClass="pdf-icon" text="📋" />
+                        <Label styleClass="pdf-text" text="PDF document available for viewing" />
+                        <Button fx:id="viewPdfBtn" onAction="#handleViewPdf" styleClass="view-pdf-btn" text="Open PDF Document" />
                     </VBox>
                 </VBox>
             </VBox>
