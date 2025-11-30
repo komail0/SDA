@@ -4,186 +4,120 @@
 ## Project Structure
 
 ```
-SDA/
-├── .idea/
-├── .mvn/
-├── src/
-│   ├── main/
-│   │   ├── java/
-│   │   │   └── com/
-│   │   │       └── example/
-│   │   │           └── sda/
-│   │   │               ├── DB.java
-│   │   │               ├── HelloApplication.java
-│   │   │               ├── HelloController.java
-│   │   │               ├── Launcher.java
-│   │   │               ├── module-info.java
-│   │   │               │
-│   │   │               ├── controllers/
-│   │   │               │   ├── auth/
-│   │   │               │   │   ├── RegistrationController.java
-│   │   │               │   │   └── LoginController.java
-│   │   │               │   │
-│   │   │               │   ├── shared/
-│   │   │               │   │   ├── ProjectRepositoryController.java
-│   │   │               │   │   ├── ProjectSearchController.java
-│   │   │               │   │   ├── UploadProjectController.java
-│   │   │               │   │   ├── MentorshipRequestController.java
-│   │   │               │   │   ├── MentorshipApprovalController.java
-│   │   │               │   │   ├── ChatController.java
-│   │   │               │   │   ├── ResourceSharingController.java
-│   │   │               │   │   ├── FeedbackRatingController.java
-│   │   │               │   │   └── ViewFeedbackController.java
-│   │   │               │   │
-│   │   │               │   ├── admin/
-│   │   │               │   │   ├── UserManagementController.java
-│   │   │               │   │   ├── RepositoryManagementController.java
-│   │   │               │   │   └── ReportsGenerationController.java
-│   │   │               │   │
-│   │   │               │   └── components/
-│   │   │               │       └── SidebarController.java
-│   │   │               │
-│   │   │               ├── dao/
-│   │   │               │   ├── UserDAO.java
-│   │   │               │   ├── StudentDAO.java
-│   │   │               │   ├── AlumniDAO.java
-│   │   │               │   ├── AdminDAO.java
-│   │   │               │   ├── ProjectDAO.java
-│   │   │               │   ├── MentorshipRequestDAO.java
-│   │   │               │   ├── ChatMessageDAO.java
-│   │   │               │   ├── ResourceDAO.java
-│   │   │               │   ├── FeedbackDAO.java
-│   │   │               │   └── RatingDAO.java
-│   │   │               │
-│   │   │               ├── models/
-│   │   │               │   ├── User.java
-│   │   │               │   ├── Student.java
-│   │   │               │   ├── Alumni.java
-│   │   │               │   ├── Admin.java
-│   │   │               │   ├── Project.java
-│   │   │               │   ├── MentorshipRequest.java
-│   │   │               │   ├── ChatMessage.java
-│   │   │               │   ├── Resource.java
-│   │   │               │   ├── Feedback.java
-│   │   │               │   └── Rating.java
-│   │   │               │
-│   │   │               ├── services/
-│   │   │               │   ├── AuthService.java
-│   │   │               │   ├── UserService.java
-│   │   │               │   ├── ProjectService.java
-│   │   │               │   ├── MentorshipService.java
-│   │   │               │   ├── ChatService.java
-│   │   │               │   ├── ResourceService.java
-│   │   │               │   ├── FeedbackService.java
-│   │   │               │   └── ReportService.java
-│   │   │               │
-│   │   │               ├── utils/
-│   │   │               │   ├── SessionManager.java
-│   │   │               │   ├── SceneManager.java
-│   │   │               │   ├── Validator.java
-│   │   │               │   ├── FileHandler.java
-│   │   │               │   ├── DateFormatter.java
-│   │   │               │   ├── AlertHelper.java
-│   │   │               │   ├── JsonParser.java
-│   │   │               │   └── HttpRequestHelper.java
-│   │   │               │
-│   │   │               └── enums/
-│   │   │                   ├── UserRole.java
-│   │   │                   ├── RequestStatus.java
-│   │   │                   ├── ProjectStatus.java
-│   │   │                   └── ResourceType.java
-│   │   │
-│   │   └── resources/
-│   │       └── com/
-│   │           └── example/
-│   │               └── sda/
-│   │                   ├── hello-view.fxml
-│   │                   │
-│   │                   ├── fxml/
-│   │                   │   ├── auth/
-│   │                   │   │   ├── registration-view.fxml
-│   │                   │   │   └── login-view.fxml
-│   │                   │   │
-│   │                   │   ├── shared/
-│   │                   │   │   ├── project-repository-view.fxml
-│   │                   │   │   ├── project-search-view.fxml
-│   │                   │   │   ├── upload-project-view.fxml
-│   │                   │   │   ├── mentorship-request-view.fxml
-│   │                   │   │   ├── mentorship-approval-view.fxml
-│   │                   │   │   ├── chat-view.fxml
-│   │                   │   │   ├── resource-sharing-view.fxml
-│   │                   │   │   ├── feedback-rating-view.fxml
-│   │                   │   │   └── view-feedback-view.fxml
-│   │                   │   │
-│   │                   │   ├── admin/
-│   │                   │   │   ├── user-management-view.fxml
-│   │                   │   │   ├── repository-management-view.fxml
-│   │                   │   │   └── reports-generation-view.fxml
-│   │                   │   │
-│   │                   │   └── components/
-│   │                   │       └── sidebar.fxml
-│   │                   │
-│   │                   ├── css/
-│   │                   │   ├── styles/
-│   │                   │   │   ├── main-style.css
-│   │                   │   │   ├── auth-style.css
-│   │                   │   │   ├── project-repository-style.css
-│   │                   │   │   ├── project-search-style.css
-│   │                   │   │   ├── upload-project-style.css
-│   │                   │   │   ├── mentorship-request-style.css
-│   │                   │   │   ├── mentorship-approval-style.css
-│   │                   │   │   ├── chat-style.css
-│   │                   │   │   ├── resource-sharing-style.css
-│   │                   │   │   ├── feedback-rating-style.css
-│   │                   │   │   ├── view-feedback-style.css
-│   │                   │   │   ├── user-management-style.css
-│   │                   │   │   ├── repository-management-style.css
-│   │                   │   │   └── reports-generation-style.css
-│   │                   │   │
-│   │                   │   └── components/
-│   │                   │       ├── sidebar-style.css
-│   │                   │       ├── button-style.css
-│   │                   │       ├── card-style.css
-│   │                   │       ├── table-style.css
-│   │                   │       └── form-style.css
-│   │                   │
-│   │                   ├── images/
-│   │                   │   ├── icons/
-│   │                   │   │   ├── logo.png
-│   │                   │   │   ├── user-icon.png
-│   │                   │   │   ├── project-icon.png
-│   │                   │   │   ├── search-icon.png
-│   │                   │   │   ├── upload-icon.png
-│   │                   │   │   ├── mentorship-icon.png
-│   │                   │   │   ├── chat-icon.png
-│   │                   │   │   ├── resource-icon.png
-│   │                   │   │   ├── feedback-icon.png
-│   │                   │   │   ├── admin-icon.png
-│   │                   │   │   ├── reports-icon.png
-│   │                   │   │   ├── settings-icon.png
-│   │                   │   │   └── logout-icon.png
-│   │                   │   │
-│   │                   │   ├── backgrounds/
-│   │                   │   │   └── login-bg.jpg
-│   │                   │   │
-│   │                   │   └── placeholders/
-│   │                   │       ├── avatar-placeholder.png
-│   │                   │       └── project-placeholder.png
-│   │                   │
-│   │                   ├── fonts/
-│   │                   │   ├── Roboto-Regular.ttf
-│   │                   │   ├── Roboto-Bold.ttf
-│   │                   │   └── Roboto-Light.ttf
-│   │                   │
-│   │                   └── config/
-│   │                       └── database.properties
-│
-├── test/
-│
-├── target/
-├── .gitignore
-├── pom.xml
-├── mvnw
-├── mvnw.cmd
-└── README.md
+
+└── main/
+    ├── java/
+    │   └── sda/
+    │       ├── controllers/
+    │       │   ├── admin/
+    │       │   │   ├── AdminDashboardController.java
+    │       │   │   ├── ReportsGenerationController.java
+    │       │   │   ├── RepositoryManagementController.java
+    │       │   │   └── UserManagementController.java
+    │       │   ├── auth/
+    │       │   │   ├── LoginController.java
+    │       │   │   └── RegistrationController.java
+    │       │   ├── components/
+    │       │   │   ├── AdminSidebarController.java
+    │       │   │   └── SidebarController.java
+    │       │   └── shared/
+    │       │       ├── AlumniRepositoryController.java
+    │       │       ├── AlumniRequestsController.java
+    │       │       ├── ChatAreaController.java
+    │       │       ├── ChatController.java
+    │       │       ├── FeedbackRatingController.java
+    │       │       ├── MentorRatingListController.java
+    │       │       ├── ProjectSearchController.java
+    │       │       ├── SendRequestController.java
+    │       │       ├── StudentRequestsController.java
+    │       │       ├── UploadProjectController.java
+    │       │       ├── ViewFeedbackController.java
+    │       │       └── ViewProjectController.java
+    │       ├── dao/
+    │       │   ├── AdminDAO.java
+    │       │   ├── ChatDAO.java
+    │       │   ├── FeedbackDAO.java
+    │       │   ├── MentorshipDAO.java
+    │       │   ├── MessageDAO.java
+    │       │   ├── ProjectDAO.java
+    │       │   ├── RatingDAO.java
+    │       │   └── UserDAO.java
+    │       ├── enums/
+    │       │   └── UserRole.java
+    │       ├── models/
+    │       │   ├── Chat.java
+    │       │   ├── Feedback.java
+    │       │   ├── MentorshipRequest.java
+    │       │   ├── Message.java
+    │       │   ├── Project.java
+    │       │   ├── ProjectDTO.java
+    │       │   ├── Rating.java
+    │       │   └── User.java
+    │       ├── services/
+    │       │   ├── AdminService.java
+    │       │   ├── AuthService.java
+    │       │   ├── ChatService.java
+    │       │   ├── MentorshipService.java
+    │       │   ├── MessageService.java
+    │       │   ├── ProjectService.java
+    │       │   └── RatingService.java
+    │       ├── utils/
+    │       │   ├── SceneManager.java
+    │       │   ├── SessionManager.java
+    │       │   ├── ToastHelper.java
+    │       │   └── Validator.java
+    │       ├── HelloApplication.java
+    │       ├── HelloController.java
+    │       └── Launcher.java
+    │
+    └── resources/
+        └── sda/
+            ├── css/
+            │   ├── admin-dashboard-style.css
+            │   ├── Alumni-Repository.css
+            │   ├── chat.css
+            │   ├── feedback-rating-style.css
+            │   ├── login.css
+            │   ├── mentor-ratinglist.css
+            │   ├── message.css
+            │   ├── Pending-Requests.css
+            │   ├── Registration.css
+            │   ├── reports-generation-style.css
+            │   ├── repository-management-style.css
+            │   ├── Search.css
+            │   ├── Send-Requests.css
+            │   ├── Upload-Project.css
+            │   ├── user-management-style.css
+            │   ├── view-feedback-style.css
+            │   └── View-Project.css
+            ├── fxml/
+            │   ├── admin/
+            │   │   ├── admin-dashboard-view.fxml
+            │   │   ├── reports-generation-view.fxml
+            │   │   ├── repository-management-view.fxml
+            │   │   └── user-management-view.fxml
+            │   ├── auth/
+            │   │   ├── Login.fxml
+            │   │   └── Registration.fxml
+            │   ├── components/
+            │   │   ├── admin_sidebar.fxml
+            │   │   ├── alumni_sidebar.fxml
+            │   │   └── student_sidebar.fxml
+            │   ├── Toast.fxml
+            │   └── shared/
+            │       ├── Alumni-Repository.fxml
+            │       ├── Alumni-Requests.fxml
+            │       ├── chat.fxml
+            │       ├── feedback-rating-view.fxml
+            │       ├── home.fxml
+            │       ├── mentor-rating.fxml
+            │       ├── message.fxml
+            │       ├── Pending-Requests.fxml
+            │       ├── Search.fxml
+            │       ├── Send-Request.fxml
+            │       ├── Upload-Project.fxml
+            │       ├── view-feedback.fxml
+            │       ├── view-feedback-view.fxml
+            │       └── View-Project.fxml
+
 ```
